@@ -1,0 +1,342 @@
+#wrap {
+    font-size: 14px;
+    line-height: 20px;
+    color: #333333;
+    background-color: #ffffff;
+}
+
+.loocked_parent {
+    position: relative;
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row:before, .row:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+
+[class*="span"] {
+    float: left;
+    min-height: 1px;
+    margin-left: 20px;
+}
+
+.container:before, .container:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+
+.row {
+    margin-left: -20px;
+}
+
+.content-margin__top__a {
+    margin-top: 27px;
+}
+
+.header-checklist .span8 h2 {
+    margin-top: 0px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 36px;
+    color: #434343;
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+    width: 940px;
+}
+
+.span4 {
+    width: 300px;
+}
+
+.graf-checklist .ui-widget-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.graf-checklist .ui-progressbar {
+    height: 0.45em;
+    text-align: left;
+    overflow: hidden;
+}
+.graf-checklist .ui-progressbar .ui-progressbar-value {
+    margin: -1px;
+    height: 100%;
+}
+.graf-checklist .ui-progressbar .ui-progressbar-overlay {
+    height: 100%;
+    filter: alpha(opacity=25);
+    opacity: 0.25;
+}
+.graf-checklist .ui-progressbar-indeterminate .ui-progressbar-value {
+    background-image: none;
+}
+
+/* Component containers
+----------------------------------*/
+.graf-checklist .ui-widget-content {
+    background: #e1e1e1;
+    color: #333333;
+    border-radius: 2px;
+}
+.graf-checklist .ui-widget-header {
+    border: 1px solid #37a1e4;
+    background: #37a1e4;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 2px;
+}
+.graf-checklist .progress-done .ui-widget-header {
+    border: 1px solid #58a200;
+    background: #58a200;
+}
+.graf-checklist .span4 .span4, .graf-checklist .span4 .span2, .graf-checklist .span4 .span1 {
+    margin-left: 0px;
+    font-size: 16px;
+    font-family: "Segoe UI Semibold", sans-serif;
+}
+.graf-checklist .span4 .span1 {
+    text-align: right;
+}
+.graf-checklist .span4 .span2{
+    width: 265px;
+    padding-bottom: 10px;
+}
+.graf-checklist .span4  .span1 {
+    width: 30px;
+}
+.graf-checklist .span4 .span2 a{
+    color:#434343;
+    text-decoration: none;
+    font-size: 13px;
+    margin-top: -2px;
+    display: inherit;
+}
+
+.margin-checklist{
+    padding-top: 30px;
+}
+.graf-checklist .span4 .span1 span{
+    color: #58a200;
+}
+.graf-checklist .span4 .span2 .razdel {
+    text-align: right;
+}
+.razdel{
+    display: block;
+    width: 17px;
+    height: 17px;
+    float: left;
+    margin-right: 7px;
+}
+.r1{
+    background: url("../svg/icn-strategy.svg") center 0px no-repeat;
+    width: 17px;
+    height: 17px;
+}
+.r2{
+    background: url("../svg/icn-keyword-research.svg") center 0px no-repeat;
+}
+.r3{
+    background: url("../svg/icn-on-page.svg") center 0px no-repeat;
+}
+.r4{
+    background: url("../svg/icn-social-media.svg") center 0px no-repeat;
+}
+.r5{
+    background: url("../img/razdel_r5.png") center 0px no-repeat;
+}
+.r6{
+    background: url("../svg/icn-off-page.svg") center 0px no-repeat;
+}
+.r7{
+    background: url("../svg/icn-your-own-tasks.svg") center 0px no-repeat;
+}
+
+.export-type .r1{
+    height: 11px;
+    width: 110px;
+}
+label.r1{
+    width: auto;
+}
+.progress-div-done .r1{
+    background: url("../svg/icn-strategy-done.svg") center 0px no-repeat;
+}
+.progress-div-done .r2{
+    background: url("../img/razdel_r2.png") center -16px no-repeat;
+}
+.progress-div-done .r3{
+    background: url("../svg/icn-on-page-done.svg") center 0px no-repeat;
+}
+.progress-div-done .r4{
+    background: url("../svg/icn-social-media-done.svg") center 0px no-repeat;
+}
+.progress-div-done .r5{
+    background: url("../img/razdel_r5.png") center -16px no-repeat;
+}
+.progress-div-done .r6{
+    background: url("../img/razdel_r6.png") center -16px no-repeat;
+}
+.progress-div-done .r7{
+    background: url("../svg/icn-your-own-tasks-done.svg") center 0px no-repeat;
+}
+
+.head-seo .span4 p{
+    font-size: 26px;
+    margin:0px;
+    margin-top: 20px;
+    text-align: right;
+}
+.head-seo .span4 p span{
+    color: #58a200;
+}
+.seo-line{
+    border-bottom: 2px solid #cdcdcd;
+    margin-left: 0px;
+    margin-bottom: 20px;
+}
+.seo-childs{
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 20px;
+}
+.seo-childs .span8 span{
+    font-size: 16px;
+    font-family: "Segoe UI Semibold", sans-serif;
+}
+.seo-checkbox{
+    margin-bottom: -3px;
+}
+.regular-checkbox + label.seo-checkbox  {
+    border:none;
+    background: url("../img/checklist_cheked.png") center -16px no-repeat;
+}
+.regular-checkbox:checked + label.seo-checkbox{
+    background: url("../img/checklist_cheked.png") center 0px no-repeat;
+}
+.regular-checkbox:checked + label.seo-checkbox:after{
+    content: none;
+}
+.regular-checkbox + label.seo-checkbox:active, .regular-checkbox:checked + label.seo-checkbox:active {
+    border:none;
+}
+.seo-select-spa{
+    color: #58a200;
+}
+.seo-hide-block{
+    display:none;
+    width: 920px;
+    margin-top: -1px;
+}
+.seo-hide-block span p, .seo-hide-block span div.p{
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-style: italic;
+    background-color: #eeeeee;
+    padding-bottom: 15px;
+}
+.seo-block-p{
+    color:#6f6f6f;
+    padding-top: 5px;
+    width: 920px;
+}
+.seo-childs .span4{
+    margin-left: 0px;
+    text-align: right;
+}
+a.toogle-close{
+    color:#434343;
+    text-decoration: none;
+    background-color: #dedede;
+    padding: 1px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 2px;
+}
+.seo-hide-block .podlink{
+    height: 10px;
+}
+.seo-hide-block .podlink div{
+    background-color: #eeeeee;
+    height:10px;
+    width:85px;
+    float: right;
+}
+a.open-seo-link{
+    background-color: #eeeeee;
+    border-radius: 0px;
+}
+.seo-line-child{
+    border-bottom: 1px solid #cdcdcd;
+    margin-left: 20px;
+}
+.seo-block-p p span{
+    font-family: "Segoe UI Semibold", sans-serif;
+    color: #333333;
+    padding-right: 5px;
+}
+.seo-block-p p a, .seo-hide-block span p a{
+    color: #3f8bd5;
+    text-decoration: none;
+}
+.seo-childs .span8{
+    width: 820px;
+}
+.seo-childs .span4{
+    width: 100px;
+}
+.seo-block-p p a:hover, .seo-hide-block span p a:hover{
+    text-decoration: underline;
+}
+.knob{
+    font-size: 30px;
+}
+.knob[value='100']{
+    font-size: 24px;
+}
+.seo-childs .span8 span{
+    cursor: pointer;
+    word-wrap: break-word;
+}
+.audit-header-right{
+    width: 370px;
+}
+.audit-header-right h2{
+    font-family: "Segoe UI", sans-serif;
+    font-weight: 100;
+    font-size: 30px;
+}
+.header-checklist  .audit-header-right p{
+    font-size: 16px;
+    color:#a3a3a3;
+}
+
+
+.span8 {
+    width: 620px;
+}
+
+.knobi_graf{
+    text-align: right;
+    width: 110px;
+}
+.knobi_graf_p{
+    width: 170px;
+    padding-top: 30px;
+}

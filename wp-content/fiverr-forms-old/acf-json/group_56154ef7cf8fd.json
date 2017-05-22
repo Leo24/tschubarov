@@ -1,0 +1,265 @@
+{
+    "key": "group_56154ef7cf8fd",
+    "title": "Fiverr Forms",
+    "fields": [
+        {
+            "key": "field_56154efd1d427",
+            "label": "Forms",
+            "name": "forms",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": "",
+            "max": "",
+            "layout": "block",
+            "button_label": "Add Form",
+            "use_fancy_repeater": "yes",
+            "sub_fields": [
+                {
+                    "key": "field_56154f0b1d428",
+                    "label": "Title",
+                    "name": "title",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "readonly": 0,
+                    "disabled": 0
+                },
+                {
+                    "read_only": false,
+                    "mask": "",
+                    "mask_autoclear": 0,
+                    "mask_placeholder": "_",
+                    "function": "regex",
+                    "pattern": "^[^{,\\s.}]+$",
+                    "message": "Only one word required.",
+                    "unique": "non-unique",
+                    "unique_statuses": [
+                        "publish",
+                        "future"
+                    ],
+                    "drafts": 1,
+                    "key": "field_56154f431d42a",
+                    "label": "Form Name",
+                    "name": "form_name",
+                    "type": "validated_field",
+                    "instructions": "short name - use only one word or number if possible",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "sub_field": {
+                        "type": "text",
+                        "key": "field_56154f431d42a",
+                        "name": "[field_56154f431d42a]",
+                        "_name": "form_name",
+                        "id": "-field_56154f431d42a",
+                        "value": null,
+                        "field_group": "",
+                        "readonly": "",
+                        "disabled": "",
+                        "parent": 20,
+                        "save": "",
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": "",
+                        "read_only": false,
+                        "mask": "",
+                        "mask_autoclear": 0,
+                        "mask_placeholder": "_",
+                        "function": "regex",
+                        "pattern": "^[^{,\\s.}]+$",
+                        "message": "Only one word required.",
+                        "unique": "non-unique",
+                        "unique_statuses": [
+                            "publish",
+                            "future"
+                        ],
+                        "drafts": 1,
+                        "ID": 21,
+                        "label": "Form Name",
+                        "prefix": "",
+                        "menu_order": 1,
+                        "instructions": "short name - use only one word or number if possible",
+                        "required": 1,
+                        "class": "",
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "_input": "[field_56154f431d42a]",
+                        "_valid": 1
+                    }
+                },
+                {
+                    "key": "field_56154f361d429",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": "",
+                    "new_lines": "wpautop",
+                    "readonly": 0,
+                    "disabled": 0
+                },
+                {
+                    "key": "field_561e7b0b579a5",
+                    "label": "Time",
+                    "name": "time",
+                    "type": "radio",
+                    "instructions": "in hours",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "12": 12,
+                        "24": 24,
+                        "48": 48
+                    },
+                    "other_choice": 0,
+                    "save_other_choice": 0,
+                    "default_value": 24,
+                    "layout": "vertical"
+                },
+                {
+                    "key": "field_56154fd91d42b",
+                    "label": "Network Sites Select",
+                    "name": "show_network_choise",
+                    "type": "true_false",
+                    "instructions": "Check it if you want to include in form Network Sites Selector",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "Show Network Sites Selector",
+                    "default_value": 0
+                },
+                {
+                    "key": "field_5615504d1d42c",
+                    "label": "Research Type checkbox",
+                    "name": "show_research_type",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "Show Research Type checkbox",
+                    "default_value": 0
+                },
+                {
+                    "key": "field_562a48884bb78",
+                    "label": "Show Site Url",
+                    "name": "show_site_url",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "Show Site Url field",
+                    "default_value": 1
+                },
+                {
+                    "key": "field_562a48c24bb79",
+                    "label": "Show Keywords",
+                    "name": "show_keywords",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "Show Keywords field",
+                    "default_value": 1
+                },
+                {
+                    "key": "field_5616a723c7079",
+                    "label": "Thank You Message",
+                    "name": "thank_you_message",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "tabs": "all",
+                    "toolbar": "full",
+                    "media_upload": 1
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "fiverr-forms"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1445969429
+}

@@ -1,0 +1,6 @@
+{
+    "require": {
+        "videlalvaro/php-amqplib": "dev-master",
+        "predis/predis": "dev-master"
+    }
+}

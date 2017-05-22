@@ -1,0 +1,228 @@
+/* If you want to add your own CSS code, please do it in this file */
+
+.theCount {
+    font-size: 13px;
+}
+
+#centerblock .top_block {
+    background-image: -webkit-linear-gradient(120deg,#1ecff3,#0da1e3);
+    background-image: -moz-linear-gradient(120deg,#1ecff3,#0da1e3);
+    background-image: -ms-linear-gradient(120deg,#1ecff3,#0da1e3);
+    background-image: -o-linear-gradient(120deg,#1ecff3,#0da1e3);
+    background-image: linear-gradient(120deg,#1ecff3,#0da1e3);
+    text-align: left;
+}
+
+#centerblock .top_block .r {
+    position: relative;
+}
+#centerblock .top_block>.r {
+    height: 600px;
+    width: 100%;
+    display: table;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#centerblock .r {
+    max-width: 1170px;
+    margin: 0 auto;
+    font-size: 0;
+}
+
+#centerblock .top_block>.r .text_block {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#centerblock .top_block .text_block {
+    width: 420px;
+    padding-left: 80px;
+}
+
+#centerblock .top_block img {
+    position: absolute;
+    top: 100px;
+    right: 50px;
+    max-width: 49%;
+}
+
+#centerblock .top_block h1 {
+    text-align: left;
+    color: #fff;
+}
+
+#centerblock .top_block .btns {
+    padding-top: 50px;
+}
+
+#centerblock .btn {
+    width: 154px;
+    height: 64px;
+    line-height: 63px;
+    -webkit-background-clip: border-box;
+    -moz-background-clip: border-box;
+    background-clip: border-box;
+}
+
+#centerblock .btn, #centerblock .btn:active, #centerblock .btn:focus, #centerblock .btn_long, #centerblock .btn_long:active, #centerblock .btn_long:focus {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: .3px;
+    border-radius: 6px;
+    border-width: 1px;
+    border-style: solid;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    text-align: center;
+    -webkit-transition: all .24s;
+    -o-transition: all .24s;
+    transition: all .24s;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#centerblock .btn_white, #centerblock .btn_white:active, #centerblock .btn_white:focus {
+    background-color: #fff;
+    border-color: #fff;
+    color: #0da1e3;
+}
+
+#centerblock .top_block .btn:first-child {
+    margin-right: 0;
+}
+
+#centerblock h1 {
+    font-size: 44px;
+    line-height: 60px;
+}
+
+#centerblock .top_block p {
+    color: rgba(255,255,255,.7);
+}
+
+#centerblock .p {
+    font-size: 18px;
+    line-height: 26px;
+    padding-top: 25px;
+}
+#centerblock p {
+    font-size: 14px;
+}
+
+#centerblock .btn_white:hover {
+    background-color: #efefef;
+    border-color: #efefef;
+    color: #0da1e3;
+    outline: 0;
+}
+#centerblock .btn:hover, #centerblock .btn_long:hover {
+    -webkit-transition: all .24s;
+    -o-transition: all .24s;
+    transition: all .24s;
+    text-decoration: none;
+}
+
+.ngg-gallery-thumbnail {
+    text-align: center;
+    max-width: 100%!important;
+    background-color: transparent;
+    border: 0px;
+    margin: 5px;
+}
+
+.ngg-gallery-thumbnail a img:nth-of-type(1) {
+    display: none;
+}
+
+#centerblock .top_block img {
+    top: 160px;
+}
+
+#right-image-more {
+    top: 264px !important;
+    right: 6px !important;
+}
+
+#right-image-more:hover {
+    background: transparent !important;
+}
+
+.ngg-navigation {
+    display: none !important;
+}
+
+p.bottomnote {
+    position: absolute;
+    right: 144px;
+    top: 476px;
+    font-weight: bold;
+}
+
+.fomr_seo_package_report .seo_report_block {
+    width: 47%;
+    float: left;
+    background: #DDD;
+    padding: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.fomr_seo_package_report textarea {
+    width: 100%;
+    height: 150px;
+}
+
+
+
+.hidden_form_field {
+    display: none;
+}
+
+.fiverr_report {
+    margin-top: 1em;
+    overflow: hidden;
+}
+
+.fiverr_report .button {
+    float: left;
+}
+
+
+.spinner.is-active {
+    visibility: visible;
+    display: inline-block;
+}
+
+.spinner {
+    background: url('../img/spinner.gif') no-repeat;
+    -webkit-background-size: 20px 20px;
+    background-size: 20px 20px;
+    float: left;
+    vertical-align: middle;
+    filter: alpha(opacity=70);
+    opacity: .7;
+    width: 20px;
+    height: 20px;
+    margin: 4px 10px 0;
+    display: none;
+}
+
+body.single-fiverr_order .acf-form-submit .button-large {
+    font-size: 16px;
+}
+
+
+.dl_rep {
+    display: none;
+}
+
+.dl_rep.active {
+    display: inline-block;
+    margin-left: 1.4em;
+}
+
+.hint_pop ul li {
+    font-size: 12px !important;
+}

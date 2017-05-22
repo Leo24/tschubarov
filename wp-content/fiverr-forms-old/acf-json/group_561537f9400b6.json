@@ -1,0 +1,474 @@
+{
+    "key": "group_561537f9400b6",
+    "title": "Frontend Form",
+    "fields": [
+        {
+            "key": "field_56154a2f145d0",
+            "label": "Hide Network Choise",
+            "name": "hide_network_choise",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "hidden_form_field",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0
+        },
+        {
+            "key": "field_561546c2bce7e",
+            "label": "Network of Sites",
+            "name": "network_of_sites",
+            "type": "select",
+            "instructions": "Please Choose Network of Sites",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_56154a2f145d0",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "none": "Choose",
+                "TOP 100 BLOGS": "TOP 100 BLOGS",
+                "Motivation, Inspiration and Personal Development": "Motivation, Inspiration and Personal Development",
+                "Health and Fitness": "Health and Fitness",
+                "Loans and Finance": "Loans and Finance",
+                "Insurance": "Insurance",
+                "Business and Marketing": "Business and Marketing",
+                "Real Estate": "Real Estate",
+                "Drugs": "Drugs",
+                "Misc": "Misc",
+                "Fashion and Design": "Fashion and Design",
+                "Cars and Motosports": "Cars and Motosports",
+                "Internet and Technology": "Internet and Technology",
+                "Photography and Tatoos": "Photography and Tatoos",
+                "Education": "Education",
+                "Food": "Food"
+            },
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "disabled": 0,
+            "readonly": 0
+        },
+        {
+            "key": "field_561550e3277a6",
+            "label": "Hide Research Type",
+            "name": "hide_research_type",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "hidden_form_field",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0
+        },
+        {
+            "key": "field_561543fd6e152",
+            "label": "Research Type",
+            "name": "research_type",
+            "type": "checkbox",
+            "instructions": "How do you want your research?<br \/>\r\nPlease choose one from below",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_561550e3277a6",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "800": "up to 800 Keywords, Awesome Long Tail synonyms, Less traffic but closely related and better conversion.",
+                "less": "Less variety of synonyms,CLOSELY Related to your keyowrds, Less keywords"
+            },
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0
+        },
+        {
+            "key": "field_562a48274da0d",
+            "label": "Hide Site Url",
+            "name": "hide_site_url",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "hidden_form_field",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1
+        },
+        {
+            "key": "field_56153b416b899",
+            "label": "Site Url",
+            "name": "site_url",
+            "type": "repeater",
+            "instructions": "Please put your website URL below:<br \/>\r\nUrl must contains http:\/\/ or https:\/\/ at the beginning",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_562a48274da0d",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 1,
+            "max": 10,
+            "layout": "block",
+            "button_label": "Add Site Url",
+            "use_fancy_repeater": "no",
+            "forced_fancy_repeater": false,
+            "sub_fields": [
+                {
+                    "key": "field_56153c21b9262",
+                    "label": "Url",
+                    "name": "url",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": ""
+                }
+            ]
+        },
+        {
+            "key": "field_565721c4e61cd",
+            "label": "Site Url",
+            "name": "site_url_unformated",
+            "type": "textarea",
+            "instructions": "Please put your website URLs below:<br>\r\nURLs must contain http:\/\/ or https:\/\/ at the beginning",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_561542f60714e",
+            "label": "Keywords",
+            "name": "keywords",
+            "type": "repeater",
+            "instructions": "Please, give us few keywords as a start point, this will give you much better research!",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_562a48114da0c",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 1,
+            "max": "",
+            "layout": "block",
+            "button_label": "Add Keyword",
+            "use_fancy_repeater": "no",
+            "forced_fancy_repeater": false,
+            "sub_fields": [
+                {
+                    "read_only": false,
+                    "mask": "",
+                    "mask_autoclear": 1,
+                    "mask_placeholder": "",
+                    "function": "regex",
+                    "pattern": "^[^,]+$",
+                    "message": "Please Enter Correct Keyword without any special symbols",
+                    "unique": "non-unique",
+                    "unique_statuses": [
+                        "publish",
+                        "future"
+                    ],
+                    "drafts": 1,
+                    "key": "field_561543080714f",
+                    "label": "Keyword",
+                    "name": "keyword",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "sub_field": {
+                        "type": "text",
+                        "key": "field_561543080714f",
+                        "name": "[field_561543080714f]",
+                        "_name": "keyword",
+                        "id": "-field_561543080714f",
+                        "value": null,
+                        "field_group": "",
+                        "readonly": "",
+                        "disabled": "",
+                        "parent": 183,
+                        "save": "",
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": "",
+                        "read_only": false,
+                        "mask": "",
+                        "mask_autoclear": 1,
+                        "mask_placeholder": "",
+                        "function": "regex",
+                        "pattern": "^[^,]+$",
+                        "message": "Please Enter Correct Keyword without any special symbols",
+                        "unique": "non-unique",
+                        "unique_statuses": [
+                            "publish",
+                            "future"
+                        ],
+                        "drafts": 1,
+                        "ID": 187,
+                        "label": "Keyword",
+                        "prefix": "",
+                        "menu_order": 0,
+                        "instructions": "",
+                        "required": 0,
+                        "class": "",
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "_input": "[field_561543080714f]",
+                        "_valid": 1
+                    }
+                }
+            ]
+        },
+        {
+            "key": "field_562a48114da0c",
+            "label": "Hide Keywords",
+            "name": "hide_keywords",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "hidden_form_field",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0
+        },
+        {
+            "key": "field_561540d10714d",
+            "label": "Fiverr Username",
+            "name": "fiverr_username",
+            "type": "text",
+            "instructions": "Please, put your FIVERR USERNAME below",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "read_only": false,
+            "mask": "",
+            "mask_autoclear": 1,
+            "mask_placeholder": "_",
+            "function": "regex",
+            "pattern": "^[A-Z0-9]+$",
+            "message": "Please Enter Correct Order Number.",
+            "unique": "non-unique",
+            "unique_statuses": [
+                "publish",
+                "future"
+            ],
+            "drafts": 1,
+            "key": "field_56153a3303f70",
+            "label": "Order ID",
+            "name": "order_number",
+            "type": "validated_field",
+            "instructions": "Please, put your ORDER #NUMBER below:<br \/>\r\nYou can find it on the order page. Example: FO64CCABB588",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_field": {
+                "type": "text",
+                "key": "field_56153a3303f70",
+                "name": "[field_56153a3303f70]",
+                "_name": "order_number",
+                "id": "-field_56153a3303f70",
+                "value": null,
+                "field_group": "",
+                "readonly": "",
+                "disabled": "",
+                "parent": 177,
+                "save": "",
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "#",
+                "append": "",
+                "maxlength": "",
+                "read_only": false,
+                "mask": "",
+                "mask_autoclear": 1,
+                "mask_placeholder": "_",
+                "function": "regex",
+                "pattern": "^[A-Z0-9]+$",
+                "message": "Please Enter Correct Order Number.",
+                "unique": "non-unique",
+                "unique_statuses": [
+                    "publish",
+                    "future"
+                ],
+                "drafts": 1,
+                "ID": 185,
+                "label": "Order ID",
+                "prefix": "",
+                "menu_order": 10,
+                "instructions": "Please, put your ORDER #NUMBER below:<br \/>\r\nYou can find it on the order page. Example: FO64CCABB588",
+                "required": 1,
+                "class": "",
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "_input": "[field_56153a3303f70]",
+                "_valid": 1
+            }
+        },
+        {
+            "key": "field_562a47dfccb48",
+            "label": "Specific Requirements",
+            "name": "specific_requirements",
+            "type": "textarea",
+            "instructions": "Enter your comments to the order",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "wpautop",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_565841e31cdcb",
+            "label": "Description",
+            "name": "description",
+            "type": "textarea",
+            "instructions": "Should be just a brief description of the website",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "br",
+            "readonly": 0,
+            "disabled": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "fiverr_order"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "custom_fields",
+        "author"
+    ],
+    "active": 1,
+    "description": "",
+    "modified": 1449492686
+}

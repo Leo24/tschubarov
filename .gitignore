@@ -1,0 +1,21 @@
+/.idea
+
+*.log
+wp-config.php
+wp-content/advanced-cache.php
+wp-content/backup-db/
+wp-content/backups/
+wp-content/blogs.dir/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/uploads/
+wp-content/wp-cache-config.php
+wp-content/plugins/hello.php
+creads_to admin_panel
+wp-content/plugins/contact-form-7/admin/images/
+wp-content/plugins/contact-form-7/images/service-icons/
+
+wp-content/themes/twentyfifteen
+wp-content/themes/twentysixteen
+wp-content/themes/twentyseventeen
+.htaccess
