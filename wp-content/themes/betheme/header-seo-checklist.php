@@ -24,9 +24,6 @@
 		<link rel="apple-touch-icon" href="<?php mfn_opts_show( 'apple-touch-icon' ); ?>" />
 	<?php endif; ?>
 
-	<!-- wp_head() -->
-	<?php wp_head(); ?>
-
 	<!-- Loading Bootstrap -->
 	<link href="<?php echo get_template_directory_uri().'/seo-checklist/css/bootstrap.css';?>" rel="stylesheet">
 
