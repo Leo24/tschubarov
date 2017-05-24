@@ -3,40 +3,12 @@
 <link href="<?php echo get_template_directory_uri().'/seo-checklist/css/bootstrap.css';?>" rel="stylesheet">
 
 <!-- Loading Flat UI -->
-<link href="<?php echo get_template_directory_uri().'/seo-checklist/css/flat-ui.css';?>" rel="stylesheet">
 <link href="<?php echo get_template_directory_uri().'/seo-checklist/css/style.css';?>" rel="stylesheet">
-<link href="<?php echo get_template_directory_uri().'/seo-checklist/css/en.css';?>" rel="stylesheet">
+<link href="<?php echo get_template_directory_uri().'/seo-checklist/css/flat-ui.css';?>" rel="stylesheet">
 <link href="<?php echo get_template_directory_uri().'/seo-checklist/css/default.css';?>" type="text/css" rel="stylesheet" id="theme-change">
 
 
-<script type="text/javascript" async="" src="<?php echo get_template_directory_uri().'/seo-checklist/js/watch.js';?>"></script>
-<script async="" src="<?php echo get_template_directory_uri().'/seo-checklist/js/gtm.js';?>"></script>
 <script src="<?php echo get_template_directory_uri().'/seo-checklist/js/jquery-1.8.3.min.js';?>"></script>
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/jquery-ui-1.10.3.custom.min.js';?>"></script>
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/jquery.ui.touch-punch.min.js';?>"></script>
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/bootstrap.min.js';?>"></script>
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/bootstrap-select.js';?>"></script>
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/bootstrap-switch.js';?>"></script>
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/flatui-checkbox.js';?>"></script>
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/flatui-radio.js';?>"></script>
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/jquery.tagsinput.js';?>"></script>
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/jquery.placeholder.js';?>"></script>
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/jquery.stacktable.js';?>"></script>
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/jquery.cookie.js';?>"></script>
-
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/application.js';?>"></script>
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/hints.js';?>"></script>
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/jquery.mousewheel.js';?>"></script>
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/jquery.nicescroll.min.js';?>"></script>
-
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/highcharts.js';?>"></script>
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/highcharts-3d.js';?>"></script>
-<script src="<?php echo get_template_directory_uri().'/seo-checklist/js/en.js';?>"></script>
-
-<script type="text/javascript" src="<?php echo get_template_directory_uri().'/seo-checklist/js/select2.min.js';?>"></script>
-<script type="text/javascript" src="<?php echo get_template_directory_uri().'/seo-checklist/js/jsrender.min.js';?>"></script>
-
-
 
 
 <divclass="container loocked_parent">
