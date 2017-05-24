@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.4 (305) - http://www.bohemiancoding.com/sketch -->
+    <title>icn_socialMedia</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs></defs>
+    <g id="Marketing-Plan" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="5.-Positions-—-Marketing-Plan-(Own-task-added)" sketch:type="MSArtboardGroup" transform="translate(-780.000000, -364.000000)" fill="#434343" opacity="0.6">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(130.000000, 183.000000)">
+                <g id="On-page" transform="translate(650.000000, 180.000000)" sketch:type="MSShapeGroup">
+                    <path d="M8.5,18 C13.1944204,18 17,14.1944204 17,9.5 C17,4.80557963 13.1944204,1 8.5,1 C3.80557963,1 0,4.80557963 0,9.5 C0,14.1944204 3.80557963,18 8.5,18 Z M8.5,16.5952381 C12.4185918,16.5952381 15.5952381,13.4185918 15.5952381,9.5 C15.5952381,5.5814082 12.4185918,2.4047619 8.5,2.4047619 C4.5814082,2.4047619 1.4047619,5.5814082 1.4047619,9.5 C1.4047619,13.4185918 4.5814082,16.5952381 8.5,16.5952381 Z M11.281,12.9996495 L8.5,11.4404433 L5.719,13 L6.446125,10.0459544 L4,8.05532922 L7.230625,7.78932843 L8.5,5 L9.769375,7.78932843 L13,8.05532922 L10.55425,10.0456039 L11.281,12.9996495 Z" id="icn_socialMedia"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

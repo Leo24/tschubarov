@@ -878,6 +878,16 @@
                 </div>
             </div>
 
+            <?php $posts_array = get_posts(
+                array(
+                    'posts_per_page' => -1,
+                    'post_type' => 'seo_checklist',
+                )
+            );
+            $categoryPostQuantity = count($posts_array);
+            ?>
+
+
             <div class="container content-margin__top__a" style="margin-top: 15px;">
                 <div class="row header2-checklist">
                     <div class="span8">
@@ -886,7 +896,7 @@
                     <div class="globalHint-58" data-globalwidth="428" data-globalverticalposition="bottom" data-globalhorizontalposition="left" style="display: inline-block;">
                         <div class="span2 knobi_graf_p">
                             <p><i class="total-done-graf-i"></i><span class="total-done-graf">0</span> Complete</p>
-                            <p style="padding-top: 10px;"><i class="total-white-graf-i"></i><span class="total-white-graf">49</span> To do</p>
+                            <p style="padding-top: 10px;"><i class="total-white-graf-i"></i><span class="total-white-graf"><?php echo $categoryPostQuantity;?></span> To do</p>
                         </div>
                         <div class="span2 knobi_graf checklist">
                             <div style="display:inline;width:102px;height:102px;" class="knobi_div">
@@ -900,49 +910,49 @@
 
             <div class="container content-margin__top__a" style="margin-top: 15px;" id="categories_block">
 
+                <?php $categories = get_terms('seo-checklist-category',
+                    array(
+                        'type'=>'seo-checklist-category',
+                        'orderby'=>'id'
+                    )
+                );?>
+
                 <div class="row graf-checklist">
-                    <div class="span4" data-count-razdel="razdel-strategy" data-total="7" data-category-id="strategy">
-                        <div class="span2"><i class="r1 razdel"></i><a href="javascript:getRazdel(&#39;ro-strategy&#39;);">Strategy &amp; Pre-Launch Care</a></div>
-                        <div class="span1"><span id="ra1">0</span>/7</div>
-                        <div class="span4 progressbar ui-progressbar ui-widget ui-widget-content ui-corner-all" id="r1" data-val="0" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                            <div class="ui-progressbar-value ui-widget-header ui-corner-left" style="display: none; width: 0%;"></div>
+
+                    <?php
+                    $num = 0;
+                    foreach($categories as $k => $category):
+
+                        $posts_array = get_posts(
+                            array(
+                                'posts_per_page' => -1,
+                                'post_type' => 'seo_checklist',
+                                'tax_query' => array(
+                                    array(
+                                        'taxonomy' => $category->taxonomy,
+                                        'field' => 'term_id',
+                                        'terms' => $category->term_id,
+                                    )
+                                )
+                            )
+                        );
+                        $count = count($posts_array);
+                        $num = $k+1;
+
+                        ?>
+                        <div class="span4" data-count-razdel="razdel-strategy" data-total="7" data-category-id="strategy" <?php if($num > 3): echo 'style="padding-top:30px"'; endif;?>>
+                            <div class="span2"><i class="r<?php echo $num;?> razdel"></i><a href="javascript:getRazdel(&#39;ro-strategy&#39;);"><?php echo $category->name; ?></a></div>
+                            <div class="span1"><span id="ra<?php echo $num;?>">0</span>/<?php echo $count;?></div>
+                            <div class="span4 progressbar ui-progressbar ui-widget ui-widget-content ui-corner-all" id="r<?php echo $num;?>" data-val="0" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                <div class="ui-progressbar-value ui-widget-header ui-corner-left" style="display: none; width: 0;"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="span4" data-count-razdel="razdel-keywords_research" data-total="3" data-category-id="keywords_research">
-                        <div class="span2"><i class="r2 razdel"></i><a href="javascript:getRazdel(&#39;ro-keywords_research&#39;);">Keywords Research &amp; Implementation</a></div>
-                        <div class="span1"><span id="ra2">0</span>/3</div>
-                        <div class="span4 progressbar ui-progressbar ui-widget ui-widget-content ui-corner-all" id="r2" data-val="0" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                            <div class="ui-progressbar-value ui-widget-header ui-corner-left" style="display: none; width: 0%;"></div>
-                        </div>
-                    </div>
-                    <div class="span4" data-count-razdel="razdel-on_page_opt" data-total="25" data-category-id="on_page_opt">
-                        <div class="span2"><i class="r3 razdel"></i><a href="javascript:getRazdel(&#39;ro-on_page_opt&#39;);">On Page Optimization</a></div>
-                        <div class="span1"><span id="ra3">0</span>/25</div>
-                        <div class="span4 progressbar ui-progressbar ui-widget ui-widget-content ui-corner-all" id="r3" data-val="0" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                            <div class="ui-progressbar-value ui-widget-header ui-corner-left" style="display: none; width: 0%;"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row graf-checklist margin-checklist">
-                    <div class="span4" data-count-razdel="razdel-off_page_optimization" data-total="9" data-category-id="off_page_optimization">
-                        <div class="span2"><i class="r6 razdel"></i><a href="javascript:getRazdel(&#39;ro-off_page_optimization&#39;);">Off Page Optimization</a></div>
-                        <div class="span1"><span id="ra6">0</span>/9</div>
-                        <div class="span4 progressbar ui-progressbar ui-widget ui-widget-content ui-corner-all" id="r6" data-val="0" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                            <div class="ui-progressbar-value ui-widget-header ui-corner-left" style="display: none; width: 0%;"></div>
-                        </div>
-                    </div>
-                    <div class="span4" data-count-razdel="razdel-social_media_management" data-total="4" data-category-id="social_media_management">
-                        <div class="span2"><i class="r4 razdel"></i><a href="javascript:getRazdel(&#39;ro-social_media_management&#39;);">Social Media Management</a></div>
-                        <div class="span1"><span id="ra4">0</span>/4</div>
-                        <div class="span4 progressbar ui-progressbar ui-widget ui-widget-content ui-corner-all" id="r4" data-val="0" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                            <div class="ui-progressbar-value ui-widget-header ui-corner-left" style="display: none; width: 0%;"></div>
-                        </div>
-                    </div>
-                    <div class="span4" data-count-razdel="razdel-custom" data-total="0" data-category-id="custom">
-                        <div class="span2"><i class="r7 razdel"></i><a href="javascript:getRazdel(&#39;ro-custom&#39;);">Your own tasks</a></div>
-                        <div class="span1"><span id="ra7">0</span>/0</div>
-                        <div class="span4 progressbar ui-progressbar ui-widget ui-widget-content ui-corner-all" id="r7" data-val="0" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                            <div class="ui-progressbar-value ui-widget-header ui-corner-left" style="display: none; width: 0%;"></div>
+                    <?php endforeach; ?>
+                    <div class="span4" data-count-razdel="razdel-strategy" data-total="7" data-category-id="strategy" <?php if($num > 3): echo 'style="padding-top:30px"'; endif;?>>
+                        <div class="span2"><i class="r<?php echo $num+1;?> razdel"></i><a href="javascript:getRazdel(&#39;ro-strategy&#39;);">Your own task</a></div>
+                        <div class="span1"><span id="ra<?php echo $num+1;?>">0</span>/0</div>
+                        <div class="span4 progressbar ui-progressbar ui-widget ui-widget-content ui-corner-all" id="r<?php echo $num;?>" data-val="0" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                            <div class="ui-progressbar-value ui-widget-header ui-corner-left" style="display: none; width: 0;"></div>
                         </div>
                     </div>
                 </div>
@@ -959,19 +969,14 @@
             </div>
             <div class="container content-margin__top__a" style="margin-top: 10px;">
                 <form id="form_div_send">
-                    <?php $categories = get_terms('seo-checklist-category',
-                        array(
-                            'type'=>'seo-checklist-category',
-                            'orderby'=>'id'
-                        )
-                    );
 
-                    foreach ($categories as $num => $category) : ?>
+                    <?php foreach ($categories as $num => $category) : ?>
 
                         <?php $posts_array = get_posts(
                             array(
                                 'posts_per_page' => -1,
                                 'post_type' => 'seo_checklist',
+                                'order'     => 'asc',
                                 'tax_query' => array(
                                     array(
                                         'taxonomy' => $category->taxonomy,
@@ -1002,9 +1007,12 @@
                                             <label for="<?php echo $post->post_name;?>" class="seo-checkbox"></label>
                                             <span><?php echo $post->post_title;?></span>
                                         </div>
-                                        <div class="span4">
-                                            <a href="#" onclick="return false;" class="toogle-close">what's this?</a>
-                                        </div>
+                                        <?php if(!empty($postMeta['wpcf-what-is-this'][0])):?>
+                                            <div class="span4">
+                                                <a href="#" onclick="return false;" class="toogle-close">what's this?</a>
+                                            </div>
+                                        <?php endif;?>
+
                                         <div class="span12 seo-hide-block">
                                             <div class="podlink">
                                                 <div></div>

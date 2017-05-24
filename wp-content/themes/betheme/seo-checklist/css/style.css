@@ -5232,29 +5232,29 @@ td.finace{
     float: left;
     margin-right: 7px;
 }
-/*.r1{*/
-    /*background: url("svg/icn-strategy.svg") center 0px no-repeat;*/
-    /*width: 17px;*/
-    /*height: 17px;*/
-/*}*/
-/*.r2{*/
-    /*background: url("svg/icn-keyword-research.svg") center 0px no-repeat;*/
-/*}*/
-/*.r3{*/
-    /*background: url("svg/icn-on-page.svg") center 0px no-repeat;*/
-/*}*/
-/*.r4{*/
-    /*background: url("svg/icn-social-media.svg") center 0px no-repeat;*/
-/*}*/
-/*.r5{*/
-    /*background: url("img/razdel_r5.png") center 0px no-repeat;*/
-/*}*/
-/*.r6{*/
-    /*background: url("svg/icn-off-page.svg") center 0px no-repeat;*/
-/*}*/
-/*.r7{*/
-    /*background: url("svg/icn-your-own-tasks.svg") center 0px no-repeat;*/
-/*}*/
+.r1{
+    background: url("img/svg/icn-strategy.svg") center 0px no-repeat;
+    width: 17px;
+    height: 17px;
+}
+.r2{
+    background: url("img/svg/icn-keyword-research.svg") center 0px no-repeat;
+}
+.r3{
+    background: url("img/svg/icn-on-page.svg") center 0px no-repeat;
+}
+.r4{
+    background: url("img/svg/icn-off-page.svg") center 0px no-repeat;
+}
+.r5{
+    background: url("img/svg/icn-social-media.svg") center 0px no-repeat;
+}
+.r6{
+    background: url("img/svg/icn-off-page.svg") center 0px no-repeat;
+}
+.r7{
+    background: url("img/svg/icn-your-own-tasks.svg") center 0px no-repeat;
+}
 
 .export-type .r1{
     height: 11px;
