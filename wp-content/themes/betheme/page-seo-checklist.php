@@ -543,7 +543,7 @@
 
                 function UpdateCol(elem, type) {
 
-                    var categoryId = $(elem).attr("date-razdel");
+                    var categoryId = $(elem).attr("data-razdel");
 
                     if (typeof categoryId !== "undefined") {
                         var totalItems = 0;
@@ -552,7 +552,6 @@
                         });
 
                         var checkedInCategory = $("input[id^='" + categoryId + "']").filter(':checked').length;
-
                         //обновляем данные по разделу в разделе
                         $("div[id='" + categoryId + "'] p span").text(checkedInCategory);
                         $("div[data-count-razdel='" + categoryId + "'] div[class='span1'] span").text(checkedInCategory);
@@ -564,15 +563,17 @@
                         var checked_razdel = $("input[id^='razdel-']").filter(':checked').length;
                         $('.total-done').text(checked_razdel);
                         $('.total-done-graf').text(checked_razdel);
+
                         $('.total-white-graf').text(totalItems - checked_razdel);
+
                         Rchange(parseInt((checked_razdel * 100) / totalItems));
-                        if (type != 'start') {
-                            $.ajax({
-                                type: "POST",
-                                url: "/admin.reports.checklist.site_id-" + siteId + ".html?ajax=UpdateCheckList",
-                                data: $("#form_div_send").serialize()
-                            });
-                        }
+//                        if (type != 'start') {
+//                            $.ajax({
+//                                type: "POST",
+//                                url: "/admin.reports.checklist.site_id-" + siteId + ".html?ajax=UpdateCheckList",
+//                                data: $("#form_div_send").serialize()
+//                            });
+//                        }
                     }
                 }
 
@@ -940,16 +941,16 @@
                         $num = $k+1;
 
                         ?>
-                        <div class="span4" data-count-razdel="razdel-strategy" data-total="7" data-category-id="strategy" <?php if($num > 3): echo 'style="padding-top:30px"'; endif;?>>
-                            <div class="span2"><i class="r<?php echo $num;?> razdel"></i><a href="javascript:getRazdel(&#39;ro-strategy&#39;);"><?php echo $category->name; ?></a></div>
+                        <div class="span4" data-count-razdel="<?php echo 'razdel-'.str_replace('-', '_', $category->slug);?>" data-total="<?php echo $count;?>" data-category-id="<?php echo str_replace('-', '_', $category->slug);?>" <?php if($num > 3): echo 'style="padding-top:30px"'; endif;?>>
+                            <div class="span2"><i class="r<?php echo $num;?> razdel"></i><a href="javascript:getRazdel(&#39;<?php echo str_replace('-', '_', $category->slug);?>&#39;);"><?php echo $category->name; ?></a></div>
                             <div class="span1"><span id="ra<?php echo $num;?>">0</span>/<?php echo $count;?></div>
                             <div class="span4 progressbar ui-progressbar ui-widget ui-widget-content ui-corner-all" id="r<?php echo $num;?>" data-val="0" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                                 <div class="ui-progressbar-value ui-widget-header ui-corner-left" style="display: none; width: 0;"></div>
                             </div>
                         </div>
                     <?php endforeach; ?>
-                    <div class="span4" data-count-razdel="razdel-strategy" data-total="7" data-category-id="strategy" <?php if($num > 3): echo 'style="padding-top:30px"'; endif;?>>
-                        <div class="span2"><i class="r<?php echo $num+1;?> razdel"></i><a href="javascript:getRazdel(&#39;ro-strategy&#39;);">Your own task</a></div>
+                    <div class="span4" data-count-razdel="razdel-custom" data-total="0" data-category-id="custom" <?php if($num > 3): echo 'style="padding-top:30px"'; endif;?>>
+                        <div class="span2"><i class="r<?php echo $num+1;?> razdel"></i><a href="javascript:getRazdel(&#39;ro-custom&#39;);">Your own task</a></div>
                         <div class="span1"><span id="ra<?php echo $num+1;?>">0</span>/0</div>
                         <div class="span4 progressbar ui-progressbar ui-widget ui-widget-content ui-corner-all" id="r<?php echo $num;?>" data-val="0" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                             <div class="ui-progressbar-value ui-widget-header ui-corner-left" style="display: none; width: 0;"></div>
@@ -988,11 +989,11 @@
                         ); ?>
 
                         <div class="checkListTab<?php echo $num; ?>">
-                            <div class="row head-seo" id="ro-strategy">
+                            <div class="row head-seo" id="ro-<?php echo $category->slug;?>">
                                 <div class="span8">
                                     <h2><?php echo $category->name;?></h2>
                                 </div>
-                                <div class="span4" id="razdel-strategy">
+                                <div class="span4" id="razdel-<?php echo str_replace('-', '_', $category->slug)?>">
                                     <p><span>0</span>/<?php echo count($posts_array);?></p>
                                 </div>
                             </div>
@@ -1003,8 +1004,8 @@
                                 <div style="position:relative;">
                                     <div class="row seo-childs " data-checked="0" data-site_id="">
                                         <div class="span8">
-                                            <input class="regular-checkbox" id="<?php echo $post->post_name;?>" type="checkbox" value="1" name="<?php echo $post->post_name;?>" date-razdel="<?php echo $category->name;?>">
-                                            <label for="<?php echo $post->post_name;?>" class="seo-checkbox"></label>
+                                            <input class="regular-checkbox" id="<?php echo 'razdel-'.str_replace('-', '_', $category->slug).'-'.str_replace('-', '_', $post->post_name);?>" type="checkbox" value="1" name="<?php echo 'razdel-'.str_replace('-', '_', $category->slug).'-'.str_replace('-', '_', $post->post_name);?>" data-razdel="<?php echo 'razdel-'.str_replace('-', '_', $category->slug);?>">
+                                            <label for="<?php echo 'razdel-'.str_replace('-', '_', $post->post_name)?>" class="seo-checkbox"></label>
                                             <span><?php echo $post->post_title;?></span>
                                         </div>
                                         <?php if(!empty($postMeta['wpcf-what-is-this'][0])):?>
