@@ -514,14 +514,17 @@
                     });
 
                     $(".seo-childs .span8 span").live("click", function() {
+                        var self = $(this);
                         if ($(this).prev().prev().is(':checked')) {
                             $(this).prev().prev().removeAttr('checked');
                             $(this).removeClass("seo-select-spa");
                             $(this).parent('div').parent('div').removeClass("hide-div-text");
+                            getSiteChecklist();
                         } else {
                             $(this).prev().prev().attr('checked', 'checked');
                             $(this).addClass("seo-select-spa");
                             $(this).parent('div').parent('div').addClass("hide-div-text");
+                            getSiteChecklist();
                         }
                         UpdateCol($(this).prev().prev(), 'update');
                     });
@@ -529,16 +532,33 @@
                     StartSet();
                 });
 
-                function StartSet() {
-
+                function getSiteChecklist() {
                     var aSiteChecklist = [];
-                    $.each(aSiteChecklist, function(i) {
-                        $('#' + i).attr('checked', 'checked');
-                        $('#' + i).next().next().addClass("seo-select-spa");
-                        $('#' + i).parent('div').parent('div').addClass("hide-div-text");
-                        UpdateCol($("#" + i), 'start');
+                    $(".span8 .regular-checkbox").each(function( index ) {
+                        var self = $(this);
+                        aSiteChecklist.push({
+                            'id' : self.attr('id'),
+                            'checked' : self.is(':checked')
+                        });
                     });
+                    aSiteChecklist = JSON.stringify(aSiteChecklist);
+                    localStorage.setItem('aSiteChecklist', aSiteChecklist);
+                }
 
+
+                function StartSet() {
+                    var aSiteChecklist = localStorage.getItem('aSiteChecklist');
+                    aSiteChecklist = JSON.parse(aSiteChecklist);
+                    var site;
+                    $.each(aSiteChecklist, function(i) {
+                        site = aSiteChecklist[i];
+                        if(site.checked) {
+                            $('#' + site.id).attr('checked', 'checked');
+                            $('#' + site.id).next().next().addClass("seo-select-spa");
+                            $('#' + site.id).parent('div').parent('div').addClass("hide-div-text");
+                            UpdateCol($("#" + site.id), 'start');
+                        }
+                    });
                 }
 
                 function UpdateCol(elem, type) {
