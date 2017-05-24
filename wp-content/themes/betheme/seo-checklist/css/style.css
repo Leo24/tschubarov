@@ -2291,11 +2291,6 @@ i.button-icon {
     margin-right: 35px;
 }
 
-.page {
-    display: inline-block;
-}
-
-
 a.active-pagination {
     border: 1px solid #222c36;
     background: #222c36;

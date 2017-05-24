@@ -32,10 +32,7 @@
 	<link href="<?php echo get_template_directory_uri().'/seo-checklist/css/style.css';?>" rel="stylesheet">
 	<link href="<?php echo get_template_directory_uri().'/seo-checklist/css/en.css';?>" rel="stylesheet">
 	<link href="<?php echo get_template_directory_uri().'/seo-checklist/css/default.css';?>" type="text/css" rel="stylesheet" id="theme-change">
-	<meta name="msapplication-config" content="/skin/site/main/favicon/yellow/browserconfig.xml">
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-TileImage" content="/skin/site/main/favicon/yellow/ms-icon-144x144.png">
-	<meta name="theme-color" content="#ffffff">
+
 
 	<script type="text/javascript" async="" src="<?php echo get_template_directory_uri().'/seo-checklist/js/watch.js';?>"></script>
 	<script async="" src="<?php echo get_template_directory_uri().'/seo-checklist/js/gtm.js';?>"></script>
