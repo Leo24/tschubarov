@@ -96,22 +96,21 @@
                         }
                     });
 
-                    $(".seo-childs .span8 span").live("click", function() {
-                        var self = $(this);
-                        if ($(this).prev().prev().is(':checked')) {
-                            $(this).prev().prev().removeAttr('checked');
-                            $(this).removeClass("seo-select-spa");
-                            $(this).parent('div').parent('div').removeClass("hide-div-text");
+                    $(".seo-childs .span8").on('click', function () {
+                        var self = $(this).children('span');
+                        if ($(self).prev().prev().is(':checked')) {
+                            $(self).prev().prev().removeAttr('checked');
+                            $(self).removeClass("seo-select-spa");
+                            $(self).parent('div').parent('div').removeClass("hide-div-text");
                             getSiteChecklist();
                         } else {
-                            $(this).prev().prev().attr('checked', 'checked');
-                            $(this).addClass("seo-select-spa");
-                            $(this).parent('div').parent('div').addClass("hide-div-text");
+                            $(self).prev().prev().attr('checked', 'checked');
+                            $(self).addClass("seo-select-spa");
+                            $(self).parent('div').parent('div').addClass("hide-div-text");
                             getSiteChecklist();
                         }
-                        UpdateCol($(this).prev().prev(), 'update');
+                        UpdateCol($(self).prev().prev(), 'update');
                     });
-
                     StartSet();
                 });
 
