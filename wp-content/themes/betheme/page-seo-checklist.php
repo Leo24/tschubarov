@@ -321,9 +321,6 @@
                 <div class="row">
                     <div class="span8">
                     </div>
-                    <div class="span4">
-                        <a href="#" onclick="showCustomItemAddForm();return false;" class="btn btn-large btn-blue globalHint-59" data-globalwidth="428" data-globalverticalposition="bottom" data-globalhorizontalposition="left">Add your own task</a>
-                    </div>
                 </div>
             </div>
             <div class="container content-margin__top__a" style="margin-top: 10px;">
@@ -383,11 +380,13 @@
                                         <div class="span12 seo-block-p">
                                             <?php echo $post->post_content;?>
                                         </div>
+                                        <?php if(!empty($postMeta['wpcf-additional-info-w'][0])):?>
                                         <div class="span12 seo-block-p">
                                             <p><span>Additional info:</span>
-                                                <?php echo $postMeta['wpcf-additional-info'][0];?>
+                                                <?php echo $postMeta['wpcf-additional-info-w'][0];?>
                                             </p>
                                         </div>
+                                        <?php endif; ?>
                                         <div class="row seo-line-child"></div>
                                     </div>
                                 </div>

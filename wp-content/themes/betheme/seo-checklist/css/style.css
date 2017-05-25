@@ -5188,6 +5188,11 @@ td.finace{
     border: 1px solid #58a200;
     background: #58a200;
 }
+
+.graf-checklist .progressbar{
+    border-width: 0;
+}
+
 .graf-checklist .span4 .span4, .graf-checklist .span4 .span2, .graf-checklist .span4 .span1 {
     margin-left: 0px;
     font-size: 16px;
