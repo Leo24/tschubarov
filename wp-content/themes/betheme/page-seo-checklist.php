@@ -1,4 +1,9 @@
-<?php get_header(); ?>
+<?php get_header();
+/**
+ * Template Name: Page Seo CheckList
+ * @package WordPress
+ *
+ */?>
 
 <link href="<?php echo get_template_directory_uri().'/seo-checklist/css/bootstrap.css';?>" rel="stylesheet">
 
@@ -10,8 +15,6 @@
 
 <script src="<?php echo get_template_directory_uri().'/seo-checklist/js/jquery-1.8.3.min.js';?>"></script>
 
-
-<divclass="container loocked_parent">
 
 <div id="wrap">
     <div id="main">
@@ -224,11 +227,9 @@
             </script>
 
 
-            <div class="container content-margin__top__a">
+            <div class="container">
                 <div class="row header-checklist">
                     <div class="span8">
-                        <p>Online marketing plan for</p>
-                        <h2>Georgiizvorski.Com</h2>
                     </div>
                     <div class="span4">
                         <h2></h2>

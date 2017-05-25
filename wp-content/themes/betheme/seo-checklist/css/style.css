@@ -162,7 +162,7 @@ a {
 }
 
 html, body {
-    height: 100%;
+    /*height: 100%;*/
     font-family: "Segoe UI", sans-serif;
     -webkit-font-smoothing: antialiased;
 }
@@ -15953,4 +15953,10 @@ button[data-id="add_to_group"].btn .caret {
 
 #allow_rebilling_block {
     margin-left: 6px;
+}
+
+@media only screen and (min-width: 1240px){
+    #Top_bar.is-sticky .logo{
+        margin: 0 10px;
+    }
 }
