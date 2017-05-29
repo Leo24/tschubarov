@@ -215,7 +215,7 @@ $reportFields = get_fields($posts_array[0]->ID);
                                             <ul>
                                                 <?php foreach($value as $v):?>
                                                     <?php if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v[$key], $matches, PREG_OFFSET_CAPTURE)):?>
-                                                        <li><a href="</a><?php echo $v[$key]; ?>"><?php echo $v[$key]; ?></a></li>
+                                                        <li><a href="<?php echo $v[$key]; ?>"><?php echo $v[$key]; ?></a></li>
                                                     <?php else:?>
                                                         <li><p><?php echo $v[$key]; ?></p></li>
                                                     <?php endif;?>
