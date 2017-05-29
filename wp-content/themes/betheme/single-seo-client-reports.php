@@ -25,7 +25,7 @@ $reportFields = get_fields($posts_array[0]->ID);
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title><?php echo $posts_array[0]->post_title;?></title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -99,8 +99,7 @@ $reportFields = get_fields($posts_array[0]->ID);
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Data Tables
-                <small>advanced tables</small>
+                <?php echo $posts_array[0]->post_title;?>
             </h1>
         </section>
 
@@ -264,7 +263,7 @@ $reportFields = get_fields($posts_array[0]->ID);
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
     <footer class="main-footer">
-        <strong>© 2016 youngceaser.com.</strong> All rights reserved.
+        <strong>© 2017 youngceaser.com.</strong> All rights reserved.
     </footer>
 
     <!-- Control Sidebar -->
