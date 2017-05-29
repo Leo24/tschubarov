@@ -44,10 +44,10 @@ if( ! function_exists( 'mfn_admin_scripts' ) )
 	function mfn_admin_scripts() {
 		wp_enqueue_script( 'jquery-ui-sortable' );
 	}
-}   
+}
 add_action( 'wp_enqueue_scripts', 'mfn_admin_scripts' );
 add_action( 'admin_enqueue_scripts', 'mfn_admin_scripts' );
-	
+
 require( THEME_DIR .'/muffin-options/theme-options.php' );
 
 $theme_disable = mfn_opts_get( 'theme-disable' );
@@ -241,7 +241,7 @@ function seo_comp($str) {
 
 function ys_prepare_output($str) {
 	$str = str_replace("\n", "<br/>", $str);
-	
+
 	return formatUrlsInText($str);
 }
 
@@ -253,7 +253,7 @@ function formatUrlsInText($text){
 		if(!array_key_exists($pattern, $usedPatterns)){
 			$usedPatterns[$pattern]=true;
 			$text = str_replace  ($pattern, "<a href='{$pattern}' rel='nofollow' target='_blank'>{$pattern}</a>", $text);
-                }
+		}
 	}
 	return $text;
 }
@@ -296,18 +296,18 @@ function yc_user_gigs_options($user) {
 
 				<?php $forms = get_field('forms','options'); ?>
 
-					<?php
+				<?php
 
-					$allow_gigs = get_the_author_meta( 'allow_gigs', $user->ID );
-					foreach ($forms as $form) {
+				$allow_gigs = get_the_author_meta( 'allow_gigs', $user->ID );
+				foreach ($forms as $form) {
 
 
-						$checked = (!empty($allow_gigs) && in_array($form['form_name'], $allow_gigs))?' checked=checked ': '';
-						echo '<label><input type="checkbox" name="allow_gigs[]" value="'.$form['form_name'].'" '.$checked.'>'.$form['title'].'</label><br>';
+					$checked = (!empty($allow_gigs) && in_array($form['form_name'], $allow_gigs))?' checked=checked ': '';
+					echo '<label><input type="checkbox" name="allow_gigs[]" value="'.$form['form_name'].'" '.$checked.'>'.$form['title'].'</label><br>';
 
-					}
+				}
 
-					?>
+				?>
 
 			</td>
 		</tr>
@@ -324,3 +324,27 @@ function update_extra_profile_fields($user_id) {
 		update_user_meta($user_id, 'allow_gigs', $_POST["allow_gigs"]);
 	}
 }
+
+add_filter( 'wp_unique_post_slug', 'custom_unique_post_slug', 10, 4 );
+function custom_unique_post_slug( $slug, $post_ID, $post_status, $post_type ) {
+	$post = get_post($post_ID);
+	if ( 'seo-client-reports' == $post_type ) {
+		$post = get_post($post_ID);
+		if ( empty($post->post_name) || $slug != $post->post_name ) {
+			$slug = md5( time() );
+		}
+	}
+	return $slug;
+}
+
+
+// Show posts of 'post', 'page', 'acme_product' and 'movie' post types on home page
+function search_filter( $query ) {
+	if ( !is_admin() && $query->is_main_query() ) {
+		if ( $query->is_search ) {
+			$query->set( 'post_type', array('seo-client-reports') );
+		}
+	}
+}
+
+add_action( 'pre_get_posts','search_filter' );

@@ -6,8 +6,12 @@
  */
 
 
+$string = home_url( $wp->request );
+$postName = substr($string , strrpos($string , '/') + 1);
+
 $posts_array = get_posts(
     array(
+        'name' => $postName,
         'posts_per_page' => -1,
         'post_type' => 'seo-client-reports',
     )
@@ -495,6 +499,7 @@ $reportFields = get_fields($posts_array[0]->ID);
         });
     });
 </script>
+
 </body>
 </html>
 
