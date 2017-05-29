@@ -38,7 +38,7 @@ $reportFields = get_fields($posts_array[0]->ID);
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/css/skins/_all-skins.min.css">
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/css/jquery-ui.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -153,9 +153,9 @@ $reportFields = get_fields($posts_array[0]->ID);
                                                 </tr>
                                                 <?php foreach($reportFields['page_specific_metrics'] as $metrics): ?>
                                                     <tr>
-                                                        <td><?php echo $metrics['your_website']; ?></td>
-                                                        <td><?php echo $metrics['your_competitors']; ?></td>
-                                                        <td><?php echo $metrics['competitors']; ?></td>
+                                                        <td><a href="http://<?php echo $metrics['your_website']; ?>"><?php echo $metrics['your_website']; ?></a></td>
+                                                        <td><a href="http://<?php echo $metrics['your_competitors']; ?>"><?php echo $metrics['your_competitors']; ?></a></td>
+                                                        <td><a href="http://<?php echo $metrics['competitors']; ?>"><?php echo $metrics['competitors']; ?></a></td>
                                                     </tr>
                                                 <?php endforeach;?>
                                             </table>
@@ -225,7 +225,9 @@ $reportFields = get_fields($posts_array[0]->ID);
                                         $title = ucwords(str_replace('backlink', '', str_replace('_', ' ', $key)));
                                         $key = str_replace('_backlink', '', $key);
                                         ?>
-                                        <p class="accordio-title"><?php echo $title; ?></p>
+                                        <p class="accordio-title ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons">
+                                            <?php echo $title; ?>
+                                        </p>
                                         <div>
                                             <ul>
                                                 <?php foreach($value as $v):?>
@@ -476,12 +478,12 @@ $reportFields = get_fields($posts_array[0]->ID);
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-    $( function() {
-        $( "#accordion" ).accordion({
-            active: false,
-            collapsible: true
-        });
-    } );
+//    $( function() {
+//        $( "#accordion" ).accordion({
+//            active: false,
+//            collapsible: true
+//        });
+//    } );
 </script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
