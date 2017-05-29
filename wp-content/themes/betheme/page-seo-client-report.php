@@ -24,6 +24,9 @@ $reportFields = get_fields($posts_array[0]->ID);
     <title>AdminLTE 2 | Data Tables</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/css/jquery-ui.css">
+
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="<?php echo get_template_directory_uri().'/seo-client-reports';?>/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
@@ -38,7 +41,6 @@ $reportFields = get_fields($posts_array[0]->ID);
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/css/skins/_all-skins.min.css">
 
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/css/jquery-ui.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -77,31 +79,12 @@ $reportFields = get_fields($posts_array[0]->ID);
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
             <!-- Sidebar user panel -->
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="<?php echo get_template_directory_uri().'/seo-client-reports/';?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                </div>
-                <div class="pull-left info">
-                    <p>Alexander Pierce</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                </div>
-            </div>
-            <!-- search form -->
-            <form action="#" method="get" class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-                </div>
-            </form>
-            <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
-<!--                <li><a href="#tabs-1"><span>Website Status</span></a></li>-->
-<!--                <li><a href="#tabs-2"><span>Keywords&Rankings</span></a></li>-->
-<!--                <li><a href="#tabs-3"><span>Backlinks</span></a></li>-->
-<!--                <li><a href="#tabs-4"><span>Backlinks - Tier 2&3</span></a></li>-->
+                                <li><a href="#tabs-1"><span>Website Status</span></a></li>
+                                <li><a href="#tabs-2"><span>Keywords&Rankings</span></a></li>
+                                <li><a href="#tabs-3"><span>Backlinks</span></a></li>
+                                <li><a href="#tabs-4"><span>Backlinks - Tier 2&3</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -231,7 +214,11 @@ $reportFields = get_fields($posts_array[0]->ID);
                                         <div>
                                             <ul>
                                                 <?php foreach($value as $v):?>
-                                                    <li><?php echo $v[$key]; ?></li>
+                                                    <?php if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v[$key], $matches, PREG_OFFSET_CAPTURE)):?>
+                                                        <li><a href="</a><?php echo $v[$key]; ?>"><?php echo $v[$key]; ?></a></li>
+                                                    <?php else:?>
+                                                        <li><p><?php echo $v[$key]; ?></p></li>
+                                                    <?php endif;?>
                                                 <?php endforeach;?>
                                             </ul>
                                         </div>
@@ -478,12 +465,12 @@ $reportFields = get_fields($posts_array[0]->ID);
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-//    $( function() {
-//        $( "#accordion" ).accordion({
-//            active: false,
-//            collapsible: true
-//        });
-//    } );
+    //    $( function() {
+    //        $( "#accordion" ).accordion({
+    //            active: false,
+    //            collapsible: true
+    //        });
+    //    } );
 </script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -492,8 +479,13 @@ $reportFields = get_fields($posts_array[0]->ID);
         $( "#tabs" ).tabs();
     } );
     $(document).ready(function () {
-        $('.sidebar-menu li').on('click', function () {
+        $('.sidebar-menu li').on('click', function (e) {
+            e.preventDefault();
             var self = $(this);
+            $('.sidebar-menu li').each(function () {
+                $(this).removeClass('active')
+            });
+            self.addClass('active');
             var href = self.find('a').attr('href');
             $('#tabs ul li a').each(function( index, value ) {
                 if($(this).attr('href') === href) {
