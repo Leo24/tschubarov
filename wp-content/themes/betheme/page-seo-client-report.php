@@ -456,7 +456,7 @@ $reportFields = get_fields($posts_array[0]->ID);
 <!-- FastClick -->
 <script src="<?php echo get_template_directory_uri().'/seo-client-reports/';?>plugins/fastclick/fastclick.min.js"></script>
 <!-- AdminLTE App -->
-<script src="<?php echo get_template_directory_uri().'/seo-client-reports/';?>dist/js/app.min.js"></script>
+<!--<script src="--><?php //echo get_template_directory_uri().'/seo-client-reports/';?><!--dist/js/app.min.js"></script>-->
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo get_template_directory_uri().'/seo-client-reports/';?>dist/js/demo.js"></script>
 <!-- page script -->
