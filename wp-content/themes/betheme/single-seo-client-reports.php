@@ -136,12 +136,14 @@ $reportFields = get_fields($posts_array[0]->ID);
                                                     <th>Your website</th>
                                                     <th>Your Competitors</th>
                                                     <th>Competitors</th>
+                                                    <th>Competitors link</th>
                                                 </tr>
                                                 <?php foreach($reportFields['page_specific_metrics'] as $metrics): ?>
                                                     <tr>
-                                                        <td><a href="http://<?php echo $metrics['your_website']; ?>"><?php echo $metrics['your_website']; ?></a></td>
-                                                        <td><a href="http://<?php echo $metrics['your_competitors']; ?>"><?php echo $metrics['your_competitors']; ?></a></td>
-                                                        <td><a href="http://<?php echo $metrics['competitors']; ?>"><?php echo $metrics['competitors']; ?></a></td>
+                                                        <td><span><?php echo $metrics['your_website']; ?></span></td>
+                                                        <td class="col-sm-3"><a href="http://<?php echo $metrics['your_competitors']; ?>"><?php echo $metrics['your_competitors']; ?></a></td>
+                                                        <td><span><?php echo $metrics['competitors']; ?></span></td>
+                                                        <td><a href="http://<?php echo $metrics['competitors_link']; ?>"><?php echo $metrics['competitors_link']; ?></a></td>
                                                     </tr>
                                                 <?php endforeach;?>
                                             </table>
@@ -196,9 +198,16 @@ $reportFields = get_fields($posts_array[0]->ID);
                         </div><!-- /.box -->
                     </div>
                     <div id="tabs-3">
-                        <div class="box">
+                        <div class="box box-widget">
+                            <div class='box-header with-border'>
+                                <div class='user-block'>
+                                    <span class='username'>Backlinks</span>
+                                </div><!-- /.user-block -->
+
+                            </div><!-- /.box-header -->
+
                             <?php
-                            $backlinks = [];
+                            $backlinks = array();
                             foreach ($reportFields as $key => $value) {
                                 if(strpos($key, '_backlink')){
                                     $backlinks[$key] = $value;
@@ -232,30 +241,35 @@ $reportFields = get_fields($posts_array[0]->ID);
                     </div>
                     <div id="tabs-4">
                         <div class="box box-widget">
+                            <div class='box-header with-border'>
+                                <div class='user-block'>
+                                    <span class='username'>Backlinks - Tier 2&3</span>
+                                </div><!-- /.user-block -->
+                            </div><!-- /.box-header -->
 
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="box">
-                                        <div class="box-header">
-                                            <h3 class="box-title">Backlinks - Tier 2&3</h3>
-                                        </div><!-- /.box-header -->
-                                        <div class="box-body table-responsive no-padding">
-                                            <table class="table table-hover">
-                                                <tr>
-                                                    <th>Tier2</th>
-                                                    <th>Tier3</th>
-                                                </tr>
-                                                <?php foreach($reportFields['backlinks_-_tier_2_3'] as $tiers): ?>
-                                                    <tr>
-                                                        <td><?php echo $tiers['tier_2']; ?></td>
-                                                        <td><?php echo $tiers['tier_3']; ?></td>
-                                                    </tr>
-                                                <?php endforeach;?>
-                                            </table>
-                                        </div><!-- /.box-body -->
-                                    </div><!-- /.box -->
-                                </div>
-                            </div>
+                            <?php
+                            $backlinks = array();
+                            foreach ($reportFields as $key => $value) {
+                                if(strpos($key, '_backlink')){
+                                    $backlinks[$key] = $value;
+                                }
+                            } ?>
+                            <div class="box-body">
+                                <div class="box-body table-responsive no-padding">
+                                    <table class="table table-hover">
+                                        <tr>
+                                            <th>Tier2</th>
+                                            <th>Tier3</th>
+                                        </tr>
+                                        <?php foreach($reportFields['backlinks_-_tier_2_3'] as $tiers): ?>
+                                            <tr>
+                                                <td><?php echo $tiers['tier_2']; ?></td>
+                                                <td><?php echo $tiers['tier_3']; ?></td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                    </table>
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box-body -->
                         </div><!-- /.box -->
                     </div>
                 </div>
