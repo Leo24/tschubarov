@@ -8,6 +8,7 @@ $galleries = get_posts(
         'name' => $postName,
         'posts_per_page' => -1,
         'post_type' => 'subscription-gallery',
+        'order' => 'ASC'
     )
 );
 
@@ -35,7 +36,7 @@ Also, by this time, your Website Authority will increase and we will be able to 
 
 ?>
 
-<link href="<?php echo get_template_directory_uri();?>/css/jquery-modal/jquery.modal.css" type="text/css" rel="stylesheet" id="theme-change">
+<link href="<?php echo get_template_directory_uri();?>/js/jquery-modal/jquery.modal.css" type="text/css" rel="stylesheet" id="theme-change">
 <link href="<?php echo get_template_directory_uri(); ?>/css/subscription.css" rel="stylesheet" type="text/css"/>
 
 <script src="<?php echo get_template_directory_uri();?>/js/jquery-modal/jquery.modal.min.js"></script>
@@ -688,7 +689,9 @@ Also, by this time, your Website Authority will increase and we will be able to 
                 <p class="bottomnote">See some client's Rankings, 1 month after our work.</p>
             </div>
             <div>
-                <img id="right-image-more" src="<?php echo get_template_directory_uri(); ?>/images/right-round.png" width="40">
+                <a href="#ex1" rel="modal:open">
+                    <img id="right-image-more" src="<?php echo get_template_directory_uri(); ?>/images/right-round.png" width="40">
+                </a>
             </div>
         </div>
     </div>
@@ -979,23 +982,33 @@ $fields = get_fields();
     </div>
 </div>
 
+<?php foreach($galleries as $value): ?>
+    <?php $gallery = get_fields($value->ID);?>
+
+    <?php foreach($gallery['items'] as $k => $item):?>
+        <?php //var_dump($item['image']);?>
+    <?php endforeach;?>
+
+
+<?php endforeach; ?>
+
+
 <!-- Modal HTML embedded directly into document -->
 <div id="ex1" style="display:none;">
     <p>Thanks for clicking.  That felt good.  <a href="#" rel="modal:close">Close</a> or press ESC</p>
 
     <?php foreach($galleries as $value): ?>
         <?php $gallery = get_fields($value->ID);?>
-
-
-        <div id="<?php echo $value->post_name;?>" style="display:none;">
-            <?php foreach($gallery['items'] as $item):?>
-                <img alt="<?php echo $item['title'];?>" src="<?php echo $item['image']['url'];?>"
-                     data-image="<?php echo $item['image']['url'];?>"
-                     data-description="<?php echo $item['description'];?>">
-            <?php endforeach;?>
-
+        <div class="gallery-wrapper">
+            <p class="title"><?php echo $value->post_title;?></p>
+            <div id="<?php echo $value->post_name;?>" style="display:none; max-width: 300px">
+                <?php foreach($gallery['items'] as $k => $item):?>
+                    <img alt="<?php echo $item['title'];?>" src="<?php echo $item['image']['size']['url'];?>"
+                         data-image="<?php echo $item['image']['url'];?>"
+                         data-description="<?php echo $item['description'];?>">
+                <?php endforeach;?>
+            </div>
         </div>
-
     <?php endforeach; ?>
 
 
@@ -1007,8 +1020,9 @@ $fields = get_fields();
         <?php foreach($galleries as $value): ?>
         jQuery("#<?php echo $value->post_name;?>").unitegallery({
             gallery_theme: "tilesgrid",
-            tile_height: 150,						//tile height
-            tile_width: 150,						//tile width
+            tile_height: 150,
+            tile_width: 150,
+            grid_num_rows: 1,
             tile_enable_textpanel:true,
             tile_textpanel_title_text_align: "center",
             tile_textpanel_always_on:true,
