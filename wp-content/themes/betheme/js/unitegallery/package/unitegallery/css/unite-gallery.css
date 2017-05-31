@@ -338,11 +338,14 @@
 
 .gallery-wrapper{
 	width: 30%;
+	height: 235px;
 	margin-left: 30px;
+	padding-top: 20px;
 	float: left;
 }
 .gallery-wrapper .title{
 	text-align: center;
+	margin-bottom: 5px;
 }
 
 

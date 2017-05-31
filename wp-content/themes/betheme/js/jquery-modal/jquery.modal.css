@@ -24,6 +24,7 @@
   display: inline-block;
   vertical-align: middle;
   position: relative;
+  top: 15%;
   z-index: 2;
   /*max-width: 500px;*/
   box-sizing: border-box;

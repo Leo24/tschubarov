@@ -1024,9 +1024,10 @@ $fields = get_fields();
             grid_num_rows: 1,
             tile_enable_textpanel:true,
             tile_textpanel_title_text_align: "center",
-            tile_textpanel_always_on:true,
+            tile_textpanel_always_on:false,
             lightbox_textpanel_enable_title: true,
-            lightbox_textpanel_enable_description: true
+            lightbox_textpanel_enable_description: true,
+            theme_bullets_margin_top: 10,
 
         });
         <?php endforeach; ?>
