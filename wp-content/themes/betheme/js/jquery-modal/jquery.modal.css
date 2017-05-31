@@ -24,11 +24,12 @@
   display: inline-block;
   vertical-align: middle;
   position: relative;
+  top: 30px;
   z-index: 2;
   /*max-width: 500px;*/
   box-sizing: border-box;
   width: 90%;
-  height: 70%;
+  /*height: 70%;*/
   background: #fff;
   padding: 15px 30px;
   -webkit-border-radius: 8px;
