@@ -995,7 +995,6 @@ $fields = get_fields();
 
 <!-- Modal HTML embedded directly into document -->
 <div id="ex1" style="display:none;">
-    <p>Thanks for clicking.  That felt good.  <a href="#" rel="modal:close">Close</a> or press ESC</p>
 
     <?php foreach($galleries as $value): ?>
         <?php $gallery = get_fields($value->ID);?>
