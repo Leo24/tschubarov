@@ -1,6 +1,16 @@
 <?php
 get_header();
 
+
+
+$galleries = get_posts(
+    array(
+        'name' => $postName,
+        'posts_per_page' => -1,
+        'post_type' => 'subscription-gallery',
+    )
+);
+
 $fields = get_fields();
 
 $keywords_text = '
@@ -24,9 +34,15 @@ Also, by this time, your Website Authority will increase and we will be able to 
 <p>It is like a Pyramid, but we must start from the base and not from the top!</p>';
 
 ?>
-<script src="<?php echo get_template_directory_uri(); ?>/js/modernizr.custom.js"></script>
 
+<link href="<?php echo get_template_directory_uri();?>/css/jquery-modal/jquery.modal.css" type="text/css" rel="stylesheet" id="theme-change">
 <link href="<?php echo get_template_directory_uri(); ?>/css/subscription.css" rel="stylesheet" type="text/css"/>
+
+<script src="<?php echo get_template_directory_uri();?>/js/jquery-modal/jquery.modal.min.js"></script>
+
+<script src="<?php echo get_template_directory_uri();?>/js/unitegallery/package/unitegallery/js/unitegallery.js"></script>
+<link href="<?php echo get_template_directory_uri(); ?>/js/unitegallery/package/unitegallery/css/unite-gallery.css" rel="stylesheet" type="text/css"/>
+<script src="<?php echo get_template_directory_uri();?>/js/unitegallery/package/unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js"></script>
 
 <div class="component" id="Pages-SubscriptionPage-main">
     <script>
@@ -93,7 +109,7 @@ Also, by this time, your Website Authority will increase and we will be able to 
                     Annual
                     <div>20% OFF</div>
                 </div>
-			<span class="hint_arrow arrow_bottom_to_right">
+                <span class="hint_arrow arrow_bottom_to_right">
 				Subscription period
                 <div class="hint_trigger hint_fixed hint_ico"
                      data-hint-cont="<h5>SUBSCRIPTION PERIOD</h5><p>The longer we work together, the more traffic and sales you will get! If you pay for few months ahead, you will get a discount!</p>"></div>
@@ -657,26 +673,26 @@ Also, by this time, your Website Authority will increase and we will be able to 
 
 <div class="clearfix"></div>
 
-
-<?php echo do_shortcode('[rankgallery]'); ?>
-
-<?php /* ?>
-<div id="centerblock">
+<div id="centerblock" style="position: relative">
+    <a href="#ex1" rel="modal:open">
+        <img id="features_rating_image" src="<?php echo get_template_directory_uri(); ?>/images/features.png" style="position: absolute; top: 108px; left: 48.5%; z-index: 1; cursor: pointer;">
+    </a>
     <div class="top_block">
         <div class="r">
             <div class="text_block">
-                <h1>Proven to work</h1>
-                <p class="p">144 000+ gigs sold, because it works!.</p>
+                <h1>Proven to work </h1>
+                <p class="p">144 000+ sales, because it works!.</p>
                 <div class="btns">
                     <a href="https://www.fiverr.com/conversations/youngceaser" class="btn btn_white">Get Free Analysis</a>
                 </div>
                 <p class="bottomnote">See some client's Rankings, 1 month after our work.</p>
             </div>
-            <?php echo nggShowGallery(15); ?>
+            <div>
+                <img id="right-image-more" src="<?php echo get_template_directory_uri(); ?>/images/right-round.png" width="40">
+            </div>
         </div>
     </div>
 </div>
- <?php */ ?>
 
 <div class="clearfix"></div>
 
@@ -963,35 +979,47 @@ $fields = get_fields();
     </div>
 </div>
 
+<!-- Modal HTML embedded directly into document -->
+<div id="ex1" style="display:none;">
+    <p>Thanks for clicking.  That felt good.  <a href="#" rel="modal:close">Close</a> or press ESC</p>
+
+    <?php foreach($galleries as $value): ?>
+        <?php $gallery = get_fields($value->ID);?>
+
+
+        <div id="<?php echo $value->post_name;?>" style="display:none;">
+            <?php foreach($gallery['items'] as $item):?>
+                <img alt="<?php echo $item['title'];?>" src="<?php echo $item['image']['url'];?>"
+                     data-image="<?php echo $item['image']['url'];?>"
+                     data-description="<?php echo $item['description'];?>">
+            <?php endforeach;?>
+
+        </div>
+
+    <?php endforeach; ?>
+
+
+</div>
+
+
 <script>
     jQuery(document).ready(function ($) {
-        jQuery('a.ngg-fancybox').append('<img id="right-image-more" src="<?php echo get_template_directory_uri(); ?>/images/right-round.png" width="40">');
-    })
+        <?php foreach($galleries as $value): ?>
+        jQuery("#<?php echo $value->post_name;?>").unitegallery({
+            gallery_theme: "tilesgrid",
+            tile_height: 150,						//tile height
+            tile_width: 150,						//tile width
+            tile_enable_textpanel:true,
+            tile_textpanel_title_text_align: "center",
+            tile_textpanel_always_on:true,
+            lightbox_textpanel_enable_title: true,
+            lightbox_textpanel_enable_description: true
+
+        });
+        <?php endforeach; ?>
+    });
+
 
 </script>
-
-<?php /* ?>
-<!--Start of Zendesk Chat Script-->
-<script type="text/javascript">
-    window.$zopim || (function (d, s) {
-        var z = $zopim = function (c) {
-            z._.push(c)
-        }, $ = z.s =
-            d.createElement(s), e = d.getElementsByTagName(s)[0];
-        z.set = function (o) {
-            z.set._.push(o)
-        };
-        z._ = [];
-        z.set._ = [];
-        $.async = !0;
-        $.setAttribute("charset", "utf-8");
-        $.src = "https://v2.zopim.com/?4MoVedGBe76Xq58e6ll358yMqhDVByEG";
-        z.t = +new Date;
-        $.type = "text/javascript";
-        e.parentNode.insertBefore($, e)
-    })(document, "script");
-</script>
-<!--End of Zendesk Chat Script-->
-<?php */ ?>
 
 <?php get_footer(); ?>

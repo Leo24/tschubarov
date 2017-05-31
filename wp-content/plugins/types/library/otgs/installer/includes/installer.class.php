@@ -699,39 +699,39 @@ final class WP_Installer{
 
         foreach ($wp_installer_instances as $instance) {
 
-            if (file_exists(dirname($instance['bootfile']) . '/repositories.xml')) {
-                $config_file = dirname($instance['bootfile']) . '/repositories.xml';
-
-                if (file_exists(dirname($instance['bootfile']) . '/repositories.sandbox.xml')) {
-                    $config_file = dirname($instance['bootfile']) . '/repositories.sandbox.xml';
-                    add_filter('https_ssl_verify', '__return_false');
-                }
-
-                $repos = simplexml_load_file($config_file);
-
-                if($repos) {
-                    foreach ($repos as $repo) {
-                        $id = strval($repo->id);
-
-                        $data['api-url'] = strval($repo->apiurl);
-                        $data['products'] = strval($repo->products);
-
-                        // excludes rule;
-                        if (isset($this->config['repositories_exclude']) && in_array($id, $this->config['repositories_exclude'])) {
-                            continue;
-                        }
-
-                        // includes rule;
-                        if (isset($this->config['repositories_include']) && !in_array($id, $this->config['repositories_include'])) {
-                            continue;
-                        }
-
-                        $this->repositories[$id] = $data;
-
-                    }
-                }
-
-            }
+//            if (file_exists(dirname($instance['bootfile']) . '/repositories.xml')) {
+//                $config_file = dirname($instance['bootfile']) . '/repositories.xml';
+//
+//                if (file_exists(dirname($instance['bootfile']) . '/repositories.sandbox.xml')) {
+//                    $config_file = dirname($instance['bootfile']) . '/repositories.sandbox.xml';
+//                    add_filter('https_ssl_verify', '__return_false');
+//                }
+//
+//                $repos = simplexml_load_file($config_file);
+//
+//                if($repos) {
+//                    foreach ($repos as $repo) {
+//                        $id = strval($repo->id);
+//
+//                        $data['api-url'] = strval($repo->apiurl);
+//                        $data['products'] = strval($repo->products);
+//
+//                        // excludes rule;
+//                        if (isset($this->config['repositories_exclude']) && in_array($id, $this->config['repositories_exclude'])) {
+//                            continue;
+//                        }
+//
+//                        // includes rule;
+//                        if (isset($this->config['repositories_include']) && !in_array($id, $this->config['repositories_include'])) {
+//                            continue;
+//                        }
+//
+//                        $this->repositories[$id] = $data;
+//
+//                    }
+//                }
+//
+//            }
         }
 
     }
