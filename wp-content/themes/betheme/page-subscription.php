@@ -995,22 +995,19 @@ $fields = get_fields();
 
 <!-- Modal HTML embedded directly into document -->
 <div id="ex1" style="display:none;">
-
-    <?php foreach($galleries as $value): ?>
-        <?php $gallery = get_fields($value->ID);?>
-        <div class="gallery-wrapper">
-            <p class="title"><?php echo $value->post_title;?></p>
-            <div id="<?php echo $value->post_name;?>" style="display:none; max-width: 300px">
-                <?php foreach($gallery['items'] as $k => $item):?>
-                    <img alt="<?php echo $item['title'];?>" src="<?php echo $item['image']['size']['url'];?>"
-                         data-image="<?php echo $item['image']['url'];?>"
-                         data-description="<?php echo $item['description'];?>">
-                <?php endforeach;?>
+        <?php foreach($galleries as $value): ?>
+            <?php $gallery = get_fields($value->ID);?>
+            <div class="gallery-wrapper">
+                <p class="title"><?php echo $value->post_title;?></p>
+                <div id="<?php echo $value->post_name;?>" style="display:none; max-width: 300px">
+                    <?php foreach($gallery['items'] as $k => $item):?>
+                        <img alt="<?php echo $item['title'];?>" src="<?php echo $item['image']['size']['url'];?>"
+                             data-image="<?php echo $item['image']['url'];?>"
+                             data-description="<?php echo $item['description'];?>">
+                    <?php endforeach;?>
+                </div>
             </div>
-        </div>
-    <?php endforeach; ?>
-
-
+        <?php endforeach; ?>
 </div>
 
 
@@ -1022,6 +1019,7 @@ $fields = get_fields();
             tile_height: 150,
             tile_width: 150,
             grid_num_rows: 1,
+//            gallery_width:"30%"
             tile_enable_textpanel:true,
             tile_textpanel_title_text_align: "center",
             tile_textpanel_always_on:false,
