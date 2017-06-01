@@ -998,7 +998,9 @@ $fields = get_fields();
         <?php foreach($galleries as $value): ?>
             <?php $gallery = get_fields($value->ID);?>
             <div class="gallery-wrapper">
-                <p class="title"><?php echo $value->post_title;?></p>
+                <div class="text-container">
+                    <p class="title"><span><?php echo $value->post_title;?></span></p>
+                </div>
                 <div id="<?php echo $value->post_name;?>" style="display:none; max-width: 300px">
                     <?php foreach($gallery['items'] as $k => $item):?>
                         <img alt="<?php echo $item['title'];?>" src="<?php echo $item['image']['size']['url'];?>"
@@ -1016,10 +1018,11 @@ $fields = get_fields();
         <?php foreach($galleries as $value): ?>
         jQuery("#<?php echo $value->post_name;?>").unitegallery({
             gallery_theme: "tilesgrid",
-            tile_height: 150,
-            tile_width: 150,
+            tile_height: 60,
+            tile_width: 70,
             grid_num_rows: 1,
 //            gallery_width:"30%"
+            theme_navigation_type: "arrows",		//bullets, arrows
             tile_enable_textpanel:true,
             tile_textpanel_title_text_align: "center",
             tile_textpanel_always_on:false,
