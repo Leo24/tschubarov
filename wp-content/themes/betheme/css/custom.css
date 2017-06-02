@@ -233,16 +233,22 @@ body.single-fiverr_order .acf-form-submit .button-large {
     /*float: left;*/
 /*}*/
 
-.fiver-sidebar{
+.fiver-sidebar-vertical-banner{
     position: absolute;
     top: 17%;
-    left: 73%;
+    left: 79%;
     width: 30%;
     text-align: center;
 }
 
 @media only screen and (max-width: 768px) {
-    .fiver-sidebar{
+    .fiver-sidebar-vertical-banner{
         display: none;
     }
+}
+
+.fiver-sidebar-horisontal-banner{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
 }

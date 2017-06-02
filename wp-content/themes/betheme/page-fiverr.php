@@ -27,7 +27,7 @@ get_header();
       		
       		global $current_form;
           //var_dump($current_form);
-          echo '<div class="container"><div class="one-second column" style="float:none; margin:0 auto;">';
+          echo '<div class="container"><div class="two-third column" style="float:none; margin:0 auto;">';
           
       		if (isset($_GET['updated'])) {
         		echo $current_form['thank_you_message'];
