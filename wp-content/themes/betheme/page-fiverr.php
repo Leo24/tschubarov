@@ -12,7 +12,7 @@ get_header();
 
 		<!-- .sections_group -->
 		<div class="sections_group">
-		
+
 			<div class="entry-content" itemprop="mainContentOfPage">
 				<?php 
 					while ( have_posts() ){
@@ -27,7 +27,7 @@ get_header();
       		
       		global $current_form;
           //var_dump($current_form);
-          echo '<div class="container"><div class="two-third column" style="float:none; margin:0 auto;">';
+          echo '<div class="container"><div class="one-second column" style="float:none; margin:0 auto;">';
           
       		if (isset($_GET['updated'])) {
         		echo $current_form['thank_you_message'];
@@ -70,7 +70,7 @@ get_header();
                }
               
               }
-        		
+
               if ($is_form) 
                 acf_form( $options ); 
               else echo '<h2>There is nothing to view</h2>';  
@@ -79,7 +79,9 @@ get_header();
       		} else {
         		echo '<h2>There is nothing to view</h2>';
       		}
-          echo '</div></div>';
+				get_sidebar('fiverr');
+
+				echo '</div></div>';
         ?>
 				
 			</div>
@@ -95,11 +97,11 @@ get_header();
 					</div>
 				</div>
 			<?php endif; } ?>
-	
+
 		</div>
 		
 		<!-- .four-columns - sidebar -->
-		<?php get_sidebar(); ?>
+<!--		--><?php //get_sidebar('fiverr'); ?>
 
 	</div>
 </div>

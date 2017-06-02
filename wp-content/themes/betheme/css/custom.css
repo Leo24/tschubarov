@@ -226,3 +226,23 @@ body.single-fiverr_order .acf-form-submit .button-large {
 .hint_pop ul li {
     font-size: 12px !important;
 }
+
+/*#post.acf-form{*/
+    /*width: 50%;*/
+    /*display: block;*/
+    /*float: left;*/
+/*}*/
+
+.fiver-sidebar{
+    position: absolute;
+    top: 17%;
+    left: 73%;
+    width: 30%;
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .fiver-sidebar{
+        display: none;
+    }
+}
