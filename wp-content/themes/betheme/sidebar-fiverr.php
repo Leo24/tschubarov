@@ -12,12 +12,13 @@ $fiverrData = get_fiverr_banners();
 //var_dump($fiverrData);
 ?>
 
-
+<?php if(!isset($_GET['updated'])):?>
 <div class="fiver-sidebar-vertical-banner">
     <a href="<?php echo $fiverrData['vertical_banner_link'] ;?>" target="_blank">
         <img src="<?php echo $fiverrData['vertical_banner']['url'] ;?>" alt="<?php echo $fiverrData['vertical_banner']['title'] ;?>">
     </a>
 </div>
+<?php endif;?>
 <div class="fiver-sidebar-horisontal-banner">
     <a href="<?php echo $fiverrData['horizontal_banner_link'] ;?>" target="_blank">
         <img src="<?php echo $fiverrData['horizontal_banner']['url'] ;?>" alt="<?php echo $fiverrData['horizontal_banner']['title'] ;?>">

@@ -34,7 +34,7 @@ get_header();
 				echo '<script>
 				window.setTimeout( function(){
 					window.location = "/subscription";
-				}, 2000 )</script>';
+				}, 7000 )</script>';
       		} elseif (!empty($_GET['fiverr_form'])) {
         		
         		$title = (isset($current_form) && !empty($current_form['title'])) ? '['.current_time( 'mysql' ).'] '.$current_form['title'] : current_time( 'mysql' );
