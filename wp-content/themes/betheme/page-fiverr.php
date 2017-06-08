@@ -30,7 +30,7 @@ get_header();
           echo '<div class="container"><div class="two-third column" style="float:none; margin:0 auto;">';
           
       		if (isset($_GET['updated'])) {
-        		echo $current_form['thank_you_message'];
+        		echo '<div class="thank-you-message">'.$current_form['thank_you_message'].'</div>';
 				echo '<script>
 				window.setTimeout( function(){
 					window.location = "/subscription";
