@@ -44,6 +44,7 @@ $reportFields = get_fields($posts_array[0]->ID);
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="<?php echo get_home_url();?>/wp-content/plugins/contact-form-7/includes/css/styles.css">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -51,8 +52,6 @@ $reportFields = get_fields($posts_array[0]->ID);
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
-
     <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -88,8 +87,9 @@ $reportFields = get_fields($posts_array[0]->ID);
                 <li><a href="#tabs-1"><i class="fa fa-dashboard"></i><span>Website Status</span></a></li>
                 <li><a href="#tabs-2"><i class="fa fa-th"></i><span>Keywords&Rankings</span></a></li>
                 <li><a href="#tabs-3"><i class="fa fa-pie-chart"></i><span>Backlinks</span></a></li>
-                <li><a href="#tabs-4"><i class="fa fa-edit"></i><span>Backlinks - Tier 2&3</span></a></li>
+                <li><a href="#tabs-4"><i class="fa fa-share"></i><span>Backlinks - Tier 2&3</span></a></li>
                 <li><a href="#tabs-5"><i class="fa fa-book"></i><span>Tasks</span></a></li>
+                <li><a href="#tabs-6"><i class="fa fa-edit"></i><span>Contact form for Seo Reports</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -114,6 +114,7 @@ $reportFields = get_fields($posts_array[0]->ID);
                         <li><a href="#tabs-3">Backlinks</a></li>
                         <li><a href="#tabs-4">Backlinks - Tier 2&3</a></li>
                         <li><a href="#tabs-5">Tasks</a></li>
+                        <li><a href="#tabs-6">Contact form for Seo Reports</a></li>
                     </ul>
                     <div id="tabs-1">
                         <div class="box box-widget">
@@ -409,6 +410,19 @@ $reportFields = get_fields($posts_array[0]->ID);
                             </div><!-- /.box-body -->
                         </div><!-- /.box -->
                     </div>
+                    <div id="tabs-6">
+                        <div class="box box-widget">
+
+                            <!--                            --><?php //echo do_shortcode('[contact-form-7 id="6" title="Contact form for Contact page" html_class="np-form"]');?>
+                            <div class="col-sm-6">
+                                <?php echo do_shortcode('[contact-form-7 id="135822" title="Contact form for Seo Reports" html_class="use-floating-validation-tip"]');?>
+                            </div>
+                            <div class="box-body">
+                                <div class="box-body table-responsive no-padding">
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                    </div>
                 </div>
             </div><!-- /.row -->
         </section><!-- /.content -->
@@ -615,7 +629,6 @@ $reportFields = get_fields($posts_array[0]->ID);
 </script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="../bootstrap/js/bootstrap.min.js"></script>
 <!-- Slimscroll -->
 <script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -624,6 +637,15 @@ $reportFields = get_fields($posts_array[0]->ID);
 <script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/js/demo.js"></script>
+
+<script type='text/javascript' src='/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.40.0-2013.08.13'></script>
+<script type='text/javascript'>
+    /* <![CDATA[ */
+    var _wpcf7 = {"loaderUrl":"\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Sending ..."};
+    /* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=3.5.2'></script>
+
 <script>
     <?php foreach($backlinks as $key => $value): ?>
     <?php $key = str_replace('_backlink', '', $key);?>

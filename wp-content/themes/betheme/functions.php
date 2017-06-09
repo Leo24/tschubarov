@@ -359,3 +359,23 @@ function get_fiverr_banners(){
 	$fiverrBannerInfo = get_posts($args);
 	return get_fields($fiverrBannerInfo[0]->ID);
 }
+
+/*
+    Prevent the email sending step for specific form
+*/
+add_action("wpcf7_before_send_mail", "wpcf7_do_something_else");
+function wpcf7_do_something_else($cf7) {
+    // get the contact form object
+    $wpcf = WPCF7_ContactForm::get_current();
+
+    // if you wanna check the ID of the Form $wpcf->id
+
+//    $foo = false;
+
+    if ($wpcf) {
+        // If you want to skip mailing the data, you can do it...
+        $wpcf->skip_mail = true;
+    }
+
+//    return $wpcf;
+}

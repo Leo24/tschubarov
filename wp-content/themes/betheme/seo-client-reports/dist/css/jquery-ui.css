@@ -1310,3 +1310,8 @@ a.ui-button:active,
     -webkit-box-shadow: 0px 0px 5px #666666;
     box-shadow: 0px 0px 5px #666666;
 }
+
+/*Fix for Contact form 7*/
+.box.box-widget .use-floating-validation-tip span.wpcf7-not-valid-tip{
+    position: static;
+}
