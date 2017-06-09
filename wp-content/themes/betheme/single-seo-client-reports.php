@@ -85,10 +85,11 @@ $reportFields = get_fields($posts_array[0]->ID);
             <!-- Sidebar user panel -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
-                                <li><a href="#tabs-1"><span>Website Status</span></a></li>
-                                <li><a href="#tabs-2"><span>Keywords&Rankings</span></a></li>
-                                <li><a href="#tabs-3"><span>Backlinks</span></a></li>
-                                <li><a href="#tabs-4"><span>Backlinks - Tier 2&3</span></a></li>
+                <li><a href="#tabs-1"><i class="fa fa-dashboard"></i><span>Website Status</span></a></li>
+                <li><a href="#tabs-2"><i class="fa fa-th"></i><span>Keywords&Rankings</span></a></li>
+                <li><a href="#tabs-3"><i class="fa fa-pie-chart"></i><span>Backlinks</span></a></li>
+                <li><a href="#tabs-4"><i class="fa fa-edit"></i><span>Backlinks - Tier 2&3</span></a></li>
+                <li><a href="#tabs-5"><i class="fa fa-book"></i><span>Tasks</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -112,6 +113,7 @@ $reportFields = get_fields($posts_array[0]->ID);
                         <li><a href="#tabs-2">Keywords&Rankings</a></li>
                         <li><a href="#tabs-3">Backlinks</a></li>
                         <li><a href="#tabs-4">Backlinks - Tier 2&3</a></li>
+                        <li><a href="#tabs-5">Tasks</a></li>
                     </ul>
                     <div id="tabs-1">
                         <div class="box box-widget">
@@ -188,7 +190,6 @@ $reportFields = get_fields($posts_array[0]->ID);
                                 </div><!-- /.user-block -->
                             </div><!-- /.box-header -->
 
-
                             <?php foreach($reportFields['google_rankings_position'] as $position): ?>
                                 <div class='box-body'>
                                     <span class='description'>Date: <?php echo $position['date']; ?></span>
@@ -205,7 +206,6 @@ $reportFields = get_fields($posts_array[0]->ID);
                                 </div><!-- /.user-block -->
 
                             </div><!-- /.box-header -->
-
                             <?php
                             $backlinks = array();
                             foreach ($reportFields as $key => $value) {
@@ -214,28 +214,77 @@ $reportFields = get_fields($posts_array[0]->ID);
                                 }
                             } ?>
                             <div class="box-body">
-                                <div id="accordion">
-                                    <?php foreach($backlinks as $key => $value): ?>
-                                        <?php
-                                        $title = ucwords(str_replace('backlink', '', str_replace('_', ' ', $key)));
-                                        $key = str_replace('_backlink', '', $key);
-                                        ?>
-                                        <p class="accordio-title ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons">
-                                            <?php echo $title; ?>
-                                        </p>
-                                        <div>
-                                            <ul>
-                                                <?php foreach($value as $v):?>
-                                                    <?php if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v[$key], $matches, PREG_OFFSET_CAPTURE)):?>
-                                                        <li><a href="<?php echo $v[$key]; ?>"><?php echo $v[$key]; ?></a></li>
-                                                    <?php else:?>
-                                                        <li><p><?php echo $v[$key]; ?></p></li>
-                                                    <?php endif;?>
-                                                <?php endforeach;?>
-                                            </ul>
+
+                                <!--                                <div id="accordion">-->
+                                <!--                                    --><?php //foreach($backlinks as $key => $value): ?>
+                                <!--                                        --><?php
+                                //                                        $title = ucwords(str_replace('backlink', '', str_replace('_', ' ', $key)));
+                                //                                        $key = str_replace('_backlink', '', $key);
+                                //                                        ?>
+                                <!--                                        <p class="accordio-title ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons">-->
+                                <!--                                            --><?php //echo $title; ?>
+                                <!--                                        </p>-->
+                                <!--                                        <div>-->
+                                <!--                                            <ul>-->
+                                <!--                                                --><?php //foreach($value as $v):?>
+                                <!--                                                    --><?php //if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v[$key], $matches, PREG_OFFSET_CAPTURE)):?>
+                                <!--                                                        <li><a href="--><?php //echo $v[$key]; ?><!--">--><?php //echo $v[$key]; ?><!--</a></li>-->
+                                <!--                                                    --><?php //else:?>
+                                <!--                                                        <li><p>--><?php //echo $v[$key]; ?><!--</p></li>-->
+                                <!--                                                    --><?php //endif;?>
+                                <!--                                                --><?php //endforeach;?>
+                                <!--                                            </ul>-->
+                                <!--                                        </div>-->
+                                <!--                                    --><?php //endforeach;?>
+                                <!--                                </div>-->
+
+
+                                <?php $icons = [
+                                    '0' => 'ion ion-stats-bars',
+                                    '1' => 'fa fa-shopping-cart',
+                                    '2' => 'ion ion-person-add',
+                                    '3' => 'ion ion-pie-graph',
+                                ];
+                                $colors = [
+                                    '0' => 'bg-aqua',
+                                    '1' => 'bg-green',
+                                    '2' => 'bg-yellow',
+                                    '3' => 'bg-red',
+                                ];
+                                ?>
+                                <?php foreach($backlinks as $key => $value): ?>
+                                    <?php
+                                    $title = ucwords(str_replace('backlink', '', str_replace('_', ' ', $key)));
+                                    $key = str_replace('_backlink', '', $key);
+                                    ?>
+                                    <div class="col-lg-4 col-xs-6">
+                                        <!-- small box -->
+                                        <div class="small-box <?php echo $colors[ rand ( 0, 3 )];?>">
+                                            <div class="inner">
+                                                <h3><?php echo count($value);?></h3>
+                                                <p><?php echo $title; ?></p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="fa <?php echo $icons[ rand ( 0, 3 )];?>"></i>
+                                            </div>
+
+                                            <div id="<?php echo $key;?>">
+                                                <h3>More info<i class="fa fa-arrow-circle-right"></i></h3>
+                                                <div>
+                                                    <ul>
+                                                        <?php foreach($value as $v):?>
+                                                            <?php if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v[$key], $matches, PREG_OFFSET_CAPTURE)):?>
+                                                                <li><a href="<?php echo $v[$key]; ?>"><?php echo $v[$key]; ?></a></li>
+                                                            <?php else:?>
+                                                                <li><?php echo $v[$key]; ?></li>
+                                                            <?php endif;?>
+                                                        <?php endforeach;?>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
-                                    <?php endforeach;?>
-                                </div>
+                                    </div>
+                                <?php endforeach;?>
                             </div><!-- /.box-body -->
                         </div><!-- /.box -->
                     </div>
@@ -268,6 +317,94 @@ $reportFields = get_fields($posts_array[0]->ID);
                                             </tr>
                                         <?php endforeach;?>
                                     </table>
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                    </div>
+
+                    <div id="tabs-5">
+                        <div class="box box-widget">
+                            <div class="col-md-3">
+                                <h3 class="box-title text-center">Startup Preparation</h3>
+                                <?php foreach($reportFields['startup_preparation'] as $value): ?>
+                                    <div class="col-md-12">
+                                        <div class="box box-default collapsed-box box-solid">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title"><?php echo $value['startup_preparation'];?></h3>
+                                                <div class="box-tools pull-right">
+                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                                </div><!-- /.box-tools -->
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body">
+                                                <p>Doing by:<?php echo $value['doing'];?></p>
+                                                <p>Notes:<?php echo $value['notes'];?></p>
+                                                <p>Status:<?php echo $value['status'];?></p>
+                                            </div><!-- /.box-body -->
+                                        </div><!-- /.box -->
+                                    </div>
+                                <?php endforeach;?>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 class="box-title text-center">On PAGE SEO</h3>
+                                <?php foreach($reportFields['on_page_seo'] as $value): ?>
+                                    <div class="col-md-12">
+                                        <div class="box box-default collapsed-box box-solid">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title"><?php echo $value['on_page_seo'];?></h3>
+                                                <div class="box-tools pull-right">
+                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                                </div><!-- /.box-tools -->
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body">
+                                                <p>Doing by:<?php echo $value['doing'];?></p>
+                                                <p>Notes:<?php echo $value['notes'];?></p>
+                                            </div><!-- /.box-body -->
+                                        </div><!-- /.box -->
+                                    </div>
+                                <?php endforeach;?>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 class="box-title text-center">OFF PAGE SEO</h3>
+                                <?php foreach($reportFields['off_page_seo'] as $value): ?>
+                                    <div class="col-md-12">
+                                        <div class="box box-default collapsed-box box-solid">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title"><?php echo $value['off_page_seo'];?></h3>
+                                                <div class="box-tools pull-right">
+                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                                </div><!-- /.box-tools -->
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body">
+                                                <p>Doing by:<?php echo $value['doing'];?></p>
+                                                <p>Notes:<?php echo $value['amount'];?></p>
+                                            </div><!-- /.box-body -->
+                                        </div><!-- /.box -->
+                                    </div>
+                                <?php endforeach;?>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 class="box-title text-center">Local Businesses</h3>
+                                <?php foreach($reportFields['local_businesses'] as $value): ?>
+                                    <div class="col-md-12">
+                                        <div class="box box-default collapsed-box box-solid">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title"><?php echo $value['local_businesses'];?></h3>
+                                                <div class="box-tools pull-right">
+                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                                </div><!-- /.box-tools -->
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body">
+                                                <p>Doing by:<?php echo $value['doing'];?></p>
+                                                <p>Notes:<?php echo $value['status'];?></p>
+                                                <p>Notes:<?php echo $value['link'];?></p>
+                                                <p>Notes:<?php echo $value['social_media'];?></p>
+                                            </div><!-- /.box-body -->
+                                        </div><!-- /.box -->
+                                    </div>
+                                <?php endforeach;?>
+                            </div>
+                            <div class="box-body">
+                                <div class="box-body table-responsive no-padding">
                                 </div><!-- /.box-body -->
                             </div><!-- /.box-body -->
                         </div><!-- /.box -->
@@ -478,16 +615,27 @@ $reportFields = get_fields($posts_array[0]->ID);
 </script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<!-- Slimscroll -->
+<script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/plugins/fastclick/fastclick.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/js/app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/js/demo.js"></script>
 <script>
-    //    $( function() {
-    //        $( "#accordion" ).accordion({
-    //            active: false,
-    //            collapsible: true
-    //        });
-    //    } );
+    <?php foreach($backlinks as $key => $value): ?>
+    <?php $key = str_replace('_backlink', '', $key);?>
+    $( function() {
+        $( "#<?php echo $key;?>" ).accordion({
+            active: false,
+            collapsible: true
+        });
+    } );
+    <?php endforeach;?>
 </script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
     $( function() {
         $( "#tabs" ).tabs();
