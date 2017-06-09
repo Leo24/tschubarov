@@ -638,13 +638,13 @@ $reportFields = get_fields($posts_array[0]->ID);
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/js/demo.js"></script>
 
-<script type='text/javascript' src='/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.40.0-2013.08.13'></script>
+<script type='text/javascript' src='<?php echo get_home_url();?>/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.40.0-2013.08.13'></script>
 <script type='text/javascript'>
     /* <![CDATA[ */
-    var _wpcf7 = {"loaderUrl":"\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Sending ..."};
+    var _wpcf7 = {"loaderUrl":"<?php echo get_home_url();?>\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Sending ..."};
     /* ]]> */
 </script>
-<script type='text/javascript' src='/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=3.5.2'></script>
+<script type='text/javascript' src='<?php echo get_home_url();?>/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=3.5.2'></script>
 
 <script>
     <?php foreach($backlinks as $key => $value): ?>
