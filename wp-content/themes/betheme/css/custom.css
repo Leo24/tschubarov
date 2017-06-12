@@ -235,9 +235,9 @@ body.single-fiverr_order .acf-form-submit .button-large {
 
 .fiver-sidebar-vertical-banner{
     position: absolute;
-    top: 17%;
-    left: 79%;
-    width: 30%;
+    top: 0;
+    left: 90%;
+    width: 17%;
     text-align: center;
 }
 
