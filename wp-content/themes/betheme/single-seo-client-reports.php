@@ -17,7 +17,15 @@ $posts_array = get_posts(
     )
 );
 
+$team_posts = get_posts(
+    array(
+        'posts_per_page' => -1,
+        'post_type' => 'seo-team-members',
+    )
+);
+
 $reportFields = get_fields($posts_array[0]->ID);
+$teamFields = get_fields($team_posts[0]->ID);
 ?>
 
 <!DOCTYPE html>
@@ -144,7 +152,7 @@ $reportFields = get_fields($posts_array[0]->ID);
                                                 <?php foreach($reportFields['page_specific_metrics'] as $metrics): ?>
                                                     <tr>
                                                         <td><span><?php echo $metrics['your_website']; ?></span></td>
-                                                        <td class="col-sm-3"><a href="http://<?php echo $metrics['your_competitors']; ?>"><?php echo $metrics['your_competitors']; ?></a></td>
+                                                        <td class="col-sm-3"><img src="<?php echo $metrics['your_competitors']['url']; ?>" alt="<?php echo $metrics['your_competitors']['title']; ?>"></td>
                                                         <td><span><?php echo $metrics['competitors']; ?></span></td>
                                                         <td><a href="http://<?php echo $metrics['competitors_link']; ?>"><?php echo $metrics['competitors_link']; ?></a></td>
                                                     </tr>
@@ -153,8 +161,61 @@ $reportFields = get_fields($posts_array[0]->ID);
                                         </div><!-- /.box-body -->
                                     </div><!-- /.box -->
                                 </div>
+
+
+
+                                <div class="col-md-6">
+                                    <!-- USERS LIST -->
+                                    <div class="box box-primary">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Our team</h3>
+                                            <div class="box-tools pull-right">
+<!--                                                <span class="label label-danger">--><?php //echo count($teamFields['team_member']);?><!-- Team Members</span>-->
+<!--                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>-->
+<!--                                                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                                            </div>
+                                        </div><!-- /.box-header -->
+                                        <div class="box-body no-padding">
+                                            <ul class="users-list clearfix">
+                                                <?php foreach($teamFields['team_member'] as $value):?>
+
+                                                <li>
+                                                    <img src="<?php echo $value['picture']['url'];?>" alt="<?php echo $value['picture']['title'];?>">
+                                                    <a class="users-list-name" href="#"><?php echo $value['name'];?></a>
+                                                    <span class="users-list-date">Today</span>
+                                                </li>
+
+                                                <?php endforeach;?>
+                                            </ul><!-- /.users-list -->
+                                        </div><!-- /.box-body -->
+                                        <div class="box-footer text-center">
+<!--                                            <a href="javascript::" class="uppercase">View All Users</a>-->
+                                        </div><!-- /.box-footer -->
+                                    </div><!--/.box -->
+                                </div><!-- /.col -->
+
+
+
+
                             </div>
+
+
+
+
+
+
+
+
+
                         </div><!-- /.box -->
+
+
+
+
+
+
+
+
                     </div>
                     <div id="tabs-2">
                         <!-- Box Comment -->
