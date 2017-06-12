@@ -2960,6 +2960,12 @@ h1 strong {
     text-decoration: none;
 }
 
+.index-scr-block{
+    background: url(../images/plans/features-category_border.43b1333f20c4.png) 50% bottom no-repeat;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
 .border-content .index-scr-block .wrapper-number {
     border-top: 1px dotted #b2b2b2;
     position: absolute;

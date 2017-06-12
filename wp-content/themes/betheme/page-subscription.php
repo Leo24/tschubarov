@@ -785,12 +785,6 @@ $fields = get_fields();
                 </p>
 
                 <?php echo $fields['step_1_list']; ?>
-
-            </div>
-            <div class="wrapper-number" style="left: 442px; width: 100px;">
-                <div class="number-block">
-                    1
-                </div>
             </div>
             <div class="clear"></div>
         </div>
@@ -815,11 +809,6 @@ $fields = get_fields();
                 <img width="430" height="311" alt=""
                      src="<?php echo $image['url']; ?>">
             </div>
-            <div class="wrapper-number" style="left: 224px; width: 315px;">
-                <div class="number-block">
-                    2
-                </div>
-            </div>
             <div class="clear"></div>
         </div>
 
@@ -841,11 +830,6 @@ $fields = get_fields();
                 </p>
 
                 <?php echo $fields['step_3_list']; ?>
-            </div>
-            <div class="wrapper-number" style="left: 442px; width: 100px;">
-                <div class="number-block">
-                    3
-                </div>
             </div>
             <div class="clear"></div>
         </div>
@@ -869,108 +853,233 @@ $fields = get_fields();
                 <img width="430" height="311" alt=""
                      src="<?php echo $image['url']; ?>">
             </div>
-            <div class="wrapper-number" style="left: 138px; width: 403px;">
-                <div class="number-block">
-                    4
-                </div>
-            </div>
+
             <div class="clear"></div>
         </div>
 
         <?php
         $image = get_field('step_5_image');
         ?>
-        <div class="index-scr-block">
-            <div class="scr-shadow float-left">
-                <img width="430" height="311" alt=""
-                     src="<?php echo $image['url']; ?>">
-            </div>
-            <div class="scr-text float-right">
-                <div class="scr-title">
-                    <?php echo $fields['step_5_name']; ?>
-                </div>
 
-                <p>
-                    <?php echo $fields['step_5_desc']; ?>
-                </p>
 
-                <?php echo $fields['step_5_list']; ?>
 
-            </div>
-            <div class="wrapper-number" style="left: 442px; width: 100px;">
-                <div class="number-block">
-                    5
-                </div>
-            </div>
-            <div class="clear"></div>
-        </div>
 
-        <?php
-        $image = get_field('step_6_image');
-        ?>
-        <div class="index-scr-block">
-            <div class="scr-text float-left">
-                <div class="scr-title">
-                    <?php echo $fields['step_6_name']; ?>
-                </div>
 
-                <p>
-                    <?php echo $fields['step_6_desc']; ?>
-                </p>
 
-                <?php echo $fields['step_6_list']; ?>
-            </div>
 
-            <div class="scr-shadow float-right">
-                <img width="430" height="307" alt=""
-                     src="<?php echo $image['url']; ?>">
-            </div>
 
-            <div class="wrapper-number" style="left: 233px; width: 307px;">
-                <div class="number-block">
-                    6
-                </div>
-            </div>
-            <div class="clear"></div>
-        </div>
 
-        <div class="much-more-block mb-40">
-            <div class="wrapper-much-more">
-                <div class="bg-wrapper-title">
-                    <div class="much-more-title">
-                        And much more
-                    </div>
-                </div>
-            </div>
 
-            <div class="safety-block">
-                <strong class="px40">100%</strong><br>
-                <strong class="px17">SAFETY</strong><br>
-                &amp;<br>
-                SEARCH ENGINE<br>
-                FRIENDLINESS
-            </div>
 
-            <div class="support-block">
-                <strong class="px40">24/7</strong><br>
-                <strong class="px17">CUSTOMER<br>
-                    SUPPORT</strong><br>
-                &amp;<br>
-                FREE<br>
-                TRAINING
-            </div>
 
-            <div class="much-more-list">
-                <ul>
-                    <li>GOOGLE ANALYTICS DATA</li>
-                    <li>SOCIAL MEDIA</li>
-                    <li>EASY DATA EXPORTS</li>
-                    <li class="last">TASK SCHEDULING</li>
-                </ul>
-            </div>
 
-            <div class="clear"></div>
-        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+<!--        <div class="index-scr-block">-->
+<!--            <div class="scr-shadow float-left">-->
+<!--                <img width="430" height="311" alt=""-->
+<!--                     src="--><?php //echo $image['url']; ?><!--">-->
+<!--            </div>-->
+<!--            <div class="scr-text float-right">-->
+<!--                <div class="scr-title">-->
+<!--                    --><?php //echo $fields['step_5_name']; ?>
+<!--                </div>-->
+<!---->
+<!--                <p>-->
+<!--                    --><?php //echo $fields['step_5_desc']; ?>
+<!--                </p>-->
+<!---->
+<!--                --><?php //echo $fields['step_5_list']; ?>
+<!---->
+<!--            </div>-->
+<!--            <div class="wrapper-number" style="left: 442px; width: 100px;">-->
+<!--                <div class="number-block">-->
+<!--                    5-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="clear"></div>-->
+<!--        </div>-->
+
+<!--        --><?php
+//        $image = get_field('step_6_image');
+//        ?>
+<!--        <div class="index-scr-block">-->
+<!--            <div class="scr-text float-left">-->
+<!--                <div class="scr-title">-->
+<!--                    --><?php //echo $fields['step_6_name']; ?>
+<!--                </div>-->
+<!---->
+<!--                <p>-->
+<!--                    --><?php //echo $fields['step_6_desc']; ?>
+<!--                </p>-->
+<!---->
+<!--                --><?php //echo $fields['step_6_list']; ?>
+<!--            </div>-->
+<!---->
+<!--            <div class="scr-shadow float-right">-->
+<!--                <img width="430" height="307" alt=""-->
+<!--                     src="--><?php //echo $image['url']; ?><!--">-->
+<!--            </div>-->
+<!---->
+<!--            <div class="wrapper-number" style="left: 233px; width: 307px;">-->
+<!--                <div class="number-block">-->
+<!--                    6-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="clear"></div>-->
+<!--        </div>-->
+
+<!--        <div class="much-more-block mb-40">-->
+<!--            <div class="wrapper-much-more">-->
+<!--                <div class="bg-wrapper-title">-->
+<!--                    <div class="much-more-title">-->
+<!--                        And much more-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!--            <div class="safety-block">-->
+<!--                <strong class="px40">100%</strong><br>-->
+<!--                <strong class="px17">SAFETY</strong><br>-->
+<!--                &amp;<br>-->
+<!--                SEARCH ENGINE<br>-->
+<!--                FRIENDLINESS-->
+<!--            </div>-->
+<!---->
+<!--            <div class="support-block">-->
+<!--                <strong class="px40">24/7</strong><br>-->
+<!--                <strong class="px17">CUSTOMER<br>-->
+<!--                    SUPPORT</strong><br>-->
+<!--                &amp;<br>-->
+<!--                FREE<br>-->
+<!--                TRAINING-->
+<!--            </div>-->
+<!---->
+<!--            <div class="much-more-list">-->
+<!--                <ul>-->
+<!--                    <li>GOOGLE ANALYTICS DATA</li>-->
+<!--                    <li>SOCIAL MEDIA</li>-->
+<!--                    <li>EASY DATA EXPORTS</li>-->
+<!--                    <li class="last">TASK SCHEDULING</li>-->
+<!--                </ul>-->
+<!--            </div>-->
+
+<!--            <div class="clear"></div>-->
+<!--        </div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <h2 class="align-center">
             SEO SERVICES TESTED BY over <span class="green">144,000 users</span> worldwide
@@ -1022,7 +1131,7 @@ $fields = get_fields();
             tile_width: 70,
             grid_num_rows: 1,
 //            gallery_width:"30%"
-            theme_navigation_type: "arrows",		//bullets, arrows
+            theme_navigation_type: "bullets",		//bullets, arrows
             tile_enable_textpanel:true,
             tile_textpanel_title_text_align: "center",
             tile_textpanel_always_on:false,
