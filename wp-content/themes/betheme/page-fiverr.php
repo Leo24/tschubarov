@@ -30,11 +30,9 @@ get_header();
           echo '<div class="container"><div class="two-third column" style="float:none; margin:0 auto;">';
           
       		if (isset($_GET['updated'])) {
-        		echo '<div class="thank-you-message">'.$current_form['thank_you_message'].'</div>';
 				echo '<script>
-				window.setTimeout( function(){
-					window.location = "/subscription";
-				}, 7000 )</script>';
+    			    window.location = "http://goo.gl/Jq0A3G";
+				</script>';
       		} elseif (!empty($_GET['fiverr_form'])) {
         		
         		$title = (isset($current_form) && !empty($current_form['title'])) ? '['.current_time( 'mysql' ).'] '.$current_form['title'] : current_time( 'mysql' );
