@@ -112,6 +112,49 @@ $teamFields = get_fields($team_posts[0]->ID);
             </h1>
         </section>
 
+        <?php
+        // Get your access id and secret key here: https://moz.com/products/api/keys
+        $accessID = $reportFields['mozs_api_access_id'];
+        $secretKey = $reportFields['mozs_api_secret_key'];
+
+        // Set your expires times for several minutes into the future.
+        // An expires time excessively far in the future will not be honored by the Mozscape API.
+        $expires = time() + 300;
+
+        // Put each parameter on a new line.
+        $stringToSign = $accessID."\n".$expires;
+
+        // Get the "raw" or binary output of the hmac hash.
+        $binarySignature = hash_hmac('sha1', $stringToSign, $secretKey, true);
+
+        // Base64-encode it and then url-encode that.
+        $urlSafeSignature = urlencode(base64_encode($binarySignature));
+
+        // Specify the URL that you want link metrics for.
+        //$objectURL = "www.seomoz.org";
+        $objectURL = $reportFields['client_url'];
+
+        // Add up all the bit flags you want returned.
+        // Learn more here: https://moz.com/help/guides/moz-api/mozscape/api-reference/url-metrics
+        $cols = "103079215108";
+
+        // Put it all together and you get your request URL.
+        // This example uses the Mozscape URL Metrics API.
+        $requestUrl = "http://lsapi.seomoz.com/linkscape/url-metrics/".urlencode($objectURL)."?Cols=".$cols."&AccessID=".$accessID."&Expires=".$expires."&Signature=".$urlSafeSignature;
+        //$requestUrl = "http://lsapi.seomoz.com/linkscape/links/".urlencode($objectURL)."?Scope=pagetopage&Sort=page_authority&Filter=internal+301&Limit=1&SourceCols=536870916&TargetCols= 4&AccessID=".$accessID."&Expires=".$expires."&Signature=".$urlSafeSignature;
+
+        // Use Curl to send off your request.
+        $options = array(
+            CURLOPT_RETURNTRANSFER => true
+        );
+
+        $ch = curl_init($requestUrl);
+        curl_setopt_array($ch, $options);
+        $content = curl_exec($ch);
+        curl_close($ch);
+        $content = json_decode($content, true);
+        ?>
+
         <!-- Main content -->
         <section class="content">
             <div class="row">
@@ -124,6 +167,8 @@ $teamFields = get_fields($team_posts[0]->ID);
                         <li><a href="#tabs-5">Tasks</a></li>
                         <li><a href="#tabs-6">Contact form for Seo Reports</a></li>
                     </ul>
+
+
                     <div id="tabs-1">
                         <div class="box box-widget">
                             <div class='box-header with-border'>
@@ -131,53 +176,178 @@ $teamFields = get_fields($team_posts[0]->ID);
                                     <span class='username'>Page Link Metrics</span>
                                 </div><!-- /.user-block -->
                             </div><!-- /.box-header -->
-                            <div class='box-body'>
-                                <img class="img-responsive pad" src="<?php echo $reportFields['page_metrics_screenshot']['url'];?>" alt="<?php echo $reportFields['page_metrics_screenshot']['title'];?>">
-                            </div><!-- /.box-body -->
-
+                            <!--                            <div class='box-body'>-->
+                            <!--                                <img class="img-responsive pad" src="--><?php //echo $reportFields['page_metrics_screenshot']['url'];?><!--" alt="--><?php //echo $reportFields['page_metrics_screenshot']['title'];?><!--">-->
+                            <!--                            </div>-->
                             <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="box">
-                                        <div class="box-header">
-                                            <h3 class="box-title">Website Status</h3>
+                                <div class="col-md-7">
+                                    <div class="box box-solid">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title username">URL: <?php echo $reportFields['client_url'];?></h3>
                                         </div><!-- /.box-header -->
-                                        <div class="box-body table-responsive no-padding">
-                                            <table class="table table-hover">
-                                                <tr>
-                                                    <th>Your website</th>
-                                                    <th>Your Competitors</th>
-                                                    <th>Competitors</th>
-                                                    <th>Competitors link</th>
-                                                </tr>
-                                                <?php foreach($reportFields['page_specific_metrics'] as $metrics): ?>
-                                                    <tr>
-                                                        <td><span><?php echo $metrics['your_website']; ?></span></td>
-                                                        <td class="col-sm-3"><img src="<?php echo $metrics['your_competitors']['url']; ?>" alt="<?php echo $metrics['your_competitors']['title']; ?>"></td>
-                                                        <td><span><?php echo $metrics['competitors']; ?></span></td>
-                                                        <td><a href="http://<?php echo $metrics['competitors_link']; ?>"><?php echo $metrics['competitors_link']; ?></a></td>
-                                                    </tr>
-                                                <?php endforeach;?>
-                                            </table>
+                                        <div class="box-body">
+                                            <div class="col-sm-6">
+                                                <div class="box-header with-border">
+                                                    <h3 class="box-title">Authority</h3>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="col-sm-12">
+                                                            <p class="title">DOMAIN AUTHORITY</p>
+                                                            <p><span class="value"><?php echo (!empty($content['pda'])) ? substr($content['pda'], 0, 4) : 0; ?></span><span> / 100</span></p>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <div class="progress-group">
+                                                                <span class="">SPAM SCORE:</span>
+                                                                <span class="progress-number"><?php echo (!empty($content['fspsc'])) ? substr($content['fspsc'], 0, 4) : '-'; ?>/17</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <p>PAGE AUTHORITY</p>
+                                                        <p><span class="value"><?php echo (!empty($content['upa'])) ? substr($content['upa'], 0, 4) : 0; ?></span><span> /100</span></p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="box-header with-border">
+                                                    <h3 class="box-title">Page Link Metrics</h3>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="col-sm-12">
+                                                            <p class="title">JUST-DISCOVERED</p>
+                                                            <p><span class="value"><?php echo (!empty($content[''])) ? substr($content[''], 0, 4) : 0; ?></span><span> 60 Days</span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="col-sm-12">
+                                                            <p class="title">ESTABLISHED LINKS</p>
+                                                            <p><span class="value"><?php echo (!empty($content['upl'])) ? substr($content['upl'], 0, 4) : 0; ?></span><span> Root Domains</span></p>
+                                                            <p><span class="value"><?php echo (!empty($content['puid'])) ? substr($content['puid'], 0, 4) : 0; ?></span><span> Total Links</span></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div><!-- /.box-body -->
                                     </div><!-- /.box -->
-                                </div>
+                                </div><!-- /.box -->
+                            </div>
+                        </div>
 
 
-
-                                <div class="col-md-6">
-                                    <!-- USERS LIST -->
-                                    <div class="box box-primary">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title">Our team</h3>
-                                            <div class="box-tools pull-right">
-<!--                                                <span class="label label-danger">--><?php //echo count($teamFields['team_member']);?><!-- Team Members</span>-->
-<!--                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>-->
-<!--                                                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                        <div class="box box-widget">
+                            <div class='box-header with-border'>
+                                <div class='user-block'>
+                                    <span class='username'>Page Link Metrics</span>
+                                </div><!-- /.user-block -->
+                            </div><!-- /.box-header -->
+                            <!--                            <div class='box-body'>-->
+                            <!--                                <img class="img-responsive pad" src="--><?php //echo $reportFields['page_metrics_screenshot']['url'];?><!--" alt="--><?php //echo $reportFields['page_metrics_screenshot']['title'];?><!--">-->
+                            <!--                            </div>-->
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="box-body">
+                                        <div class="col-sm-6">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">Authority</h3>
                                             </div>
-                                        </div><!-- /.box-header -->
-                                        <div class="box-body no-padding">
-                                            <ul class="users-list clearfix">
-                                                <?php foreach($teamFields['team_member'] as $value):?>
+                                            <div class="row">
+                                                <div class="info-box">
+                                                    <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">DOMAIN AUTHORITY</span>
+                                                        <span class="info-box-number"><?php echo (!empty($content['pda'])) ? substr($content['pda'], 0, 4) : 0; ?><small> / 100</small></span>
+                                                    </div><!-- /.info-box-content -->
+                                                </div><!-- /.info-box -->
+                                                <div class="info-box">
+                                                    <span class="info-box-icon bg-red"><i class="fa ion-ios-gear-outline"></i></span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">SPAM SCORE</span>
+                                                        <span class="info-box-number"><?php echo (!empty($content['fspsc'])) ? substr($content['fspsc'], 0, 4) : '-'; ?><small>/17</small></span>
+                                                    </div><!-- /.info-box-content -->
+                                                </div><!-- /.info-box -->
+                                                <div class="info-box">
+                                                    <span class="info-box-icon bg-yellow"><i class="fa ion-ios-gear-outline"></i></span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">PAGE AUTHORITY</span>
+                                                        <span class="info-box-number"><?php echo (!empty($content['upa'])) ? substr($content['upa'], 0, 4) : 0; ?><small>/ 100</small></span>
+                                                    </div><!-- /.info-box-content -->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">Page Link Metrics</h3>
+                                            </div>
+                                            <div class="row">
+                                                <div class="info-box">
+                                                    <span class="info-box-icon bg-green"><i class="ion ion-ios-gear-outline"></i></span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">JUST-DISCOVERED</span>
+                                                        <span class="info-box-number"><?php echo (!empty($content[''])) ? substr($content[''], 0, 4) : 0; ?><small> 60 Days</small></span>
+                                                    </div><!-- /.info-box-content -->
+                                                </div><!-- /.info-box -->
+                                                <div class="info-box">
+                                                    <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">ESTABLISHED LINKS</span>
+                                                        <span class="info-box-number"><?php echo (!empty($content['upl'])) ? substr($content['upl'], 0, 4) : 0; ?><small> Root Domains</small></span>
+                                                        <span class="info-box-number"><?php echo (!empty($content['puid'])) ? substr($content['puid'], 0, 4) : 0; ?><small> Total Links</small></span>
+                                                    </div><!-- /.info-box-content -->
+                                                </div><!-- /.info-box -->
+                                            </div>
+                                        </div>
+                                    </div><!-- /.box-body -->
+                                </div><!-- /.box -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-header">
+                                        <h3 class="box-title">Website Status</h3>
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body table-responsive no-padding">
+                                        <table class="table table-hover">
+                                            <tr>
+                                                <th>Your website</th>
+                                                <th>Your Competitors</th>
+                                                <th>Competitors</th>
+                                                <th>Competitors link</th>
+                                            </tr>
+                                            <?php foreach($reportFields['page_specific_metrics'] as $metrics): ?>
+                                                <tr>
+                                                    <td><span><?php echo $metrics['your_website']; ?></span></td>
+                                                    <td class="col-sm-3"><img src="<?php echo $metrics['your_competitors']['url']; ?>" alt="<?php echo $metrics['your_competitors']['title']; ?>"></td>
+                                                    <td><span><?php echo $metrics['competitors']; ?></span></td>
+                                                    <td><a href="http://<?php echo $metrics['competitors_link']; ?>"><?php echo $metrics['competitors_link']; ?></a></td>
+                                                </tr>
+                                            <?php endforeach;?>
+                                        </table>
+                                    </div><!-- /.box-body -->
+                                </div><!-- /.box -->
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <!-- USERS LIST -->
+                                <div class="box box-primary">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Our team</h3>
+                                        <div class="box-tools pull-right">
+                                            <!--                                                <span class="label label-danger">--><?php //echo count($teamFields['team_member']);?><!-- Team Members</span>-->
+                                            <!--                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>-->
+                                            <!--                                                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                                        </div>
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body no-padding">
+                                        <ul class="users-list clearfix">
+                                            <?php foreach($teamFields['team_member'] as $value):?>
 
                                                 <li>
                                                     <img src="<?php echo $value['picture']['url'];?>" alt="<?php echo $value['picture']['title'];?>">
@@ -185,29 +355,19 @@ $teamFields = get_fields($team_posts[0]->ID);
                                                     <span class="users-list-date">Today</span>
                                                 </li>
 
-                                                <?php endforeach;?>
-                                            </ul><!-- /.users-list -->
-                                        </div><!-- /.box-body -->
-                                        <div class="box-footer text-center">
-<!--                                            <a href="javascript::" class="uppercase">View All Users</a>-->
-                                        </div><!-- /.box-footer -->
-                                    </div><!--/.box -->
-                                </div><!-- /.col -->
+                                            <?php endforeach;?>
+                                        </ul><!-- /.users-list -->
+                                    </div><!-- /.box-body -->
+                                    <div class="box-footer text-center">
+                                        <!--                                            <a href="javascript::" class="uppercase">View All Users</a>-->
+                                    </div><!-- /.box-footer -->
+                                </div><!--/.box -->
+                            </div><!-- /.col -->
 
 
 
 
-                            </div>
-
-
-
-
-
-
-
-
-
-                        </div><!-- /.box -->
+                        </div>
 
 
 
@@ -216,7 +376,10 @@ $teamFields = get_fields($team_posts[0]->ID);
 
 
 
-                    </div>
+
+                    </div><!-- /.box -->
+
+
                     <div id="tabs-2">
                         <!-- Box Comment -->
                         <div class="box box-widget">

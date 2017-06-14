@@ -1315,3 +1315,10 @@ a.ui-button:active,
 .box.box-widget .use-floating-validation-tip span.wpcf7-not-valid-tip{
     position: static;
 }
+
+/*Styles for Website Status tab on SEO Client Reports PAGE*/
+
+.box-body .value {
+    font-size: 1.1em;
+    font-weight: bold;
+}
