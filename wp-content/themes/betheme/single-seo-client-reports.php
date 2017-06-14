@@ -136,7 +136,7 @@ $teamFields = get_fields($team_posts[0]->ID);
 
         // Add up all the bit flags you want returned.
         // Learn more here: https://moz.com/help/guides/moz-api/mozscape/api-reference/url-metrics
-        $cols = "103079215108";
+        $cols = "111736266752";
 
         // Put it all together and you get your request URL.
         // This example uses the Mozscape URL Metrics API.
@@ -294,7 +294,7 @@ $teamFields = get_fields($team_posts[0]->ID);
                                                     <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
                                                     <div class="info-box-content">
                                                         <span class="info-box-text">ESTABLISHED LINKS</span>
-                                                        <span class="info-box-number"><?php echo (!empty($content['upl'])) ? substr($content['upl'], 0, 4) : 0; ?><small> Root Domains</small></span>
+                                                        <span class="info-box-number"><?php echo (!empty($content['pid'])) ? substr($content['pid'], 0, 4) : 0; ?><small> Root Domains</small></span>
                                                         <span class="info-box-number"><?php echo (!empty($content['puid'])) ? substr($content['puid'], 0, 4) : 0; ?><small> Total Links</small></span>
                                                     </div><!-- /.info-box-content -->
                                                 </div><!-- /.info-box -->
