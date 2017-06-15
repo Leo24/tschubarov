@@ -38,10 +38,21 @@ if( mfn_title() ){
 <link rel="shortcut icon" href="<?php mfn_opts_show( 'favicon-img', THEME_URI .'/images/favicon.ico' ); ?>" />	
 <?php if( mfn_opts_get('apple-touch-icon') ): ?>
 <link rel="apple-touch-icon" href="<?php mfn_opts_show( 'apple-touch-icon' ); ?>" />
-<?php endif; ?>	
+<?php endif; ?>
 
 <!-- wp_head() -->
 <?php wp_head(); ?>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-101099779-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 </head>
 
 <!-- body -->
