@@ -386,3 +386,39 @@ function wpcf7_do_something_else($cf7) {
 
 //    return $wpcf;
 }
+
+
+/**
+ * Get MOZ API DATA
+ */
+
+function get_moz_api_data($accessID, $secretKey, $objectURL, $cols){
+// Set your expires times for several minutes into the future.
+// An expires time excessively far in the future will not be honored by the Mozscape API.
+    $expires = time() + 300;
+
+// Put each parameter on a new line.
+    $stringToSign = $accessID."\n".$expires;
+
+// Get the "raw" or binary output of the hmac hash.
+    $binarySignature = hash_hmac('sha1', $stringToSign, $secretKey, true);
+
+// Base64-encode it and then url-encode that.
+    $urlSafeSignature = urlencode(base64_encode($binarySignature));
+
+// Put it all together and you get your request URL.
+// This example uses the Mozscape URL Metrics API.
+    $requestUrl = "http://lsapi.seomoz.com/linkscape/url-metrics/".urlencode($objectURL)."?Cols=".$cols."&AccessID=".$accessID."&Expires=".$expires."&Signature=".$urlSafeSignature;
+
+// Use Curl to send off your request.
+    $options = array(
+        CURLOPT_RETURNTRANSFER => true
+    );
+    $ch = curl_init($requestUrl);
+    curl_setopt_array($ch, $options);
+    $content = curl_exec($ch);
+    curl_close($ch);
+    $content = json_decode($content, true);
+
+    return $content;
+}

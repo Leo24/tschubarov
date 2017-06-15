@@ -113,46 +113,8 @@ $teamFields = get_fields($team_posts[0]->ID);
         </section>
 
         <?php
-        // Get your access id and secret key here: https://moz.com/products/api/keys
-        $accessID = $reportFields['mozs_api_access_id'];
-        $secretKey = $reportFields['mozs_api_secret_key'];
-
-        // Set your expires times for several minutes into the future.
-        // An expires time excessively far in the future will not be honored by the Mozscape API.
-        $expires = time() + 300;
-
-        // Put each parameter on a new line.
-        $stringToSign = $accessID."\n".$expires;
-
-        // Get the "raw" or binary output of the hmac hash.
-        $binarySignature = hash_hmac('sha1', $stringToSign, $secretKey, true);
-
-        // Base64-encode it and then url-encode that.
-        $urlSafeSignature = urlencode(base64_encode($binarySignature));
-
-        // Specify the URL that you want link metrics for.
-        //$objectURL = "www.seomoz.org";
-        $objectURL = $reportFields['client_url'];
-
-        // Add up all the bit flags you want returned.
-        // Learn more here: https://moz.com/help/guides/moz-api/mozscape/api-reference/url-metrics
         $cols = "111736266752";
-
-        // Put it all together and you get your request URL.
-        // This example uses the Mozscape URL Metrics API.
-        $requestUrl = "http://lsapi.seomoz.com/linkscape/url-metrics/".urlencode($objectURL)."?Cols=".$cols."&AccessID=".$accessID."&Expires=".$expires."&Signature=".$urlSafeSignature;
-        //$requestUrl = "http://lsapi.seomoz.com/linkscape/links/".urlencode($objectURL)."?Scope=pagetopage&Sort=page_authority&Filter=internal+301&Limit=1&SourceCols=536870916&TargetCols= 4&AccessID=".$accessID."&Expires=".$expires."&Signature=".$urlSafeSignature;
-
-        // Use Curl to send off your request.
-        $options = array(
-            CURLOPT_RETURNTRANSFER => true
-        );
-
-        $ch = curl_init($requestUrl);
-        curl_setopt_array($ch, $options);
-        $content = curl_exec($ch);
-        curl_close($ch);
-        $content = json_decode($content, true);
+        $content = get_moz_api_data($reportFields['mozs_api_access_id'], $reportFields['mozs_api_secret_key'], $reportFields['client_url'], $cols);
         ?>
 
         <!-- Main content -->
@@ -167,7 +129,6 @@ $teamFields = get_fields($team_posts[0]->ID);
                         <li><a href="#tabs-5">Tasks</a></li>
                         <li><a href="#tabs-6">Contact form for Seo Reports</a></li>
                     </ul>
-
 
                     <div id="tabs-1">
                         <div class="box box-widget">
@@ -211,14 +172,14 @@ $teamFields = get_fields($team_posts[0]->ID);
                                                     </div><!-- ./col -->
                                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                                         <p class="box-title">ESTABLISHED LINKS</p>
-                                                    <div class="col-md-6 col-sm-6 col-xs-6">
-                                                        <p>Root Domains</p>
-                                                        <input type="text" class="knob" value="<?php echo (!empty($content['pid'])) ? substr($content['pid'], 0, 4) : 0; ?>" data-width="90" data-height="90" data-fgColor="#39CCCC">
-                                                    </div><!-- ./col -->
-                                                    <div class="col-md-6 col-sm-6 col-xs-6 text-center">
-                                                        <p>Total Links</p>
-                                                        <input type="text" class="knob" value="<?php echo (!empty($content[''])) ? substr($content[''], 0, 4) : 0; ?>" data-width="90" data-height="90" data-fgColor="#00a65a">
-                                                    </div><!-- ./col -->
+                                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                                            <p>Root Domains</p>
+                                                            <input type="text" class="knob" value="<?php echo (!empty($content['pid'])) ? substr($content['pid'], 0, 4) : 0; ?>" data-width="90" data-height="90" data-fgColor="#39CCCC">
+                                                        </div><!-- ./col -->
+                                                        <div class="col-md-6 col-sm-6 col-xs-6 text-center">
+                                                            <p>Total Links</p>
+                                                            <input type="text" class="knob" value="<?php echo (!empty($content[''])) ? substr($content[''], 0, 4) : 0; ?>" data-width="90" data-height="90" data-fgColor="#00a65a">
+                                                        </div><!-- ./col -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -235,22 +196,187 @@ $teamFields = get_fields($team_posts[0]->ID);
                                         <h3 class="box-title">Website Status</h3>
                                     </div><!-- /.box-header -->
                                     <div class="box-body table-responsive no-padding">
-                                        <table class="table table-hover">
-                                            <tr>
-                                                <th>Your website</th>
-                                                <th>Your Competitors</th>
-                                                <th>Competitors</th>
-                                                <th>Competitors link</th>
-                                            </tr>
-                                            <?php foreach($reportFields['page_specific_metrics'] as $metrics): ?>
-                                                <tr>
-                                                    <td><span><?php echo $metrics['your_website']; ?></span></td>
-                                                    <td class="col-sm-3"><img src="<?php echo $metrics['your_competitors']['url']; ?>" alt="<?php echo $metrics['your_competitors']['title']; ?>"></td>
-                                                    <td><span><?php echo $metrics['competitors']; ?></span></td>
-                                                    <td><a href="http://<?php echo $metrics['competitors_link']; ?>"><?php echo $metrics['competitors_link']; ?></a></td>
-                                                </tr>
-                                            <?php endforeach;?>
-                                        </table>
+<!--                                        <table class="table table-hover">-->
+<!--                                            <tr>-->
+<!--                                                <th>Your website</th>-->
+<!--                                                <th>Your Competitors</th>-->
+<!--                                                <th>Competitors</th>-->
+<!--                                                <th>Competitors link</th>-->
+<!--                                            </tr>-->
+<!--                                            --><?php //foreach($reportFields['page_specific_metrics'] as $metrics): ?>
+<!--                                                <tr>-->
+<!--                                                    <td><span>--><?php //echo $metrics['your_website']; ?><!--</span></td>-->
+<!--                                                    <td class="col-sm-3"><img src="--><?php //echo $metrics['your_competitors']['url']; ?><!--" alt="--><?php //echo $metrics['your_competitors']['title']; ?><!--"></td>-->
+<!--                                                    <td><span>--><?php //echo $metrics['competitors']; ?><!--</span></td>-->
+<!--                                                    <td><a href="http://--><?php //echo $metrics['competitors_link']; ?><!--">--><?php //echo $metrics['competitors_link']; ?><!--</a></td>-->
+<!--                                                </tr>-->
+<!--                                            --><?php //endforeach;?>
+<!--                                        </table>-->
+
+
+                                        <?php
+                                        //Code for rendering Competitors stats
+
+                                        $cols = "107443798368";
+                                        $competitorsData = array();
+                                        foreach($reportFields['page_specific_metrics'] as $metrics){
+                                            $data = get_moz_api_data($reportFields['mozs_api_access_id'], $reportFields['mozs_api_secret_key'], $metrics['competitors_link'], $cols);
+                                            $competitorsData[$metrics['competitors_link']] = $data;
+                                        }
+
+                                        //array for replacing MOZ API code to human understandable name
+                                        $urlMetrics = [
+                                            'pda'   => 'Domain Authority',
+                                            'umrp'  => 'Domain MozRank',
+                                            'utrp'  => 'MozTrust',
+                                            'fuid'  => 'Links to Subdomain',
+                                            'ueid'  => 'External Equity Links',
+                                            'ujid'  => 'Total Equity Links',
+                                            'ped'   => 'External links to root domain',
+                                            'pib'   => 'Linking C Blocks',
+                                            'upa'   => 'Page Authority',
+                                            'fejp'  => 'MozRank: Subdomain, External Equity',
+                                            'ftrp'  => 'MozTrust: Subdomain',
+                                            'fspsc' => 'Subdomain Spam Score',
+                                            'feid'  => 'Subdomain External Links'
+                                        ];
+
+
+                                        //array for removing extra fields
+                                        $urlMetricsList = [
+                                            'pda',
+                                            'umrp',
+                                            'utrp',
+                                            'fuid',
+                                            'ueid',
+                                            'ujid',
+                                            'ped',
+                                            'pib',
+                                            'upa',
+                                            'fejp',
+                                            'ftrp',
+                                            'fspsc',
+                                            'feid'
+                                        ];
+
+                                        foreach($competitorsData as $key => $row) {
+                                            foreach($row as $field => $value) {
+                                                    $recNew[$field][] = $value;
+                                            }
+                                        }
+
+                                        echo "<table class=\"table table-hover\">\n
+
+                                        <tr>
+                                                <th>Params\Competitors</th>";
+                                        foreach($competitorsData as $k => $v){
+                                            echo "<th><a href=$k target=\"_blank\">$k</a></th>";
+                                        }
+                                        echo "</tr>";
+
+                                        foreach ($recNew as $key => $values) // For every field name (id, name, last_name, gender)
+                                        {
+
+                                            if(in_array($key, $urlMetricsList)){
+                                                echo "<tr>\n"; // start the row
+                                                echo "\t<td>" . $urlMetrics[$key] . "</td>\n" ; // create a table cell with the field name
+                                                foreach ($values as $cell) // for every sub-array iterate through all values
+                                                {
+                                                    echo "\t<td>" . mb_substr($cell, 0, 5) . "</td>\n"; // write cells next to each other
+                                                }
+                                                echo "</tr>\n"; // end row
+
+                                            }
+
+
+
+                                        }
+
+                                        echo "</table>";
+                                        ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                     </div><!-- /.box-body -->
                                 </div><!-- /.box -->
                             </div>
@@ -286,10 +412,6 @@ $teamFields = get_fields($team_posts[0]->ID);
                                     </div><!-- /.box-footer -->
                                 </div><!--/.box -->
                             </div><!-- /.col -->
-
-
-
-
                         </div>
 
 
