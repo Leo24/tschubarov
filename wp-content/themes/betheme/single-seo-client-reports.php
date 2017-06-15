@@ -218,7 +218,9 @@ $teamFields = get_fields($team_posts[0]->ID);
                                         //Code for rendering Competitors stats
 
                                         $cols = "107443798368";
-                                        $competitorsData = array();
+                                        $competitorsData = array(
+                                                'default' => $content
+                                        );
                                         foreach($reportFields['page_specific_metrics'] as $metrics){
                                             $data = get_moz_api_data($reportFields['mozs_api_access_id'], $reportFields['mozs_api_secret_key'], $metrics['competitors_link'], $cols);
                                             $competitorsData[$metrics['competitors_link']] = $data;
