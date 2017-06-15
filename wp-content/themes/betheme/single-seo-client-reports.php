@@ -176,132 +176,55 @@ $teamFields = get_fields($team_posts[0]->ID);
                                     <span class='username'>Page Link Metrics</span>
                                 </div><!-- /.user-block -->
                             </div><!-- /.box-header -->
-                            <!--                            <div class='box-body'>-->
-                            <!--                                <img class="img-responsive pad" src="--><?php //echo $reportFields['page_metrics_screenshot']['url'];?><!--" alt="--><?php //echo $reportFields['page_metrics_screenshot']['title'];?><!--">-->
-                            <!--                            </div>-->
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <div class="box box-solid">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title username">URL: <?php echo $reportFields['client_url'];?></h3>
-                                        </div><!-- /.box-header -->
-                                        <div class="box-body">
+
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="box-body page-link-metrics">
                                             <div class="col-sm-6">
                                                 <div class="box-header with-border">
                                                     <h3 class="box-title">Authority</h3>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <div class="col-sm-12">
-                                                            <p class="title">DOMAIN AUTHORITY</p>
-                                                            <p><span class="value"><?php echo (!empty($content['pda'])) ? substr($content['pda'], 0, 4) : 0; ?></span><span> / 100</span></p>
-                                                        </div>
-                                                        <div class="col-sm-10">
-                                                            <div class="progress-group">
-                                                                <span class="">SPAM SCORE:</span>
-                                                                <span class="progress-number"><?php echo (!empty($content['fspsc'])) ? substr($content['fspsc'], 0, 4) : '-'; ?>/17</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <p>PAGE AUTHORITY</p>
-                                                        <p><span class="value"><?php echo (!empty($content['upa'])) ? substr($content['upa'], 0, 4) : 0; ?></span><span> /100</span></p>
-                                                    </div>
+                                                    <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                                        <p class="box-title margin-bottom">DOMAIN AUTHORITY</p>
+                                                        <input type="text" class="knob" value="<?php echo (!empty($content['pda'])) ? substr($content['pda'], 0, 4) : 0; ?>" data-width="90" data-height="90" data-fgColor="#00c0ef">
+                                                    </div><!-- ./col -->
+                                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                                        <p class="box-title margin-bottom">PAGE AUTHORITY</p>
+                                                        <input type="text" class="knob" value="<?php echo (!empty($content['upa'])) ? substr($content['upa'], 0, 4) : 0; ?>" data-width="90" data-height="90" data-fgColor="#f39c12">
+                                                    </div><!-- ./col -->
+                                                    <div class="col-md-12 col-sm-6 col-xs-6">
+                                                        <p class="box-title margin-bottom">SPAM SCORE</p>
+                                                        <input type="text" class="knob" value="<?php echo (!empty($content['fspsc'])) ? substr($content['fspsc'], 0, 4) : 0; ?>" data-width="90" data-height="90" data-fgColor="#f56954" data-min="0" data-max="17">
+                                                    </div><!-- ./col -->
                                                 </div>
-
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="box-header with-border">
                                                     <h3 class="box-title">Page Link Metrics</h3>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <div class="col-sm-12">
-                                                            <p class="title">JUST-DISCOVERED</p>
-                                                            <p><span class="value"><?php echo (!empty($content[''])) ? substr($content[''], 0, 4) : 0; ?></span><span> 60 Days</span></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <div class="col-sm-12">
-                                                            <p class="title">ESTABLISHED LINKS</p>
-                                                            <p><span class="value"><?php echo (!empty($content['upl'])) ? substr($content['upl'], 0, 4) : 0; ?></span><span> Root Domains</span></p>
-                                                            <p><span class="value"><?php echo (!empty($content['puid'])) ? substr($content['puid'], 0, 4) : 0; ?></span><span> Total Links</span></p>
-                                                        </div>
+                                                    <div class="col-md-8 col-sm-6 col-xs-6 ">
+                                                        <p class="box-title margin-bottom">JUST-DISCOVERED</p>
+                                                        <input type="text" class="knob" value="<?php echo (!empty($content[''])) ? substr($content[''], 0, 4) : 0; ?>/60" data-width="90" data-height="90" data-min="0" data-max="60" data-fgColor="#00a65a">
+                                                    </div><!-- ./col -->
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <p class="box-title">ESTABLISHED LINKS</p>
+                                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                                        <p>Root Domains</p>
+                                                        <input type="text" class="knob" value="<?php echo (!empty($content['pid'])) ? substr($content['pid'], 0, 4) : 0; ?>" data-width="90" data-height="90" data-fgColor="#39CCCC">
+                                                    </div><!-- ./col -->
+                                                    <div class="col-md-6 col-sm-6 col-xs-6 text-center">
+                                                        <p>Total Links</p>
+                                                        <input type="text" class="knob" value="<?php echo (!empty($content[''])) ? substr($content[''], 0, 4) : 0; ?>" data-width="90" data-height="90" data-fgColor="#00a65a">
+                                                    </div><!-- ./col -->
                                                     </div>
                                                 </div>
                                             </div>
                                         </div><!-- /.box-body -->
                                     </div><!-- /.box -->
-                                </div><!-- /.box -->
-                            </div>
-                        </div>
-
-
-                        <div class="box box-widget">
-                            <div class='box-header with-border'>
-                                <div class='user-block'>
-                                    <span class='username'>Page Link Metrics</span>
-                                </div><!-- /.user-block -->
-                            </div><!-- /.box-header -->
-                            <!--                            <div class='box-body'>-->
-                            <!--                                <img class="img-responsive pad" src="--><?php //echo $reportFields['page_metrics_screenshot']['url'];?><!--" alt="--><?php //echo $reportFields['page_metrics_screenshot']['title'];?><!--">-->
-                            <!--                            </div>-->
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <div class="box-body">
-                                        <div class="col-sm-6">
-                                            <div class="box-header with-border">
-                                                <h3 class="box-title">Authority</h3>
-                                            </div>
-                                            <div class="row">
-                                                <div class="info-box">
-                                                    <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
-                                                    <div class="info-box-content">
-                                                        <span class="info-box-text">DOMAIN AUTHORITY</span>
-                                                        <span class="info-box-number"><?php echo (!empty($content['pda'])) ? substr($content['pda'], 0, 4) : 0; ?><small> / 100</small></span>
-                                                    </div><!-- /.info-box-content -->
-                                                </div><!-- /.info-box -->
-                                                <div class="info-box">
-                                                    <span class="info-box-icon bg-red"><i class="fa ion-ios-gear-outline"></i></span>
-                                                    <div class="info-box-content">
-                                                        <span class="info-box-text">SPAM SCORE</span>
-                                                        <span class="info-box-number"><?php echo (!empty($content['fspsc'])) ? substr($content['fspsc'], 0, 4) : '-'; ?><small>/17</small></span>
-                                                    </div><!-- /.info-box-content -->
-                                                </div><!-- /.info-box -->
-                                                <div class="info-box">
-                                                    <span class="info-box-icon bg-yellow"><i class="fa ion-ios-gear-outline"></i></span>
-                                                    <div class="info-box-content">
-                                                        <span class="info-box-text">PAGE AUTHORITY</span>
-                                                        <span class="info-box-number"><?php echo (!empty($content['upa'])) ? substr($content['upa'], 0, 4) : 0; ?><small>/ 100</small></span>
-                                                    </div><!-- /.info-box-content -->
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="box-header with-border">
-                                                <h3 class="box-title">Page Link Metrics</h3>
-                                            </div>
-                                            <div class="row">
-                                                <div class="info-box">
-                                                    <span class="info-box-icon bg-green"><i class="ion ion-ios-gear-outline"></i></span>
-                                                    <div class="info-box-content">
-                                                        <span class="info-box-text">JUST-DISCOVERED</span>
-                                                        <span class="info-box-number"><?php echo (!empty($content[''])) ? substr($content[''], 0, 4) : 0; ?><small> 60 Days</small></span>
-                                                    </div><!-- /.info-box-content -->
-                                                </div><!-- /.info-box -->
-                                                <div class="info-box">
-                                                    <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
-                                                    <div class="info-box-content">
-                                                        <span class="info-box-text">ESTABLISHED LINKS</span>
-                                                        <span class="info-box-number"><?php echo (!empty($content['pid'])) ? substr($content['pid'], 0, 4) : 0; ?><small> Root Domains</small></span>
-                                                        <span class="info-box-number"><?php echo (!empty($content['puid'])) ? substr($content['puid'], 0, 4) : 0; ?><small> Total Links</small></span>
-                                                    </div><!-- /.info-box-content -->
-                                                </div><!-- /.info-box -->
-                                            </div>
-                                        </div>
-                                    </div><!-- /.box-body -->
-                                </div><!-- /.box -->
+                                </div>
                             </div>
                         </div>
 
@@ -861,6 +784,8 @@ $teamFields = get_fields($team_posts[0]->ID);
 <script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/js/demo.js"></script>
+<!-- jQuery Knob -->
+<script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/plugins/knob/jquery.knob.js"></script>
 
 <script type='text/javascript' src='<?php echo get_home_url();?>/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.40.0-2013.08.13'></script>
 <script type='text/javascript'>
@@ -902,6 +827,18 @@ $teamFields = get_fields($team_posts[0]->ID);
             });
         });
     });
+</script>
+
+<script>
+    $(function () {
+        /* jQueryKnob */
+
+        $(".knob").knob({
+            'readOnly': true,
+        });
+        /* END JQUERY KNOB */
+    });
+
 </script>
 
 </body>

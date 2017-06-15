@@ -1322,3 +1322,16 @@ a.ui-button:active,
     font-size: 1.1em;
     font-weight: bold;
 }
+
+.page-link-metrics .box-title{
+    margin-top: 20px;
+}
+
+.page-link-metrics p{
+    margin-bottom: 0;
+}
+
+.page-link-metrics .margin-bottom{
+    margin-bottom: 20px;
+}
+
