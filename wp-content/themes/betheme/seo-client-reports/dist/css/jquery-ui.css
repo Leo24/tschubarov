@@ -1311,27 +1311,3 @@ a.ui-button:active,
     box-shadow: 0px 0px 5px #666666;
 }
 
-/*Fix for Contact form 7*/
-.box.box-widget .use-floating-validation-tip span.wpcf7-not-valid-tip{
-    position: static;
-}
-
-/*Styles for Website Status tab on SEO Client Reports PAGE*/
-
-.box-body .value {
-    font-size: 1.1em;
-    font-weight: bold;
-}
-
-.page-link-metrics .box-title{
-    margin-top: 20px;
-}
-
-.page-link-metrics p{
-    margin-bottom: 0;
-}
-
-.page-link-metrics .margin-bottom{
-    margin-bottom: 20px;
-}
-

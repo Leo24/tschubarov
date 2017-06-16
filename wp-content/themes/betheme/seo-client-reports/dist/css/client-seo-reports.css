@@ -1,0 +1,33 @@
+/*Fix for Contact form 7*/
+.box.box-widget .use-floating-validation-tip span.wpcf7-not-valid-tip{
+    position: static;
+}
+
+/*Styles for Website Status tab on SEO Client Reports PAGE*/
+
+.box-body .value {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.page-link-metrics .box-title{
+    margin-top: 20px;
+}
+
+.page-link-metrics p{
+    margin-bottom: 0;
+}
+
+.page-link-metrics .margin-bottom{
+    margin-bottom: 20px;
+}
+
+.competitors .checked {
+    display: block;
+    width: 16px;
+    height: 16px;
+    padding: 0 12px;
+    background: url('../../../images/icons/check_mark_128x128.png') no-repeat;
+    background-size: 16px 16px;
+    float: left;
+}

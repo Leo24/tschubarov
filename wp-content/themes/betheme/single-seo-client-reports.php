@@ -52,6 +52,7 @@ $teamFields = get_fields($team_posts[0]->ID);
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/css/client-seo-reports.css">
     <link rel="stylesheet" href="<?php echo get_home_url();?>/wp-content/plugins/contact-form-7/includes/css/styles.css">
 
 
@@ -195,24 +196,7 @@ $teamFields = get_fields($team_posts[0]->ID);
                                     <div class="box-header">
                                         <h3 class="box-title">Website Status</h3>
                                     </div><!-- /.box-header -->
-                                    <div class="box-body table-responsive no-padding">
-<!--                                        <table class="table table-hover">-->
-<!--                                            <tr>-->
-<!--                                                <th>Your website</th>-->
-<!--                                                <th>Your Competitors</th>-->
-<!--                                                <th>Competitors</th>-->
-<!--                                                <th>Competitors link</th>-->
-<!--                                            </tr>-->
-<!--                                            --><?php //foreach($reportFields['page_specific_metrics'] as $metrics): ?>
-<!--                                                <tr>-->
-<!--                                                    <td><span>--><?php //echo $metrics['your_website']; ?><!--</span></td>-->
-<!--                                                    <td class="col-sm-3"><img src="--><?php //echo $metrics['your_competitors']['url']; ?><!--" alt="--><?php //echo $metrics['your_competitors']['title']; ?><!--"></td>-->
-<!--                                                    <td><span>--><?php //echo $metrics['competitors']; ?><!--</span></td>-->
-<!--                                                    <td><a href="http://--><?php //echo $metrics['competitors_link']; ?><!--">--><?php //echo $metrics['competitors_link']; ?><!--</a></td>-->
-<!--                                                </tr>-->
-<!--                                            --><?php //endforeach;?>
-<!--                                        </table>-->
-
+                                    <div class="box-body table-responsive no-padding competitors">
 
                                         <?php
                                         //Code for rendering Competitors stats
@@ -244,22 +228,8 @@ $teamFields = get_fields($team_posts[0]->ID);
                                         ];
 
 
-                                        //array for removing extra fields
-                                        $urlMetricsList = [
-                                            'pda',
-                                            'umrp',
-                                            'utrp',
-                                            'fuid',
-                                            'ueid',
-                                            'ujid',
-                                            'ped',
-                                            'pib',
-                                            'upa',
-                                            'fejp',
-                                            'ftrp',
-                                            'fspsc',
-                                            'feid'
-                                        ];
+                                        //list of needed fields, it is used for removing extra fields that are returned by MOZ API
+                                        $urlMetricsList = ['pda', 'umrp', 'utrp', 'fuid', 'ueid', 'ujid', 'ped', 'pib', 'upa', 'fejp', 'ftrp', 'fspsc', 'feid'];
 
                                         foreach($competitorsData as $key => $row) {
                                             foreach($row as $field => $value) {
@@ -278,113 +248,28 @@ $teamFields = get_fields($team_posts[0]->ID);
 
                                         foreach ($recNew as $key => $values) // For every field name (id, name, last_name, gender)
                                         {
-
+                                            $max = max($values);
                                             if(in_array($key, $urlMetricsList)){
                                                 echo "<tr>\n"; // start the row
                                                 echo "\t<td>" . $urlMetrics[$key] . "</td>\n" ; // create a table cell with the field name
                                                 foreach ($values as $cell) // for every sub-array iterate through all values
                                                 {
-                                                    echo "\t<td>" . mb_substr($cell, 0, 5) . "</td>\n"; // write cells next to each other
+                                                    if($cell == $max){
+                                                        echo "\t<td><p><span class='checked'></span><span class=text-green>" . mb_substr($cell, 0, 5) . "</span></p></td>\n"; // write cells next to each other
+                                                    }
+                                                    else{
+                                                        echo "\t<td><p>" . mb_substr($cell, 0, 5) . "</p></td>\n"; // write cells next to each other
+                                                    }
                                                 }
                                                 echo "</tr>\n"; // end row
-
                                             }
-
-
-
                                         }
-
                                         echo "</table>";
                                         ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                                     </div><!-- /.box-body -->
                                 </div><!-- /.box -->
                             </div>
-
-
-
                             <div class="col-md-6">
                                 <!-- USERS LIST -->
                                 <div class="box box-primary">
@@ -399,13 +284,11 @@ $teamFields = get_fields($team_posts[0]->ID);
                                     <div class="box-body no-padding">
                                         <ul class="users-list clearfix">
                                             <?php foreach($teamFields['team_member'] as $value):?>
-
                                                 <li>
                                                     <img src="<?php echo $value['picture']['url'];?>" alt="<?php echo $value['picture']['title'];?>">
                                                     <a class="users-list-name" href="#"><?php echo $value['name'];?></a>
                                                     <span class="users-list-date">Today</span>
                                                 </li>
-
                                             <?php endforeach;?>
                                         </ul><!-- /.users-list -->
                                     </div><!-- /.box-body -->
@@ -415,15 +298,6 @@ $teamFields = get_fields($team_posts[0]->ID);
                                 </div><!--/.box -->
                             </div><!-- /.col -->
                         </div>
-
-
-
-
-
-
-
-
-
                     </div><!-- /.box -->
 
 
@@ -486,30 +360,6 @@ $teamFields = get_fields($team_posts[0]->ID);
                                 }
                             } ?>
                             <div class="box-body">
-
-                                <!--                                <div id="accordion">-->
-                                <!--                                    --><?php //foreach($backlinks as $key => $value): ?>
-                                <!--                                        --><?php
-                                //                                        $title = ucwords(str_replace('backlink', '', str_replace('_', ' ', $key)));
-                                //                                        $key = str_replace('_backlink', '', $key);
-                                //                                        ?>
-                                <!--                                        <p class="accordio-title ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons">-->
-                                <!--                                            --><?php //echo $title; ?>
-                                <!--                                        </p>-->
-                                <!--                                        <div>-->
-                                <!--                                            <ul>-->
-                                <!--                                                --><?php //foreach($value as $v):?>
-                                <!--                                                    --><?php //if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v[$key], $matches, PREG_OFFSET_CAPTURE)):?>
-                                <!--                                                        <li><a href="--><?php //echo $v[$key]; ?><!--">--><?php //echo $v[$key]; ?><!--</a></li>-->
-                                <!--                                                    --><?php //else:?>
-                                <!--                                                        <li><p>--><?php //echo $v[$key]; ?><!--</p></li>-->
-                                <!--                                                    --><?php //endif;?>
-                                <!--                                                --><?php //endforeach;?>
-                                <!--                                            </ul>-->
-                                <!--                                        </div>-->
-                                <!--                                    --><?php //endforeach;?>
-                                <!--                                </div>-->
-
 
                                 <?php $icons = [
                                     '0' => 'ion ion-stats-bars',
