@@ -135,43 +135,43 @@ $teamFields = get_fields($team_posts[0]->ID);
                         <div class="box box-widget">
                             <div class='box-header with-border'>
                                 <div class='user-block'>
-                                    <span class='username'>Page Link Metrics</span>
+                                    <span class='username'>Authority and Page Link Metrics</span>
                                 </div><!-- /.user-block -->
                             </div><!-- /.box-header -->
 
                             <div class="box-body">
                                 <div class="row">
-                                    <div class="col-md-7">
+                                    <div class="col-md-12">
                                         <div class="box-body page-link-metrics">
                                             <div class="col-sm-6">
-                                                <div class="box-header with-border">
-                                                    <h3 class="box-title">Authority</h3>
-                                                </div>
+<!--                                                <div class="box-header with-border">-->
+<!--                                                    <h3 class="box-title">Authority</h3>-->
+<!--                                                </div>-->
                                                 <div class="row">
-                                                    <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                                    <div class="col-md-4 col-sm-6 col-xs-6 ">
                                                         <p class="box-title margin-bottom">DOMAIN AUTHORITY</p>
                                                         <input type="text" class="knob" value="<?php echo (!empty($content['pda'])) ? substr($content['pda'], 0, 4) : 0; ?>" data-width="90" data-height="90" data-fgColor="#00c0ef">
                                                     </div><!-- ./col -->
-                                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                                    <div class="col-md-4 col-sm-6 col-xs-6">
                                                         <p class="box-title margin-bottom">PAGE AUTHORITY</p>
                                                         <input type="text" class="knob" value="<?php echo (!empty($content['upa'])) ? substr($content['upa'], 0, 4) : 0; ?>" data-width="90" data-height="90" data-fgColor="#f39c12">
                                                     </div><!-- ./col -->
-                                                    <div class="col-md-12 col-sm-6 col-xs-6">
+                                                    <div class="col-md-4 col-sm-6 col-xs-6">
                                                         <p class="box-title margin-bottom">SPAM SCORE</p>
                                                         <input type="text" class="knob" value="<?php echo (!empty($content['fspsc'])) ? substr($content['fspsc'], 0, 4) : 0; ?>" data-width="90" data-height="90" data-fgColor="#f56954" data-min="0" data-max="17">
                                                     </div><!-- ./col -->
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
-                                                <div class="box-header with-border">
-                                                    <h3 class="box-title">Page Link Metrics</h3>
-                                                </div>
+<!--                                                <div class="box-header with-border">-->
+<!--                                                    <h3 class="box-title">Page Link Metrics</h3>-->
+<!--                                                </div>-->
                                                 <div class="row">
-                                                    <div class="col-md-8 col-sm-6 col-xs-6 ">
+                                                    <div class="col-md-3 col-sm-6 col-xs-6 ">
                                                         <p class="box-title margin-bottom">JUST-DISCOVERED</p>
                                                         <input type="text" class="knob" value="<?php echo (!empty($content[''])) ? substr($content[''], 0, 4) : 0; ?>/60" data-width="90" data-height="90" data-min="0" data-max="60" data-fgColor="#00a65a">
                                                     </div><!-- ./col -->
-                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="col-md-9 col-sm-12 col-xs-12 text-center">
                                                         <p class="box-title">ESTABLISHED LINKS</p>
                                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                                             <p>Root Domains</p>
