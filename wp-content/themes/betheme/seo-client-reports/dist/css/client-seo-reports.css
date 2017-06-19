@@ -31,3 +31,25 @@
     background-size: 16px 16px;
     float: left;
 }
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.box-backlink{
+    border: 1px solid #d2d6de;
+}
+
+.box-backlink .box-tools{
+    position: relative;
+    top: 14px;
+    left: 10px;
+}
+.box-backlink .box-body li{
+    overflow: hidden;
+}
+
+.box-backlink .small-box .i{
+
+}

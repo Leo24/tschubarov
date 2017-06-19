@@ -157,7 +157,7 @@ $teamFields = get_fields($team_posts[0]->ID);
                                             <div class="icon">
                                                 <input type="text" class="knob" value="<?php echo (!empty($content['pda'])) ? substr($content['pda'], 0, 4) : 0; ?>" data-width="80" data-height="80" data-fgColor="#f39c12" data-displayInput="false">
 
-<!--                                                <i class="ion ion-stats-bars"></i>-->
+                                                <!--                                                <i class="ion ion-stats-bars"></i>-->
                                             </div>
                                         </div>
                                     </div>
@@ -250,7 +250,7 @@ $teamFields = get_fields($team_posts[0]->ID);
 
                                         $cols = "107443798368";
                                         $competitorsData = array(
-                                                'default' => $content
+                                            'default' => $content
                                         );
                                         foreach($reportFields['page_specific_metrics'] as $metrics){
                                             $data = get_moz_api_data($reportFields['mozs_api_access_id'], $reportFields['mozs_api_secret_key'], $metrics['competitors_link'], $cols);
@@ -280,7 +280,7 @@ $teamFields = get_fields($team_posts[0]->ID);
 
                                         foreach($competitorsData as $key => $row) {
                                             foreach($row as $field => $value) {
-                                                    $recNew[$field][] = $value;
+                                                $recNew[$field][] = $value;
                                             }
                                         }
 
@@ -392,13 +392,12 @@ $teamFields = get_fields($team_posts[0]->ID);
                         </div><!-- /.box -->
                     </div>
                     <div id="tabs-3">
-                        <div class="box box-widget">
-                            <div class='box-header with-border'>
-                                <div class='user-block'>
-                                    <span class='username'>Backlinks</span>
-                                </div><!-- /.user-block -->
 
-                            </div><!-- /.box-header -->
+                        <div class="box box-widget">
+                            <div class="col-sm-1 col-centered">
+                                <h3 class="box-title center-block">Backlinks</h3>
+                            </div>
+
                             <?php
                             $backlinks = array();
                             foreach ($reportFields as $key => $value) {
@@ -416,46 +415,62 @@ $teamFields = get_fields($team_posts[0]->ID);
                                 ];
                                 $colors = [
                                     '0' => 'bg-aqua',
-                                    '1' => 'bg-green',
-                                    '2' => 'bg-yellow',
-                                    '3' => 'bg-red',
+                                    '1' => 'bg-yellow',
+//                                    '2' => 'bg-red',
+//                                    '3' => 'bg-green',
                                 ];
                                 ?>
-                                <?php foreach($backlinks as $key => $value): ?>
-                                    <?php
-                                    $title = ucwords(str_replace('backlink', '', str_replace('_', ' ', $key)));
-                                    $key = str_replace('_backlink', '', $key);
-                                    ?>
-                                    <div class="col-lg-4 col-xs-6">
-                                        <!-- small box -->
-                                        <div class="small-box <?php echo $colors[ rand ( 0, 3 )];?>">
-                                            <div class="inner">
-                                                <h3><?php echo count($value);?></h3>
-                                                <p><?php echo $title; ?></p>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="fa <?php echo $icons[ rand ( 0, 3 )];?>"></i>
-                                            </div>
+                                <div class="row">
+                                        <div class="col-sm-8 col-centered">
 
-                                            <div id="<?php echo $key;?>">
-                                                <h3>More info<i class="fa fa-arrow-circle-right"></i></h3>
-                                                <div>
-                                                    <ul>
-                                                        <?php foreach($value as $v):?>
-                                                            <?php if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v[$key], $matches, PREG_OFFSET_CAPTURE)):?>
-                                                                <li><a href="<?php echo $v[$key]; ?>"><?php echo $v[$key]; ?></a></li>
-                                                            <?php else:?>
-                                                                <li><?php echo $v[$key]; ?></li>
-                                                            <?php endif;?>
-                                                        <?php endforeach;?>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                            <?php foreach($backlinks as $key => $value): ?>
+                                                <?php
+                                                $title = ucwords(str_replace('backlink', '', str_replace('_', ' ', $key)));
+                                                $key = str_replace('_backlink', '', $key);
+                                                ?>
+
+
+                                                <div class="col-md-4">
+                                                    <div class="box box-default collapsed-box box-backlink small-box">
+                                                        <div class="box-header with-border">
+                                                            <div class="icon">
+                                                                <i class="fa <?php echo $icons[ rand ( 0, 3 )];?>"></i>
+                                                            </div>
+
+                                                            <p>
+                                                                <span><?php echo $title; ?></span>
+                                                            </p>
+                                                            <p>
+                                                                <span>Backlinks count:<?php echo count($value);?></span>
+                                                            </p>
+
+                                                            <div class="box-tools pull-right">
+                                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                                            </div><!-- /.box-tools -->
+                                                        </div><!-- /.box-header -->
+                                                        <div class="box-body">
+                                                            <div>
+                                                                <ul>
+                                                                    <?php foreach($value as $v):?>
+                                                                        <?php if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v[$key], $matches, PREG_OFFSET_CAPTURE)):?>
+                                                                            <li><a href="<?php echo $v[$key]; ?>"><?php echo $v[$key]; ?></a></li>
+                                                                        <?php else:?>
+                                                                            <li><?php echo $v[$key]; ?></li>
+                                                                        <?php endif;?>
+                                                                    <?php endforeach;?>
+                                                                </ul>
+                                                            </div>
+                                                        </div><!-- /.box-body -->
+                                                    </div><!-- /.box -->
+                                                </div><!-- /.col -->
+
+
+                                            <?php endforeach;?>
                                         </div>
-                                    </div>
-                                <?php endforeach;?>
+                                </div>
                             </div><!-- /.box-body -->
                         </div><!-- /.box -->
+
                     </div>
                     <div id="tabs-4">
                         <div class="box box-widget">
