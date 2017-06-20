@@ -1,15 +1,15 @@
 <?php
-get_header();
+get_header('subscription');
 
 
 
 $galleries = get_posts(
-    array(
-        'name' => $postName,
-        'posts_per_page' => -1,
-        'post_type' => 'subscription-gallery',
-        'order' => 'ASC'
-    )
+	array(
+		'name' => $postName,
+		'posts_per_page' => -1,
+		'post_type' => 'subscription-gallery',
+		'order' => 'ASC'
+	)
 );
 
 $fields = get_fields();
@@ -184,36 +184,36 @@ Also, by this time, your Website Authority will increase and we will be able to 
                         </div>
                     </div>
 
-                    <?php  $post_id = 129769;
-                    ?>
+					<?php  $post_id = 129769;
+					?>
 
                     <div class="tariff_wrap">
                         <ul class="tariff_list">
-                            <?php
-                            $limit = 12;
-                            $plan = 'base';
-                            $i=1;
-                            $fields2 = get_fields($post_id);
-                            foreach ($fields2 as $name => $field) {
-                                if (preg_match('/_perms/', $name))
-                                    continue;
+							<?php
+							$limit = 12;
+							$plan = 'base';
+							$i=1;
+							$fields2 = get_fields($post_id);
+							foreach ($fields2 as $name => $field) {
+								if (preg_match('/_perms/', $name))
+									continue;
 
-                                $f = get_field_object($name, $post_id);
-                                ?>
+								$f = get_field_object($name, $post_id);
+								?>
 
                                 <li class="hint_trigger <?php if (!in_array($plan, $fields2[$name.'_perms'])) echo 'no' ?>"
                                     data-hint-cont="<h5><?php echo $f['label']; ?></h5><p><?php echo $field; ?></p>">
-                                    <?php echo $f['label']; ?>
+									<?php echo $f['label']; ?>
                                 </li>
 
-                                <?php
-                                if ($i % 9 == 0 ) {
-                                    echo '</ul><ul class="tariff_list">';
-                                }
-                                $i++;
-                                if ($i>$limit) break;
-                            }
-                            ?>
+								<?php
+								if ($i % 9 == 0 ) {
+									echo '</ul><ul class="tariff_list">';
+								}
+								$i++;
+								if ($i>$limit) break;
+							}
+							?>
                         </ul>
                     </div>
 
@@ -277,31 +277,31 @@ Also, by this time, your Website Authority will increase and we will be able to 
 
                     <div class="tariff_wrap">
                         <ul class="tariff_list">
-                            <?php
-                            $limit = 12;
-                            $plan = 'optimum';
-                            $i=1;
-                            $fields2 = get_fields($post_id);
-                            foreach ($fields2 as $name => $field) {
-                                if (preg_match('/_perms/', $name))
-                                    continue;
+							<?php
+							$limit = 12;
+							$plan = 'optimum';
+							$i=1;
+							$fields2 = get_fields($post_id);
+							foreach ($fields2 as $name => $field) {
+								if (preg_match('/_perms/', $name))
+									continue;
 
-                                $f = get_field_object($name, $post_id);
-                                ?>
+								$f = get_field_object($name, $post_id);
+								?>
 
                                 <li class="hint_trigger <?php if (!in_array($plan, $fields2[$name.'_perms'])) echo 'no' ?>"
                                     data-hint-cont="<h5><?php echo $f['label']; ?></h5><p><?php echo $field; ?></p>">
-                                    <?php echo $f['label']; ?>
+									<?php echo $f['label']; ?>
                                 </li>
 
-                                <?php
-                                if ($i % 9 == 0 ) {
-                                    echo '</ul><ul class="tariff_list">';
-                                }
-                                $i++;
-                                if ($i>$limit) break;
-                            }
-                            ?>
+								<?php
+								if ($i % 9 == 0 ) {
+									echo '</ul><ul class="tariff_list">';
+								}
+								$i++;
+								if ($i>$limit) break;
+							}
+							?>
                         </ul>
 
                     </div>
@@ -365,31 +365,31 @@ Also, by this time, your Website Authority will increase and we will be able to 
 
                     <div class="tariff_wrap">
                         <ul class="tariff_list">
-                            <?php
-                            $limit = 12;
-                            $plan = 'evolution';
-                            $i=1;
-                            $fields2 = get_fields($post_id);
-                            foreach ($fields2 as $name => $field) {
-                                if (preg_match('/_perms/', $name))
-                                    continue;
+							<?php
+							$limit = 12;
+							$plan = 'evolution';
+							$i=1;
+							$fields2 = get_fields($post_id);
+							foreach ($fields2 as $name => $field) {
+								if (preg_match('/_perms/', $name))
+									continue;
 
-                                $f = get_field_object($name, $post_id);
-                                ?>
+								$f = get_field_object($name, $post_id);
+								?>
 
                                 <li class="hint_trigger <?php if (!in_array($plan, $fields2[$name.'_perms'])) echo 'no' ?>"
                                     data-hint-cont="<h5><?php echo $f['label']; ?></h5><p><?php echo $field; ?></p>">
-                                    <?php echo $f['label']; ?>
+									<?php echo $f['label']; ?>
                                 </li>
 
-                                <?php
-                                if ($i % 9 == 0 ) {
-                                    echo '</ul><ul class="tariff_list">';
-                                }
-                                $i++;
-                                if ($i>$limit) break;
-                            }
-                            ?>
+								<?php
+								if ($i % 9 == 0 ) {
+									echo '</ul><ul class="tariff_list">';
+								}
+								$i++;
+								if ($i>$limit) break;
+							}
+							?>
                         </ul>
                     </div>
 
@@ -464,31 +464,31 @@ Also, by this time, your Website Authority will increase and we will be able to 
                         </div>
                         <div class="tariff_wrap">
                             <ul class="tariff_list">
-                                <?php
-                                $limit = 120;
-                                $plan = 'base';
-                                $i=1;
-                                $fields2 = get_fields($post_id);
-                                foreach ($fields2 as $name => $field) {
-                                    if (preg_match('/_perms/', $name))
-                                        continue;
+								<?php
+								$limit = 120;
+								$plan = 'base';
+								$i=1;
+								$fields2 = get_fields($post_id);
+								foreach ($fields2 as $name => $field) {
+									if (preg_match('/_perms/', $name))
+										continue;
 
-                                    $f = get_field_object($name, $post_id);
-                                    ?>
+									$f = get_field_object($name, $post_id);
+									?>
 
                                     <li class="hint_trigger <?php if (!in_array($plan, $fields2[$name.'_perms'])) echo 'no' ?>"
                                         data-hint-cont="<h5><?php echo $f['label']; ?></h5><p><?php echo $field; ?></p>">
-                                        <?php echo $f['label']; ?>
+										<?php echo $f['label']; ?>
                                     </li>
 
-                                    <?php
-                                    if ($i % 9 == 0 ) {
-                                        echo '</ul><ul class="tariff_list">';
-                                    }
-                                    $i++;
-                                    if ($i>$limit) break;
-                                }
-                                ?>
+									<?php
+									if ($i % 9 == 0 ) {
+										echo '</ul><ul class="tariff_list">';
+									}
+									$i++;
+									if ($i>$limit) break;
+								}
+								?>
                             </ul>
                         </div>
 
@@ -550,31 +550,31 @@ Also, by this time, your Website Authority will increase and we will be able to 
 
                         <div class="tariff_wrap">
                             <ul class="tariff_list">
-                                <?php
-                                $limit = 120;
-                                $plan = 'optimum';
-                                $i=1;
-                                $fields2 = get_fields($post_id);
-                                foreach ($fields2 as $name => $field) {
-                                    if (preg_match('/_perms/', $name))
-                                        continue;
+								<?php
+								$limit = 120;
+								$plan = 'optimum';
+								$i=1;
+								$fields2 = get_fields($post_id);
+								foreach ($fields2 as $name => $field) {
+									if (preg_match('/_perms/', $name))
+										continue;
 
-                                    $f = get_field_object($name, $post_id);
-                                    ?>
+									$f = get_field_object($name, $post_id);
+									?>
 
                                     <li class="hint_trigger <?php if (!in_array($plan, $fields2[$name.'_perms'])) echo 'no' ?>"
                                         data-hint-cont="<h5><?php echo $f['label']; ?></h5><p><?php echo $field; ?></p>">
-                                        <?php echo $f['label']; ?>
+										<?php echo $f['label']; ?>
                                     </li>
 
-                                    <?php
-                                    if ($i % 9 == 0 ) {
-                                        echo '</ul><ul class="tariff_list">';
-                                    }
-                                    $i++;
-                                    if ($i>$limit) break;
-                                }
-                                ?>
+									<?php
+									if ($i % 9 == 0 ) {
+										echo '</ul><ul class="tariff_list">';
+									}
+									$i++;
+									if ($i>$limit) break;
+								}
+								?>
                             </ul>
                         </div>
 
@@ -636,31 +636,31 @@ Also, by this time, your Website Authority will increase and we will be able to 
 
                         <div class="tariff_wrap">
                             <ul class="tariff_list">
-                                <?php
-                                $limit = 120;
-                                $plan = 'evolution';
-                                $i=1;
-                                $fields2 = get_fields($post_id);
-                                foreach ($fields2 as $name => $field) {
-                                    if (preg_match('/_perms/', $name))
-                                        continue;
+								<?php
+								$limit = 120;
+								$plan = 'evolution';
+								$i=1;
+								$fields2 = get_fields($post_id);
+								foreach ($fields2 as $name => $field) {
+									if (preg_match('/_perms/', $name))
+										continue;
 
-                                    $f = get_field_object($name, $post_id);
-                                    ?>
+									$f = get_field_object($name, $post_id);
+									?>
 
                                     <li class="hint_trigger <?php if (!in_array($plan, $fields2[$name.'_perms'])) echo 'no' ?>"
                                         data-hint-cont="<h5><?php echo $f['label']; ?></h5><p><?php echo $field; ?></p>">
-                                        <?php echo $f['label']; ?>
+										<?php echo $f['label']; ?>
                                     </li>
 
-                                    <?php
-                                    if ($i % 9 == 0 ) {
-                                        echo '</ul><ul class="tariff_list">';
-                                    }
-                                    $i++;
-                                    if ($i>$limit) break;
-                                }
-                                ?>
+									<?php
+									if ($i % 9 == 0 ) {
+										echo '</ul><ul class="tariff_list">';
+									}
+									$i++;
+									if ($i>$limit) break;
+								}
+								?>
                             </ul>
                         </div>
 
@@ -709,7 +709,7 @@ $fields = get_fields();
     <div class="container-fixed">
 
         <h2 class="align-center mt-40">
-            <?php echo $fields['seo_header']; ?>
+			<?php echo $fields['seo_header']; ?>
         </h2>
 
         <div class="index-feature-block align-center">
@@ -717,10 +717,10 @@ $fields = get_fields();
 
             </div>
             <p class="roboto-slab-bold px16">
-                <?php echo $fields['seo_subheader1']; ?>
+				<?php echo $fields['seo_subheader1']; ?>
             </p>
 
-            <?php echo $fields['seo_content_column1']; ?>
+			<?php echo $fields['seo_content_column1']; ?>
         </div>
 
         <div class="index-feature-block align-center">
@@ -728,10 +728,10 @@ $fields = get_fields();
 
             </div>
             <p class="roboto-slab-bold px16">
-                <?php echo $fields['seo_subheader2']; ?>
+				<?php echo $fields['seo_subheader2']; ?>
             </p>
 
-            <?php echo $fields['seo_content_column2']; ?>
+			<?php echo $fields['seo_content_column2']; ?>
         </div>
 
         <div class="index-feature-block align-center">
@@ -739,10 +739,10 @@ $fields = get_fields();
 
             </div>
             <p class="roboto-slab-bold px16">
-                <?php echo $fields['seo_subheader3']; ?>
+				<?php echo $fields['seo_subheader3']; ?>
             </p>
 
-            <?php echo $fields['seo_content_column3']; ?>
+			<?php echo $fields['seo_content_column3']; ?>
         </div>
 
         <div class="index-feature-block align-center last">
@@ -750,133 +750,142 @@ $fields = get_fields();
 
             </div>
             <p class="roboto-slab-bold px16">
-                <?php echo $fields['seo_subheader4']; ?>
+				<?php echo $fields['seo_subheader4']; ?>
             </p>
 
-            <?php echo $fields['seo_content_column4']; ?>
-        </div>
-
-        <div class="clear"></div>
-        <div class="splitter splitter-dotted"></div>
-
-        <h2 class="align-center">
-            <?php echo $fields['steps_header']; ?>
-        </h2>
-
-        <div class="align-center mb-80">
-            <?php echo $fields['steps_description']; ?>
-        </div>
-
-        <?php
-        $image = get_field('step_1_image');
-        ?>
-        <div class="index-scr-block">
-            <div class="scr-shadow float-left">
-                <img width="430" height="311" alt=""
-                     src="<?php echo $image['url']; ?>">
-            </div>
-            <div class="scr-text float-right">
-                <div class="scr-title">
-                    <?php echo $fields['step_1_name']; ?>
-                </div>
-
-                <p>
-                    <?php echo $fields['step_1_desc']; ?>
-                </p>
-
-                <?php echo $fields['step_1_list']; ?>
-            </div>
-            <div class="clear"></div>
-        </div>
-
-        <?php
-        $image = get_field('step_2_image');
-        ?>
-        <div class="index-scr-block">
-            <div class="scr-text float-left">
-                <div class="scr-title">
-                    <?php echo $fields['step_2_name']; ?>
-                </div>
-
-                <p>
-                    <?php echo $fields['step_2_desc']; ?>
-                </p>
-
-                <?php echo $fields['step_2_list']; ?>
-            </div>
-
-            <div class="scr-shadow float-right">
-                <img width="430" height="311" alt=""
-                     src="<?php echo $image['url']; ?>">
-            </div>
-            <div class="clear"></div>
-        </div>
-
-        <?php
-        $image = get_field('step_3_image');
-        ?>
-        <div class="index-scr-block">
-            <div class="scr-shadow float-left">
-                <img width="430" height="311" alt=""
-                     src="<?php echo $image['url']; ?>">
-            </div>
-            <div class="scr-text float-right">
-                <div class="scr-title">
-                    <?php echo $fields['step_3_name']; ?>
-                </div>
-
-                <p>
-                    <?php echo $fields['step_3_desc']; ?>
-                </p>
-
-                <?php echo $fields['step_3_list']; ?>
-            </div>
-            <div class="clear"></div>
-        </div>
-
-        <?php
-        $image = get_field('step_4_image');
-        ?>
-        <div class="index-scr-block">
-            <div class="scr-text float-left">
-                <div class="scr-title">
-                    <?php echo $fields['step_4_name']; ?>
-                </div>
-
-                <p>
-                    <?php echo $fields['step_4_desc']; ?>
-                </p>
-
-                <?php echo $fields['step_4_list']; ?>
-            </div>
-            <div class="scr-shadow float-right">
-                <img width="430" height="311" alt=""
-                     src="<?php echo $image['url']; ?>">
-            </div>
-
-            <div class="clear"></div>
-        </div>
-
-        <?php
-        $image = get_field('step_5_image');
-        ?>
-
-        <h2 class="align-center">
-            SEO SERVICES TESTED BY over <span class="green">144,000 users</span> worldwide
-        </h2>
-
-        <div class="lg-sub-title align-center">
-            All these SEOs and website owners simply <span class="green">can't be wrong</span>
+			<?php echo $fields['seo_content_column4']; ?>
         </div>
     </div>
+
+    <div class="clear"></div>
+    <div class="splitter splitter-dotted"></div>
+    <div class="container-fixed">
+        <h2 class="align-center">
+			<?php echo $fields['steps_header']; ?>
+        </h2>
+
+        <div class="align-center">
+			<?php echo $fields['steps_description']; ?>
+        </div>
+    </div>
+
+	<?php
+	$image = get_field('step_1_image');
+	?>
+    <div class="index-scr-block">
+        <div class="container-fixed">
+            <div class="scr-text float-left">
+                <div class="scr-title">
+					<?php echo $fields['step_1_name']; ?>
+                </div>
+
+                <p>
+					<?php echo $fields['step_1_desc']; ?>
+                </p>
+
+				<?php echo $fields['step_1_list']; ?>
+            </div>
+            <div class="scr-shadow float-right">
+                <img width="430" height="311" alt=""
+                     src="<?php echo $image['url']; ?>">
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+	<?php
+	$image = get_field('step_2_image');
+	?>
+    <div class="index-scr-block even">
+        <div class="container-fixed">
+            <div class="scr-text float-left">
+                <div class="scr-title">
+					<?php echo $fields['step_2_name']; ?>
+                </div>
+
+                <p>
+					<?php echo $fields['step_2_desc']; ?>
+                </p>
+
+				<?php echo $fields['step_2_list']; ?>
+            </div>
+
+            <div class="scr-shadow float-right">
+                <img width="430" height="311" alt=""
+                     src="<?php echo $image['url']; ?>">
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+	<?php
+	$image = get_field('step_3_image');
+	?>
+    <div class="index-scr-block">
+        <div class="container-fixed">
+            <div class="scr-text float-left">
+                <div class="scr-title">
+					<?php echo $fields['step_3_name']; ?>
+                </div>
+
+                <p>
+					<?php echo $fields['step_3_desc']; ?>
+                </p>
+
+				<?php echo $fields['step_3_list']; ?>
+            </div>
+            <div class="scr-shadow float-right">
+                <img width="430" height="311" alt=""
+                     src="<?php echo $image['url']; ?>">
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+	<?php
+	$image = get_field('step_4_image');
+	?>
+    <div class="index-scr-block even mb-50">
+        <div class="container-fixed">
+            <div class="scr-text float-left">
+                <div class="scr-title">
+					<?php echo $fields['step_4_name']; ?>
+                </div>
+
+                <p>
+					<?php echo $fields['step_4_desc']; ?>
+                </p>
+
+				<?php echo $fields['step_4_list']; ?>
+            </div>
+            <div class="scr-shadow float-right">
+                <img width="430" height="311" alt=""
+                     src="<?php echo $image['url']; ?>">
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+	<?php
+	$image = get_field('step_5_image');
+	?>
+
+    <h2 class="align-center">
+        SEO SERVICES TESTED BY over <span class="green">144,000 users</span> worldwide
+    </h2>
+
+    <div class="lg-sub-title align-center">
+        All these SEOs and website owners simply <span class="green">can't be wrong</span>
+    </div>
+    <!--    </div>-->
 </div>
 
 <?php foreach($galleries as $value): ?>
-    <?php $gallery = get_fields($value->ID);?>
+	<?php $gallery = get_fields($value->ID);?>
 
-    <?php foreach($gallery['items'] as $k => $item):?>
-        <?php //var_dump($item['image']);?>
-    <?php endforeach;?>
+	<?php foreach($gallery['items'] as $k => $item):?>
+		<?php //var_dump($item['image']);?>
+	<?php endforeach;?>
 
 
 <?php endforeach; ?>
@@ -884,27 +893,27 @@ $fields = get_fields();
 
 <!-- Modal HTML embedded directly into document -->
 <div id="ex1" style="display:none;">
-        <?php foreach($galleries as $value): ?>
-            <?php $gallery = get_fields($value->ID);?>
-            <div class="gallery-wrapper">
-                <div class="text-container">
-                    <p class="title"><span><?php echo $value->post_title;?></span></p>
-                </div>
-                <div id="<?php echo $value->post_name;?>" style="display:none; max-width: 300px">
-                    <?php foreach($gallery['items'] as $k => $item):?>
-                        <img alt="<?php echo $item['title'];?>" src="<?php echo $item['image']['size']['url'];?>"
-                             data-image="<?php echo $item['image']['url'];?>"
-                             data-description="<?php echo $item['description'];?>">
-                    <?php endforeach;?>
-                </div>
+	<?php foreach($galleries as $value): ?>
+		<?php $gallery = get_fields($value->ID);?>
+        <div class="gallery-wrapper">
+            <div class="text-container">
+                <p class="title"><span><?php echo $value->post_title;?></span></p>
             </div>
-        <?php endforeach; ?>
+            <div id="<?php echo $value->post_name;?>" style="display:none; max-width: 300px">
+				<?php foreach($gallery['items'] as $k => $item):?>
+                    <img alt="<?php echo $item['title'];?>" src="<?php echo $item['image']['size']['url'];?>"
+                         data-image="<?php echo $item['image']['url'];?>"
+                         data-description="<?php echo $item['description'];?>">
+				<?php endforeach;?>
+            </div>
+        </div>
+	<?php endforeach; ?>
 </div>
 
 
 <script>
     jQuery(document).ready(function ($) {
-        <?php foreach($galleries as $value): ?>
+		<?php foreach($galleries as $value): ?>
         jQuery("#<?php echo $value->post_name;?>").unitegallery({
             gallery_theme: "tilesgrid",
             tile_height: 60,
@@ -920,7 +929,7 @@ $fields = get_fields();
             theme_bullets_margin_top: 10,
 
         });
-        <?php endforeach; ?>
+		<?php endforeach; ?>
     });
 
 
