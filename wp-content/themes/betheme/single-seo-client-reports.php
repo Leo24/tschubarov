@@ -63,39 +63,6 @@ $teamFields = get_fields($team_posts[0]->ID);
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-<!--    <script src="https://apis.google.com/js/platform.js" async defer></script>-->
-
-
-<!--    <script>-->
-<!--        function onSignIn(googleUser) {-->
-<!--            var profile = googleUser.getBasicProfile();-->
-<!--            var id_token = googleUser.getAuthResponse().id_token;-->
-<!--            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.-->
-<!--            console.log('Name: ' + profile.getName());-->
-<!--            console.log('Image URL: ' + profile.getImageUrl());-->
-<!--            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.-->
-<!--            var xhr = new XMLHttpRequest();-->
-<!---->
-<!--            var data = "action=seoGoogleAnalitics&id_token="+id_token;-->
-<!--            xhr.open('POST', '--><?php //echo get_home_url().'/wp-admin/admin-ajax.php';?><!--', true);-->
-<!--            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');-->
-<!--            xhr.onload = function() {-->
-<!--                console.log('Signed in as: ' + xhr.responseText);-->
-<!--            };-->
-<!--            xhr.send(data);-->
-<!---->
-<!--        }-->
-<!--    </script>-->
-
-<!--    <script>-->
-<!--        function signOut() {-->
-<!--            var auth2 = gapi.auth2.getAuthInstance();-->
-<!--            auth2.signOut().then(function () {-->
-<!--                console.log('User signed out.');-->
-<!--            });-->
-<!--        }-->
-<!--    </script>-->
-
     <script>
         (function(w,d,s,g,js,fs){
             g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
@@ -151,22 +118,9 @@ $teamFields = get_fields($team_posts[0]->ID);
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <div class="pull-right"><button class="btn btn-success" id="auth-button">Authorize to Google Account</button></div>
             <h1>
 				<?php echo $posts_array[0]->post_title;?>
             </h1>
-
-
-
-
-
-            <textarea cols="80" rows="20" id="query-output"></textarea>
-
-            <div id="embed-api-auth-container"></div>
-            <div id="chart-container"></div>
-            <div id="view-selector-container"></div>
-
-
         </section>
 
 		<?php
@@ -272,24 +226,21 @@ $teamFields = get_fields($team_posts[0]->ID);
 
                             </div>
                         </div>
+                        <div class="box box-widget">
+                            <div class='box-header with-border'>
+                                <div class='user-block'>
+                                    <span class='username'>Visits statistics</span>
+                                </div><!-- /.user-block -->
+                            </div><!-- /.box-header -->
 
-                        <div class="row">
-                            <div class="col-md-7">
-                                <!-- AREA CHART -->
-                                <div class="box box-primary">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title">Area Chart</h3>
-                                        <div class="box-tools pull-right">
-                                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                            <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                        </div>
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="embed-api-auth-container"></div>
+                                        <div id="chart-container"></div>
+                                        <div id="view-selector-container"></div>
                                     </div>
-                                    <div class="box-body">
-                                        <div class="chart">
-                                            <canvas id="areaChart" style="height:250px"></canvas>
-                                        </div>
-                                    </div><!-- /.box-body -->
-                                </div><!-- /.box -->
+                                </div>
                             </div>
                         </div>
 
@@ -314,7 +265,7 @@ $teamFields = get_fields($team_posts[0]->ID);
 										}
 
 										//array for replacing MOZ API code to human understandable name
-										$urlMetrics = [
+										$urlMetrics = array (
 											'pda'   => 'Domain Authority',
 											'umrp'  => 'Domain MozRank',
 											'utrp'  => 'MozTrust',
@@ -328,11 +279,11 @@ $teamFields = get_fields($team_posts[0]->ID);
 											'ftrp'  => 'MozTrust: Subdomain',
 											'fspsc' => 'Subdomain Spam Score',
 											'feid'  => 'Subdomain External Links'
-										];
+										);
 
 
 										//list of needed fields, it is used for removing extra fields that are returned by MOZ API
-										$urlMetricsList = ['pda', 'umrp', 'utrp', 'fuid', 'ueid', 'ujid', 'ped', 'pib', 'upa', 'fejp', 'ftrp', 'fspsc', 'feid'];
+										$urlMetricsList = array('pda', 'umrp', 'utrp', 'fuid', 'ueid', 'ujid', 'ped', 'pib', 'upa', 'fejp', 'ftrp', 'fspsc', 'feid');
 
 										foreach($competitorsData as $key => $row) {
 											foreach($row as $field => $value) {
@@ -463,18 +414,18 @@ $teamFields = get_fields($team_posts[0]->ID);
 							} ?>
                             <div class="box-body">
 
-								<?php $icons = [
+								<?php $icons = array(
 									'0' => 'ion ion-stats-bars',
 									'1' => 'fa fa-shopping-cart',
 									'2' => 'ion ion-person-add',
 									'3' => 'ion ion-pie-graph',
-								];
-								$colors = [
+								);
+								$colors = array(
 									'0' => 'bg-aqua',
 									'1' => 'bg-yellow',
 //                                    '2' => 'bg-red',
 //                                    '3' => 'bg-green',
-								];
+								);
 								?>
                                 <div class="row">
                                     <div class="col-sm-8 col-centered">
@@ -936,280 +887,9 @@ $teamFields = get_fields($team_posts[0]->ID);
 </script>
 
 <script>
-    $(function () {
-        /* ChartJS
-         * -------
-         * Here we will create a few charts using ChartJS
-         */
 
-        //--------------
-        //- AREA CHART -
-        //--------------
-
-        // Get context with jQuery - using jQuery's .get() method.
-        var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
-        // This will get the first returned node in the jQuery collection.
-        var areaChart = new Chart(areaChartCanvas);
-
-        var areaChartData = {
-            labels: Last7Days(),
-//            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [
-//                {
-//                    label: "Electronics",
-//                    fillColor: "rgba(210, 214, 222, 1)",
-//                    strokeColor: "rgba(210, 214, 222, 1)",
-//                    pointColor: "rgba(210, 214, 222, 1)",
-//                    pointStrokeColor: "#c1c7d1",
-//                    pointHighlightFill: "#fff",
-//                    pointHighlightStroke: "rgba(220,220,220,1)",
-//                    data: [65, 59, 80, 81, 56, 55, 40]
-//                },
-                {
-                    label: "Digital Goods",
-                    fillColor: "rgba(60,141,188,0.9)",
-                    strokeColor: "rgba(60,141,188,0.8)",
-                    pointColor: "#3b8bba",
-                    pointStrokeColor: "rgba(60,141,188,1)",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(60,141,188,1)",
-                    data: [28, 48, 40, 19, 86, 27, 90]
-                }
-            ]
-        };
-
-        var areaChartOptions = {
-            //Boolean - If we should show the scale at all
-            showScale: true,
-            //Boolean - Whether grid lines are shown across the chart
-            scaleShowGridLines: false,
-            //String - Colour of the grid lines
-            scaleGridLineColor: "rgba(0,0,0,.05)",
-            //Number - Width of the grid lines
-            scaleGridLineWidth: 1,
-            //Boolean - Whether to show horizontal lines (except X axis)
-            scaleShowHorizontalLines: true,
-            //Boolean - Whether to show vertical lines (except Y axis)
-            scaleShowVerticalLines: true,
-            //Boolean - Whether the line is curved between points
-            bezierCurve: true,
-            //Number - Tension of the bezier curve between points
-            bezierCurveTension: 0.3,
-            //Boolean - Whether to show a dot for each point
-            pointDot: false,
-            //Number - Radius of each point dot in pixels
-            pointDotRadius: 4,
-            //Number - Pixel width of point dot stroke
-            pointDotStrokeWidth: 1,
-            //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-            pointHitDetectionRadius: 20,
-            //Boolean - Whether to show a stroke for datasets
-            datasetStroke: true,
-            //Number - Pixel width of dataset stroke
-            datasetStrokeWidth: 2,
-            //Boolean - Whether to fill the dataset with a color
-            datasetFill: true,
-            //String - A legend template
-            legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
-            //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-            maintainAspectRatio: true,
-            //Boolean - whether to make the chart responsive to window resizing
-            responsive: true
-        };
-
-        //Create the line chart
-        areaChart.Line(areaChartData, areaChartOptions);
-
-
-
-    });
-</script>
-
-<script>
-
-    // Replace with your client ID from the developer console.
-//    var CLIENT_ID = '289130753296-9j0uivsjiu461460ugm1gitltralntu8.apps.googleusercontent.com';
-    var CLIENT_ID = '289130753296-qmn59qkqkb8bhasqorbjsfeu53fufd4v.apps.googleusercontent.com';
-
-    // Set authorized scope.
-    var SCOPES = ['https://www.googleapis.com/auth/analytics.readonly'];
-
-
-    function authorize(event) {
-        // Handles the authorization flow.
-        // `immediate` should be false when invoked from the button click.
-        var useImmdiate = event ? false : true;
-        var authData = {
-            client_id: CLIENT_ID,
-            scope: SCOPES,
-            immediate: useImmdiate
-        };
-
-        gapi.auth.authorize(authData, function(response) {
-            var authButton = document.getElementById('auth-button');
-            if (response.error) {
-                authButton.style.display = 'block';
-            }
-            else {
-                authButton.style.display = 'none';
-                queryAccounts();
-            }
-        });
-    }
-
-
-    function queryAccounts() {
-        // Load the Google Analytics client library.
-        gapi.client.load('analytics', 'v3').then(function() {
-
-            // Get a list of all Google Analytics accounts for this user
-            gapi.client.analytics.management.accounts.list().then(handleAccounts);
-        });
-    }
-
-
-    function handleAccounts(response) {
-        // Handles the response from the accounts list method.
-        if (response.result.items && response.result.items.length) {
-            // Get the first Google Analytics account.
-            var firstAccountId = response.result.items[0].id;
-
-            // Query for properties.
-            queryProperties(firstAccountId);
-        } else {
-            console.log('No accounts found for this user.');
-        }
-    }
-
-
-    function queryProperties(accountId) {
-        // Get a list of all the properties for the account.
-        gapi.client.analytics.management.webproperties.list(
-            {'accountId': accountId})
-            .then(handleProperties)
-            .then(null, function(err) {
-                // Log any errors.
-                console.log(err);
-            });
-    }
-
-
-    function handleProperties(response) {
-        // Handles the response from the webproperties list method.
-        if (response.result.items && response.result.items.length) {
-
-            // Get the first Google Analytics account
-            var firstAccountId = response.result.items[0].accountId;
-
-            // Get the first property ID
-            var firstPropertyId = response.result.items[0].id;
-
-            // Query for Views (Profiles).
-            queryProfiles(firstAccountId, firstPropertyId);
-        } else {
-            console.log('No properties found for this user.');
-        }
-    }
-
-
-    function queryProfiles(accountId, propertyId) {
-        // Get a list of all Views (Profiles) for the first property
-        // of the first Account.
-        gapi.client.analytics.management.profiles.list({
-            'accountId': accountId,
-            'webPropertyId': propertyId
-        })
-            .then(handleProfiles)
-            .then(null, function(err) {
-                // Log any errors.
-                console.log(err);
-            });
-    }
-
-
-    function handleProfiles(response) {
-        // Handles the response from the profiles list method.
-        if (response.result.items && response.result.items.length) {
-            // Get the first View (Profile) ID.
-            var firstProfileId = response.result.items[0].id;
-
-            // Query the Core Reporting API.
-            queryCoreReportingApi(firstProfileId);
-        } else {
-            console.log('No views (profiles) found for this user.');
-        }
-    }
-
-
-    function queryCoreReportingApi(profileId) {
-        // Query the Core Reporting API for the number sessions for
-        // the past seven days.
-        gapi.client.analytics.data.ga.get({
-            'ids': 'ga:' + profileId,
-            'start-date': '7daysAgo',
-            'end-date': 'today',
-            'metrics': 'ga:sessions',
-            'dimensions' : 'ga:source,ga:keyword',
-            'sort' : '-ga:sessions,ga:source',
-            'filters' : 'ga:medium==organic',
-            'max-results' : '25'
-
-
-        })
-            .then(function(response) {
-                var formattedJson = JSON.stringify(response.result, null, 2);
-                document.getElementById('query-output').value = formattedJson;
-
-
-
-
-
-
-
-
-
-
-
-
-            })
-            .then(null, function(err) {
-                // Log any errors.
-                console.log(err);
-            });
-    }
-
-    // Add an event listener to the 'auth-button'.
-    document.getElementById('auth-button').addEventListener('click', authorize);
-
-    function formatDate(date){
-        var monthNames = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
-        var dd = date.getDate();
-        var mm = date.getMonth()+1;
-        if(dd<10) {dd='0'+dd}
-        date = dd + '' + monthNames[mm];
-        return date
-    }
-
-
-
-    function Last7Days () {
-        var result = [];
-        for (var i=0; i<7; i++) {
-            var d = new Date();
-            d.setDate(d.getDate() - i);
-            result.push(formatDate(d))
-        }
-        return result.reverse();
-    }
-
-</script>
-
-<script src="https://apis.google.com/js/client.js?onload=authorize"></script>
-
-
-<script>
+    var CLIENT_ID = '<?php echo $reportFields['google_oauth_20_client_id'];?>';
+//    var CLIENT_ID = '';
 
     gapi.analytics.ready(function() {
 
@@ -1220,7 +900,7 @@ $teamFields = get_fields($team_posts[0]->ID);
          */
         gapi.analytics.auth.authorize({
             container: 'embed-api-auth-container',
-            clientid: 'REPLACE WITH YOUR CLIENT ID'
+            clientid: CLIENT_ID
         });
 
 
@@ -1264,6 +944,10 @@ $teamFields = get_fields($team_posts[0]->ID);
         viewSelector.on('change', function(ids) {
             dataChart.set({query: {ids: ids}}).execute();
         });
+        gapi.analytics.auth.on('success', function(response) {
+            $('#embed-api-auth-container').css('display', 'none');
+        });
+        
 
     });
 </script>
