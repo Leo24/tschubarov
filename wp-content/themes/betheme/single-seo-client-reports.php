@@ -10,18 +10,18 @@ $string = home_url( $wp->request );
 $postName = substr($string , strrpos($string , '/') + 1);
 
 $posts_array = get_posts(
-    array(
-        'name' => $postName,
-        'posts_per_page' => -1,
-        'post_type' => 'seo-client-reports',
-    )
+	array(
+		'name' => $postName,
+		'posts_per_page' => -1,
+		'post_type' => 'seo-client-reports',
+	)
 );
 
 $team_posts = get_posts(
-    array(
-        'posts_per_page' => -1,
-        'post_type' => 'seo-team-members',
-    )
+	array(
+		'posts_per_page' => -1,
+		'post_type' => 'seo-team-members',
+	)
 );
 
 $reportFields = get_fields($posts_array[0]->ID);
@@ -36,6 +36,7 @@ $teamFields = get_fields($team_posts[0]->ID);
     <title><?php echo $posts_array[0]->post_title;?></title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="google-signin-client_id" content="289130753296-9j0uivsjiu461460ugm1gitltralntu8.apps.googleusercontent.com">
 
     <link rel="stylesheet" href="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/css/jquery-ui.css">
 
@@ -62,6 +63,41 @@ $teamFields = get_fields($team_posts[0]->ID);
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+<!--    <script src="https://apis.google.com/js/platform.js" async defer></script>-->
+
+
+<!--    <script>-->
+<!--        function onSignIn(googleUser) {-->
+<!--            var profile = googleUser.getBasicProfile();-->
+<!--            var id_token = googleUser.getAuthResponse().id_token;-->
+<!--            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.-->
+<!--            console.log('Name: ' + profile.getName());-->
+<!--            console.log('Image URL: ' + profile.getImageUrl());-->
+<!--            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.-->
+<!--            var xhr = new XMLHttpRequest();-->
+<!---->
+<!--            var data = "action=seoGoogleAnalitics&id_token="+id_token;-->
+<!--            xhr.open('POST', '--><?php //echo get_home_url().'/wp-admin/admin-ajax.php';?><!--', true);-->
+<!--            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');-->
+<!--            xhr.onload = function() {-->
+<!--                console.log('Signed in as: ' + xhr.responseText);-->
+<!--            };-->
+<!--            xhr.send(data);-->
+<!---->
+<!--        }-->
+<!--    </script>-->
+
+<!--    <script>-->
+<!--        function signOut() {-->
+<!--            var auth2 = gapi.auth2.getAuthInstance();-->
+<!--            auth2.signOut().then(function () {-->
+<!--                console.log('User signed out.');-->
+<!--            });-->
+<!--        }-->
+<!--    </script>-->
+
+
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 
@@ -108,15 +144,26 @@ $teamFields = get_fields($team_posts[0]->ID);
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
+            <div class="pull-right"><button class="btn btn-success" id="auth-button">Authorize to Google Account</button></div>
             <h1>
-                <?php echo $posts_array[0]->post_title;?>
+				<?php echo $posts_array[0]->post_title;?>
             </h1>
+
+
+
+
+
+            <textarea cols="80" rows="20" id="query-output"></textarea>
+
+
+
+
         </section>
 
-        <?php
-        $cols = "111736266752";
-        $content = get_moz_api_data($reportFields['mozs_api_access_id'], $reportFields['mozs_api_secret_key'], $reportFields['client_url'], $cols);
-        ?>
+		<?php
+		$cols = "111736266752";
+		$content = get_moz_api_data($reportFields['mozs_api_access_id'], $reportFields['mozs_api_secret_key'], $reportFields['client_url'], $cols);
+		?>
 
         <!-- Main content -->
         <section class="content">
@@ -245,74 +292,74 @@ $teamFields = get_fields($team_posts[0]->ID);
                                     </div><!-- /.box-header -->
                                     <div class="box-body table-responsive no-padding competitors">
 
-                                        <?php
-                                        //Code for rendering Competitors stats
+										<?php
+										//Code for rendering Competitors stats
 
-                                        $cols = "107443798368";
-                                        $competitorsData = array(
-                                            'default' => $content
-                                        );
-                                        foreach($reportFields['page_specific_metrics'] as $metrics){
-                                            $data = get_moz_api_data($reportFields['mozs_api_access_id'], $reportFields['mozs_api_secret_key'], $metrics['competitors_link'], $cols);
-                                            $competitorsData[$metrics['competitors_link']] = $data;
-                                        }
+										$cols = "107443798368";
+										$competitorsData = array(
+											'default' => $content
+										);
+										foreach($reportFields['competitors'] as $metrics){
+											$data = get_moz_api_data($reportFields['mozs_api_access_id'], $reportFields['mozs_api_secret_key'], $metrics['competitor_link'], $cols);
+											$competitorsData[$metrics['competitor_link']] = $data;
+										}
 
-                                        //array for replacing MOZ API code to human understandable name
-                                        $urlMetrics = [
-                                            'pda'   => 'Domain Authority',
-                                            'umrp'  => 'Domain MozRank',
-                                            'utrp'  => 'MozTrust',
-                                            'fuid'  => 'Links to Subdomain',
-                                            'ueid'  => 'External Equity Links',
-                                            'ujid'  => 'Total Equity Links',
-                                            'ped'   => 'External links to root domain',
-                                            'pib'   => 'Linking C Blocks',
-                                            'upa'   => 'Page Authority',
-                                            'fejp'  => 'MozRank: Subdomain, External Equity',
-                                            'ftrp'  => 'MozTrust: Subdomain',
-                                            'fspsc' => 'Subdomain Spam Score',
-                                            'feid'  => 'Subdomain External Links'
-                                        ];
+										//array for replacing MOZ API code to human understandable name
+										$urlMetrics = [
+											'pda'   => 'Domain Authority',
+											'umrp'  => 'Domain MozRank',
+											'utrp'  => 'MozTrust',
+											'fuid'  => 'Links to Subdomain',
+											'ueid'  => 'External Equity Links',
+											'ujid'  => 'Total Equity Links',
+											'ped'   => 'External links to root domain',
+											'pib'   => 'Linking C Blocks',
+											'upa'   => 'Page Authority',
+											'fejp'  => 'MozRank: Subdomain, External Equity',
+											'ftrp'  => 'MozTrust: Subdomain',
+											'fspsc' => 'Subdomain Spam Score',
+											'feid'  => 'Subdomain External Links'
+										];
 
 
-                                        //list of needed fields, it is used for removing extra fields that are returned by MOZ API
-                                        $urlMetricsList = ['pda', 'umrp', 'utrp', 'fuid', 'ueid', 'ujid', 'ped', 'pib', 'upa', 'fejp', 'ftrp', 'fspsc', 'feid'];
+										//list of needed fields, it is used for removing extra fields that are returned by MOZ API
+										$urlMetricsList = ['pda', 'umrp', 'utrp', 'fuid', 'ueid', 'ujid', 'ped', 'pib', 'upa', 'fejp', 'ftrp', 'fspsc', 'feid'];
 
-                                        foreach($competitorsData as $key => $row) {
-                                            foreach($row as $field => $value) {
-                                                $recNew[$field][] = $value;
-                                            }
-                                        }
+										foreach($competitorsData as $key => $row) {
+											foreach($row as $field => $value) {
+												$recNew[$field][] = $value;
+											}
+										}
 
-                                        echo "<table class=\"table table-hover\">\n
+										echo "<table class=\"table table-hover\">\n
 
                                         <tr>
                                                 <th>Params\Competitors</th>";
-                                        foreach($competitorsData as $k => $v){
-                                            echo "<th><a href=$k target=\"_blank\">$k</a></th>";
-                                        }
-                                        echo "</tr>";
+										foreach($competitorsData as $k => $v){
+											echo "<th><a href=$k target=\"_blank\">$k</a></th>";
+										}
+										echo "</tr>";
 
-                                        foreach ($recNew as $key => $values) // For every field name (id, name, last_name, gender)
-                                        {
-                                            $max = max($values);
-                                            if(in_array($key, $urlMetricsList)){
-                                                echo "<tr>\n"; // start the row
-                                                echo "\t<td>" . $urlMetrics[$key] . "</td>\n" ; // create a table cell with the field name
-                                                foreach ($values as $cell) // for every sub-array iterate through all values
-                                                {
-                                                    if($cell == $max){
-                                                        echo "\t<td><p><span class='checked'></span><span class=text-green>" . mb_substr($cell, 0, 5) . "</span></p></td>\n"; // write cells next to each other
-                                                    }
-                                                    else{
-                                                        echo "\t<td><p>" . mb_substr($cell, 0, 5) . "</p></td>\n"; // write cells next to each other
-                                                    }
-                                                }
-                                                echo "</tr>\n"; // end row
-                                            }
-                                        }
-                                        echo "</table>";
-                                        ?>
+										foreach ($recNew as $key => $values) // For every field name (id, name, last_name, gender)
+										{
+											$max = max($values);
+											if(in_array($key, $urlMetricsList)){
+												echo "<tr>\n"; // start the row
+												echo "\t<td>" . $urlMetrics[$key] . "</td>\n" ; // create a table cell with the field name
+												foreach ($values as $cell) // for every sub-array iterate through all values
+												{
+													if($cell == $max){
+														echo "\t<td><p><span class='checked'></span><span class=text-green>" . mb_substr($cell, 0, 5) . "</span></p></td>\n"; // write cells next to each other
+													}
+													else{
+														echo "\t<td><p>" . mb_substr($cell, 0, 5) . "</p></td>\n"; // write cells next to each other
+													}
+												}
+												echo "</tr>\n"; // end row
+											}
+										}
+										echo "</table>";
+										?>
 
                                     </div><!-- /.box-body -->
                                 </div><!-- /.box -->
@@ -330,13 +377,13 @@ $teamFields = get_fields($team_posts[0]->ID);
                                     </div><!-- /.box-header -->
                                     <div class="box-body no-padding">
                                         <ul class="users-list clearfix">
-                                            <?php foreach($teamFields['team_member'] as $value):?>
+											<?php foreach($teamFields['team_member'] as $value):?>
                                                 <li>
                                                     <img src="<?php echo $value['picture']['url'];?>" alt="<?php echo $value['picture']['title'];?>">
                                                     <a class="users-list-name" href="#"><?php echo $value['name'];?></a>
                                                     <span class="users-list-date">Today</span>
                                                 </li>
-                                            <?php endforeach;?>
+											<?php endforeach;?>
                                         </ul><!-- /.users-list -->
                                     </div><!-- /.box-body -->
                                     <div class="box-footer text-center">
@@ -383,12 +430,12 @@ $teamFields = get_fields($team_posts[0]->ID);
                                 </div><!-- /.user-block -->
                             </div><!-- /.box-header -->
 
-                            <?php foreach($reportFields['google_rankings_position'] as $position): ?>
+							<?php foreach($reportFields['google_rankings_position'] as $position): ?>
                                 <div class='box-body'>
                                     <span class='description'>Date: <?php echo $position['date']; ?></span>
                                     <img class="img-responsive pad" src="<?php echo $position['google_ranking_screenshot']['url'];?>" alt="<?php echo $reportFields['page_metrics_screenshot']['title'];?>">
                                 </div><!-- /.box-body -->
-                            <?php endforeach;?>
+							<?php endforeach;?>
                         </div><!-- /.box -->
                     </div>
                     <div id="tabs-3">
@@ -398,75 +445,75 @@ $teamFields = get_fields($team_posts[0]->ID);
                                 <h3 class="box-title center-block">Backlinks</h3>
                             </div>
 
-                            <?php
-                            $backlinks = array();
-                            foreach ($reportFields as $key => $value) {
-                                if(strpos($key, '_backlink')){
-                                    $backlinks[$key] = $value;
-                                }
-                            } ?>
+							<?php
+							$backlinks = array();
+							foreach ($reportFields as $key => $value) {
+								if(strpos($key, '_backlink')){
+									$backlinks[$key] = $value;
+								}
+							} ?>
                             <div class="box-body">
 
-                                <?php $icons = [
-                                    '0' => 'ion ion-stats-bars',
-                                    '1' => 'fa fa-shopping-cart',
-                                    '2' => 'ion ion-person-add',
-                                    '3' => 'ion ion-pie-graph',
-                                ];
-                                $colors = [
-                                    '0' => 'bg-aqua',
-                                    '1' => 'bg-yellow',
+								<?php $icons = [
+									'0' => 'ion ion-stats-bars',
+									'1' => 'fa fa-shopping-cart',
+									'2' => 'ion ion-person-add',
+									'3' => 'ion ion-pie-graph',
+								];
+								$colors = [
+									'0' => 'bg-aqua',
+									'1' => 'bg-yellow',
 //                                    '2' => 'bg-red',
 //                                    '3' => 'bg-green',
-                                ];
-                                ?>
+								];
+								?>
                                 <div class="row">
-                                        <div class="col-sm-8 col-centered">
+                                    <div class="col-sm-8 col-centered">
 
-                                            <?php foreach($backlinks as $key => $value): ?>
-                                                <?php
-                                                $title = ucwords(str_replace('backlink', '', str_replace('_', ' ', $key)));
-                                                $key = str_replace('_backlink', '', $key);
-                                                ?>
-
-
-                                                <div class="col-md-4">
-                                                    <div class="box box-default collapsed-box box-backlink small-box">
-                                                        <div class="box-header with-border">
-                                                            <div class="icon">
-                                                                <i class="fa <?php echo $icons[ rand ( 0, 3 )];?>"></i>
-                                                            </div>
-
-                                                            <p>
-                                                                <span><?php echo $title; ?></span>
-                                                            </p>
-                                                            <p>
-                                                                <span>Backlinks count:<?php echo count($value);?></span>
-                                                            </p>
-
-                                                            <div class="box-tools pull-right">
-                                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                                                            </div><!-- /.box-tools -->
-                                                        </div><!-- /.box-header -->
-                                                        <div class="box-body">
-                                                            <div>
-                                                                <ul>
-                                                                    <?php foreach($value as $v):?>
-                                                                        <?php if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v[$key], $matches, PREG_OFFSET_CAPTURE)):?>
-                                                                            <li><a href="<?php echo $v[$key]; ?>"><?php echo $v[$key]; ?></a></li>
-                                                                        <?php else:?>
-                                                                            <li><?php echo $v[$key]; ?></li>
-                                                                        <?php endif;?>
-                                                                    <?php endforeach;?>
-                                                                </ul>
-                                                            </div>
-                                                        </div><!-- /.box-body -->
-                                                    </div><!-- /.box -->
-                                                </div><!-- /.col -->
+										<?php foreach($backlinks as $key => $value): ?>
+											<?php
+											$title = ucwords(str_replace('backlink', '', str_replace('_', ' ', $key)));
+											$key = str_replace('_backlink', '', $key);
+											?>
 
 
-                                            <?php endforeach;?>
-                                        </div>
+                                            <div class="col-md-4">
+                                                <div class="box box-default collapsed-box box-backlink small-box">
+                                                    <div class="box-header with-border">
+                                                        <div class="icon">
+                                                            <i class="fa <?php echo $icons[ rand ( 0, 3 )];?>"></i>
+                                                        </div>
+
+                                                        <p>
+                                                            <span><?php echo $title; ?></span>
+                                                        </p>
+                                                        <p>
+                                                            <span>Backlinks count:<?php echo count($value);?></span>
+                                                        </p>
+
+                                                        <div class="box-tools pull-right">
+                                                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                                        </div><!-- /.box-tools -->
+                                                    </div><!-- /.box-header -->
+                                                    <div class="box-body">
+                                                        <div>
+                                                            <ul>
+																<?php foreach($value as $v):?>
+																	<?php if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v[$key], $matches, PREG_OFFSET_CAPTURE)):?>
+                                                                        <li><a href="<?php echo $v[$key]; ?>"><?php echo $v[$key]; ?></a></li>
+																	<?php else:?>
+                                                                        <li><?php echo $v[$key]; ?></li>
+																	<?php endif;?>
+																<?php endforeach;?>
+                                                            </ul>
+                                                        </div>
+                                                    </div><!-- /.box-body -->
+                                                </div><!-- /.box -->
+                                            </div><!-- /.col -->
+
+
+										<?php endforeach;?>
+                                    </div>
                                 </div>
                             </div><!-- /.box-body -->
                         </div><!-- /.box -->
@@ -480,13 +527,13 @@ $teamFields = get_fields($team_posts[0]->ID);
                                 </div><!-- /.user-block -->
                             </div><!-- /.box-header -->
 
-                            <?php
-                            $backlinks = array();
-                            foreach ($reportFields as $key => $value) {
-                                if(strpos($key, '_backlink')){
-                                    $backlinks[$key] = $value;
-                                }
-                            } ?>
+							<?php
+							$backlinks = array();
+							foreach ($reportFields as $key => $value) {
+								if(strpos($key, '_backlink')){
+									$backlinks[$key] = $value;
+								}
+							} ?>
                             <div class="box-body">
                                 <div class="box-body table-responsive no-padding">
                                     <table class="table table-hover">
@@ -494,12 +541,12 @@ $teamFields = get_fields($team_posts[0]->ID);
                                             <th>Tier2</th>
                                             <th>Tier3</th>
                                         </tr>
-                                        <?php foreach($reportFields['backlinks_-_tier_2_3'] as $tiers): ?>
+										<?php foreach($reportFields['backlinks_-_tier_2_3'] as $tiers): ?>
                                             <tr>
                                                 <td><?php echo $tiers['tier_2']; ?></td>
                                                 <td><?php echo $tiers['tier_3']; ?></td>
                                             </tr>
-                                        <?php endforeach;?>
+										<?php endforeach;?>
                                     </table>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box-body -->
@@ -510,7 +557,7 @@ $teamFields = get_fields($team_posts[0]->ID);
                         <div class="box box-widget">
                             <div class="col-md-3">
                                 <h3 class="box-title text-center">Startup Preparation</h3>
-                                <?php foreach($reportFields['startup_preparation'] as $value): ?>
+								<?php foreach($reportFields['startup_preparation'] as $value): ?>
                                     <div class="col-md-12">
                                         <div class="box box-default collapsed-box box-solid">
                                             <div class="box-header with-border">
@@ -526,11 +573,11 @@ $teamFields = get_fields($team_posts[0]->ID);
                                             </div><!-- /.box-body -->
                                         </div><!-- /.box -->
                                     </div>
-                                <?php endforeach;?>
+								<?php endforeach;?>
                             </div>
                             <div class="col-md-3">
                                 <h3 class="box-title text-center">On PAGE SEO</h3>
-                                <?php foreach($reportFields['on_page_seo'] as $value): ?>
+								<?php foreach($reportFields['on_page_seo'] as $value): ?>
                                     <div class="col-md-12">
                                         <div class="box box-default collapsed-box box-solid">
                                             <div class="box-header with-border">
@@ -545,11 +592,11 @@ $teamFields = get_fields($team_posts[0]->ID);
                                             </div><!-- /.box-body -->
                                         </div><!-- /.box -->
                                     </div>
-                                <?php endforeach;?>
+								<?php endforeach;?>
                             </div>
                             <div class="col-md-3">
                                 <h3 class="box-title text-center">OFF PAGE SEO</h3>
-                                <?php foreach($reportFields['off_page_seo'] as $value): ?>
+								<?php foreach($reportFields['off_page_seo'] as $value): ?>
                                     <div class="col-md-12">
                                         <div class="box box-default collapsed-box box-solid">
                                             <div class="box-header with-border">
@@ -564,11 +611,11 @@ $teamFields = get_fields($team_posts[0]->ID);
                                             </div><!-- /.box-body -->
                                         </div><!-- /.box -->
                                     </div>
-                                <?php endforeach;?>
+								<?php endforeach;?>
                             </div>
                             <div class="col-md-3">
                                 <h3 class="box-title text-center">Local Businesses</h3>
-                                <?php foreach($reportFields['local_businesses'] as $value): ?>
+								<?php foreach($reportFields['local_businesses'] as $value): ?>
                                     <div class="col-md-12">
                                         <div class="box box-default collapsed-box box-solid">
                                             <div class="box-header with-border">
@@ -585,7 +632,7 @@ $teamFields = get_fields($team_posts[0]->ID);
                                             </div><!-- /.box-body -->
                                         </div><!-- /.box -->
                                     </div>
-                                <?php endforeach;?>
+								<?php endforeach;?>
                             </div>
                             <div class="box-body">
                                 <div class="box-body table-responsive no-padding">
@@ -598,7 +645,7 @@ $teamFields = get_fields($team_posts[0]->ID);
 
                             <!--                            --><?php //echo do_shortcode('[contact-form-7 id="6" title="Contact form for Contact page" html_class="np-form"]');?>
                             <div class="col-sm-6">
-                                <?php echo do_shortcode('[contact-form-7 id="135822" title="Contact form for Seo Reports" html_class="use-floating-validation-tip"]');?>
+								<?php echo do_shortcode('[contact-form-7 id="135822" title="Contact form for Seo Reports" html_class="use-floating-validation-tip"]');?>
                             </div>
                             <div class="box-body">
                                 <div class="box-body table-responsive no-padding">
@@ -834,15 +881,15 @@ $teamFields = get_fields($team_posts[0]->ID);
 <script type='text/javascript' src='<?php echo get_home_url();?>/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=3.5.2'></script>
 
 <script>
-    <?php foreach($backlinks as $key => $value): ?>
-    <?php $key = str_replace('_backlink', '', $key);?>
+	<?php foreach($backlinks as $key => $value): ?>
+	<?php $key = str_replace('_backlink', '', $key);?>
     $( function() {
         $( "#<?php echo $key;?>" ).accordion({
             active: false,
             collapsible: true
         });
     } );
-    <?php endforeach;?>
+	<?php endforeach;?>
 </script>
 
 <script>
@@ -896,18 +943,19 @@ $teamFields = get_fields($team_posts[0]->ID);
         var areaChart = new Chart(areaChartCanvas);
 
         var areaChartData = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            labels: Last7Days(),
+//            labels: ["January", "February", "March", "April", "May", "June", "July"],
             datasets: [
-                {
-                    label: "Electronics",
-                    fillColor: "rgba(210, 214, 222, 1)",
-                    strokeColor: "rgba(210, 214, 222, 1)",
-                    pointColor: "rgba(210, 214, 222, 1)",
-                    pointStrokeColor: "#c1c7d1",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [65, 59, 80, 81, 56, 55, 40]
-                },
+//                {
+//                    label: "Electronics",
+//                    fillColor: "rgba(210, 214, 222, 1)",
+//                    strokeColor: "rgba(210, 214, 222, 1)",
+//                    pointColor: "rgba(210, 214, 222, 1)",
+//                    pointStrokeColor: "#c1c7d1",
+//                    pointHighlightFill: "#fff",
+//                    pointHighlightStroke: "rgba(220,220,220,1)",
+//                    data: [65, 59, 80, 81, 56, 55, 40]
+//                },
                 {
                     label: "Digital Goods",
                     fillColor: "rgba(60,141,188,0.9)",
@@ -963,129 +1011,195 @@ $teamFields = get_fields($team_posts[0]->ID);
         //Create the line chart
         areaChart.Line(areaChartData, areaChartOptions);
 
-        //-------------
-        //- LINE CHART -
-        //--------------
-        var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
-        var lineChart = new Chart(lineChartCanvas);
-        var lineChartOptions = areaChartOptions;
-        lineChartOptions.datasetFill = false;
-        lineChart.Line(areaChartData, lineChartOptions);
 
-        //-------------
-        //- PIE CHART -
-        //-------------
-        // Get context with jQuery - using jQuery's .get() method.
-        var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
-        var pieChart = new Chart(pieChartCanvas);
-        var PieData = [
-            {
-                value: 700,
-                color: "#f56954",
-                highlight: "#f56954",
-                label: "Chrome"
-            },
-            {
-                value: 500,
-                color: "#00a65a",
-                highlight: "#00a65a",
-                label: "IE"
-            },
-            {
-                value: 400,
-                color: "#f39c12",
-                highlight: "#f39c12",
-                label: "FireFox"
-            },
-            {
-                value: 600,
-                color: "#00c0ef",
-                highlight: "#00c0ef",
-                label: "Safari"
-            },
-            {
-                value: 300,
-                color: "#3c8dbc",
-                highlight: "#3c8dbc",
-                label: "Opera"
-            },
-            {
-                value: 100,
-                color: "#d2d6de",
-                highlight: "#d2d6de",
-                label: "Navigator"
-            }
-        ];
-        var pieOptions = {
-            //Boolean - Whether we should show a stroke on each segment
-            segmentShowStroke: true,
-            //String - The colour of each segment stroke
-            segmentStrokeColor: "#fff",
-            //Number - The width of each segment stroke
-            segmentStrokeWidth: 2,
-            //Number - The percentage of the chart that we cut out of the middle
-            percentageInnerCutout: 50, // This is 0 for Pie charts
-            //Number - Amount of animation steps
-            animationSteps: 100,
-            //String - Animation easing effect
-            animationEasing: "easeOutBounce",
-            //Boolean - Whether we animate the rotation of the Doughnut
-            animateRotate: true,
-            //Boolean - Whether we animate scaling the Doughnut from the centre
-            animateScale: false,
-            //Boolean - whether to make the chart responsive to window resizing
-            responsive: true,
-            // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-            maintainAspectRatio: true,
-            //String - A legend template
-            legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
-        };
-        //Create pie or douhnut chart
-        // You can switch between pie and douhnut using the method below.
-        pieChart.Doughnut(PieData, pieOptions);
 
-        //-------------
-        //- BAR CHART -
-        //-------------
-        var barChartCanvas = $("#barChart").get(0).getContext("2d");
-        var barChart = new Chart(barChartCanvas);
-        var barChartData = areaChartData;
-        barChartData.datasets[1].fillColor = "#00a65a";
-        barChartData.datasets[1].strokeColor = "#00a65a";
-        barChartData.datasets[1].pointColor = "#00a65a";
-        var barChartOptions = {
-            //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
-            scaleBeginAtZero: true,
-            //Boolean - Whether grid lines are shown across the chart
-            scaleShowGridLines: true,
-            //String - Colour of the grid lines
-            scaleGridLineColor: "rgba(0,0,0,.05)",
-            //Number - Width of the grid lines
-            scaleGridLineWidth: 1,
-            //Boolean - Whether to show horizontal lines (except X axis)
-            scaleShowHorizontalLines: true,
-            //Boolean - Whether to show vertical lines (except Y axis)
-            scaleShowVerticalLines: true,
-            //Boolean - If there is a stroke on each bar
-            barShowStroke: true,
-            //Number - Pixel width of the bar stroke
-            barStrokeWidth: 2,
-            //Number - Spacing between each of the X value sets
-            barValueSpacing: 5,
-            //Number - Spacing between data sets within X values
-            barDatasetSpacing: 1,
-            //String - A legend template
-            legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
-            //Boolean - whether to make the chart responsive
-            responsive: true,
-            maintainAspectRatio: true
-        };
-
-        barChartOptions.datasetFill = false;
-        barChart.Bar(barChartData, barChartOptions);
     });
 </script>
 
+<script>
+
+    // Replace with your client ID from the developer console.
+//    var CLIENT_ID = '289130753296-9j0uivsjiu461460ugm1gitltralntu8.apps.googleusercontent.com';
+    var CLIENT_ID = '289130753296-qmn59qkqkb8bhasqorbjsfeu53fufd4v.apps.googleusercontent.com';
+
+    // Set authorized scope.
+    var SCOPES = ['https://www.googleapis.com/auth/analytics.readonly'];
+
+
+    function authorize(event) {
+        // Handles the authorization flow.
+        // `immediate` should be false when invoked from the button click.
+        var useImmdiate = event ? false : true;
+        var authData = {
+            client_id: CLIENT_ID,
+            scope: SCOPES,
+            immediate: useImmdiate
+        };
+
+        gapi.auth.authorize(authData, function(response) {
+            var authButton = document.getElementById('auth-button');
+            if (response.error) {
+                authButton.style.display = 'block';
+            }
+            else {
+                authButton.style.display = 'none';
+                queryAccounts();
+            }
+        });
+    }
+
+
+    function queryAccounts() {
+        // Load the Google Analytics client library.
+        gapi.client.load('analytics', 'v3').then(function() {
+
+            // Get a list of all Google Analytics accounts for this user
+            gapi.client.analytics.management.accounts.list().then(handleAccounts);
+        });
+    }
+
+
+    function handleAccounts(response) {
+        // Handles the response from the accounts list method.
+        if (response.result.items && response.result.items.length) {
+            // Get the first Google Analytics account.
+            var firstAccountId = response.result.items[0].id;
+
+            // Query for properties.
+            queryProperties(firstAccountId);
+        } else {
+            console.log('No accounts found for this user.');
+        }
+    }
+
+
+    function queryProperties(accountId) {
+        // Get a list of all the properties for the account.
+        gapi.client.analytics.management.webproperties.list(
+            {'accountId': accountId})
+            .then(handleProperties)
+            .then(null, function(err) {
+                // Log any errors.
+                console.log(err);
+            });
+    }
+
+
+    function handleProperties(response) {
+        // Handles the response from the webproperties list method.
+        if (response.result.items && response.result.items.length) {
+
+            // Get the first Google Analytics account
+            var firstAccountId = response.result.items[0].accountId;
+
+            // Get the first property ID
+            var firstPropertyId = response.result.items[0].id;
+
+            // Query for Views (Profiles).
+            queryProfiles(firstAccountId, firstPropertyId);
+        } else {
+            console.log('No properties found for this user.');
+        }
+    }
+
+
+    function queryProfiles(accountId, propertyId) {
+        // Get a list of all Views (Profiles) for the first property
+        // of the first Account.
+        gapi.client.analytics.management.profiles.list({
+            'accountId': accountId,
+            'webPropertyId': propertyId
+        })
+            .then(handleProfiles)
+            .then(null, function(err) {
+                // Log any errors.
+                console.log(err);
+            });
+    }
+
+
+    function handleProfiles(response) {
+        // Handles the response from the profiles list method.
+        if (response.result.items && response.result.items.length) {
+            // Get the first View (Profile) ID.
+            var firstProfileId = response.result.items[0].id;
+
+            // Query the Core Reporting API.
+            queryCoreReportingApi(firstProfileId);
+        } else {
+            console.log('No views (profiles) found for this user.');
+        }
+    }
+
+
+    function queryCoreReportingApi(profileId) {
+        // Query the Core Reporting API for the number sessions for
+        // the past seven days.
+        gapi.client.analytics.data.ga.get({
+            'ids': 'ga:' + profileId,
+            'start-date': '7daysAgo',
+            'end-date': 'today',
+            'metrics': 'ga:sessions',
+            'dimensions' : 'ga:source,ga:keyword',
+            'sort' : '-ga:sessions,ga:source',
+            'filters' : 'ga:medium==organic',
+            'max-results' : '25'
+
+
+        })
+            .then(function(response) {
+                var formattedJson = JSON.stringify(response.result, null, 2);
+                document.getElementById('query-output').value = formattedJson;
+
+
+
+
+
+
+
+
+
+
+
+
+            })
+            .then(null, function(err) {
+                // Log any errors.
+                console.log(err);
+            });
+    }
+
+    // Add an event listener to the 'auth-button'.
+    document.getElementById('auth-button').addEventListener('click', authorize);
+
+    function formatDate(date){
+        var monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        var dd = date.getDate();
+        var mm = date.getMonth()+1;
+        if(dd<10) {dd='0'+dd}
+        date = dd + '' + monthNames[mm];
+        return date
+    }
+
+
+
+    function Last7Days () {
+        var result = [];
+        for (var i=0; i<7; i++) {
+            var d = new Date();
+            d.setDate(d.getDate() - i);
+            result.push(formatDate(d))
+        }
+        return result.reverse();
+    }
+
+</script>
+
+<script src="https://apis.google.com/js/client.js?onload=authorize"></script>
+
+
+
 </body>
 </html>
-
