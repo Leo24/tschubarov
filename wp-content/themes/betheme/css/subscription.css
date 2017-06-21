@@ -3001,11 +3001,19 @@ h1 strong {
 }
 
 .border-content .index-scr-block .scr-shadow {
-    background-image: url(../images/scr-shadow.png);
+    /*background-image: url(../images/scr-shadow.png);*/
     background-position: bottom center;
     background-repeat: no-repeat;
     padding-bottom: 52px;
     width: 440px;
+}
+
+.border-content .index-scr-block .scr-shadow img{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28%;
+    height: auto;
 }
 
 .border-content .index-scr-block .scr-text {
