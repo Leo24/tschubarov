@@ -108,7 +108,6 @@ $teamFields = get_fields($team_posts[0]->ID);
                 <li><a href="#tabs-3"><i class="fa fa-pie-chart"></i><span>Backlinks</span></a></li>
                 <li><a href="#tabs-4"><i class="fa fa-share"></i><span>Backlinks - Tier 2&3</span></a></li>
                 <li><a href="#tabs-5"><i class="fa fa-book"></i><span>Tasks</span></a></li>
-                <li><a href="#tabs-6"><i class="fa fa-edit"></i><span>Contact form for Seo Reports</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -138,7 +137,6 @@ $teamFields = get_fields($team_posts[0]->ID);
                         <li><a href="#tabs-3">Backlinks</a></li>
                         <li><a href="#tabs-4">Backlinks - Tier 2&3</a></li>
                         <li><a href="#tabs-5">Tasks</a></li>
-                        <li><a href="#tabs-6">Contact form for Seo Reports</a></li>
                     </ul>
 
                     <div id="tabs-1">
@@ -593,19 +591,6 @@ $teamFields = get_fields($team_posts[0]->ID);
                                         </div><!-- /.box -->
                                     </div>
 								<?php endforeach;?>
-                            </div>
-                            <div class="box-body">
-                                <div class="box-body table-responsive no-padding">
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box-body -->
-                        </div><!-- /.box -->
-                    </div>
-                    <div id="tabs-6">
-                        <div class="box box-widget">
-
-                            <!--                            --><?php //echo do_shortcode('[contact-form-7 id="6" title="Contact form for Contact page" html_class="np-form"]');?>
-                            <div class="col-sm-6">
-								<?php echo do_shortcode('[contact-form-7 id="135822" title="Contact form for Seo Reports" html_class="use-floating-validation-tip"]');?>
                             </div>
                             <div class="box-body">
                                 <div class="box-body table-responsive no-padding">

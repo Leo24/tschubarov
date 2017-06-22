@@ -259,3 +259,35 @@ body.single-fiverr_order .acf-form-submit .button-large {
     margin: 20px auto;
     text-align: center;
 }
+
+
+/*SEO Package Subscription Page*/
+
+.wpcf7-form{
+    margin: 45px 0 10px;
+}
+.wpcf7-form p{
+    margin-bottom: 0;
+}
+.wpcf7-form p label{
+    display: block;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 1.4em;
+    margin: 0 0 5px;
+}
+.wpcf7-form p span{
+    color: #777777;
+    display: block;
+    font-size: 12px;
+    line-height: 1.4em;
+    font-style: normal;
+}
+
+.wpcf7-form p span.wpcf7-form-control-wrap{
+    margin: 5px 0 25px;
+}
+
+.wpcf7-response-output{
+    margin-bottom: 10px;
+}
