@@ -109,6 +109,7 @@ $teamFields = get_fields($team_posts[0]->ID);
                 <li><a href="#tabs-3"><i class="fa fa-pie-chart"></i><span>Backlinks</span></a></li>
                 <li><a href="#tabs-4"><i class="fa fa-share"></i><span>Backlinks - Tier 2&3</span></a></li>
                 <li><a href="#tabs-5"><i class="fa fa-book"></i><span>Tasks</span></a></li>
+                <li><a href="#tabs-6"><i class="fa fa-twitch"></i><span>Website Health Status</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -138,6 +139,7 @@ $teamFields = get_fields($team_posts[0]->ID);
                         <li><a href="#tabs-3">Backlinks</a></li>
                         <li><a href="#tabs-4">Backlinks - Tier 2&3</a></li>
                         <li><a href="#tabs-5">Tasks</a></li>
+                        <li><a href="#tabs-6">Website Health Status</a></li>
                     </ul>
 
                     <div id="tabs-1">
@@ -623,6 +625,92 @@ $teamFields = get_fields($team_posts[0]->ID);
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                 </div>
+
+                    <div id="tabs-6">
+                            <div class='box-header with-border'>
+                                <div class='user-block'>
+                                    <span class='username'>Website Health Status</span>
+                                </div><!-- /.user-block -->
+                            </div><!-- /.box-header -->
+
+
+
+                        <div class="row">
+
+
+
+
+
+
+
+
+
+
+
+<!--                            <div class="col-md-12 reports">-->
+<!--                                <div class="col-md-6 report before">-->
+<!--                                    <object data="--><?php //echo $reportFields['report_before']['url']; ?><!--" type="application/pdf" width="100%" height="100%">-->
+<!--                                        <p>--><?php //echo $reportFields['report_before']['title']; ?><!--<a href="--><?php //echo $reportFields['report_before']['url']; ?><!--">to the PDF!</a></p>-->
+<!--                                    </object>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-6 report after">-->
+<!--                                    <object data="--><?php //echo $reportFields['report_after']['url']; ?><!--" type="application/pdf" width="100%" height="100%">-->
+<!--                                        <p>--><?php //echo $reportFields['report_before']['title']; ?><!--<a href="--><?php //echo $reportFields['report_before']['url']; ?><!--">to the PDF!</a></p>-->
+<!--                                    </object>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+
+
+                            <div class="col-md-12 reports">
+
+                            <div class="col-md-6">
+                                <div class="box box-warning direct-chat direct-chat-warning">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Before <?php echo $reportFields['date_before']; ?></h3>
+                                    </div><!-- /.box-header -->
+                                    <div class="report before">
+                                            <object data="<?php echo $reportFields['report_before']['url']; ?>" type="application/pdf" width="100%" height="100%">
+                                                <p><?php echo $reportFields['report_before']['title']; ?><a href="<?php echo $reportFields['report_before']['url']; ?>">to the PDF!</a></p>
+                                            </object>
+                                    </div><!-- /.box-body -->
+                                </div><!--/.direct-chat -->
+                            </div><!-- /.col -->
+
+                                <div class="col-md-6 report after">
+                                    <div class="box box-success direct-chat direct-chat-success">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">After <?php echo $reportFields['date_after']; ?></h3>
+                                        </div><!-- /.box-header -->
+                                        <div class="report after">
+                                                <object data="<?php echo $reportFields['report_after']['url']; ?>" type="application/pdf" width="100%" height="100%">
+                                                    <p><?php echo $reportFields['report_after']['title']; ?><a href="<?php echo $reportFields['report_after']['url']; ?>">to the PDF!</a></p>
+                                                </object>
+                                        </div><!-- /.box-body -->
+                                    </div><!--/.direct-chat -->
+                                </div><!-- /.col -->
+
+                            </div>
+
+
+
+
+
+
+
+
+                        </div>
+
+
+			                <?php
+			                $backlinks = array();
+			                foreach ($reportFields as $key => $value) {
+				                if(strpos($key, '_backlink')){
+					                $backlinks[$key] = $value;
+				                }
+			                } ?>
+
+                    </div>
             </div>
     </div><!-- /.row -->
     </section><!-- /.content -->
