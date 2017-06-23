@@ -63,6 +63,7 @@ $teamFields = get_fields($team_posts[0]->ID);
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     <script>
         (function(w,d,s,g,js,fs){
             g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
@@ -283,7 +284,7 @@ $teamFields = get_fields($team_posts[0]->ID);
 										//list of needed fields, it is used for removing extra fields that are returned by MOZ API
 										$urlMetricsList = array('upa', 'umrp', 'utrp', 'fuid', 'ueid', 'ujid', 'ped', 'pib', 'fejp', 'feid', 'ftrp',
 //                                            'fspsc',
-                                            'pda');
+											'pda');
 										$recNew = array();
 										foreach($competitorsData as $key => $row) {
 											foreach($row as $field => $value) {
@@ -308,7 +309,7 @@ $teamFields = get_fields($team_posts[0]->ID);
 												foreach ($properOrderedArray as $key => $values):?>
 
 													<?php $max = max($values);
-													      $countValues = count($values);
+													$countValues = count($values);
 													if(in_array($key, $urlMetricsList)):?>
 														<?php if(is_array($values)):?>
                                                             <tr>
@@ -383,25 +384,23 @@ $teamFields = get_fields($team_posts[0]->ID);
                             </div><!-- /.box-header -->
                             <div class='box-body'>
                                 <img class="img-responsive pad" src="<?php echo $reportFields['google_rankings']['url'];?>" alt="<?php echo $reportFields['page_metrics_screenshot']['title'];?>">
-                            </div><!-- /.box-body -->
+                            </div>
 
                             <div class='box-header with-border'>
                                 <div class='user-block'>
                                     <span class='username'>Google Rankings Position</span>
-                                </div><!-- /.user-block -->
-                            </div><!-- /.box-header -->
+                                </div>
+                            </div>
 
 							<?php foreach($reportFields['google_rankings_position'] as $position): ?>
                                 <div class='box-body'>
                                     <span class='description'>Date: <?php echo $position['date']; ?></span>
                                     <img class="img-responsive pad" src="<?php echo $position['google_ranking_screenshot']['url'];?>" alt="<?php echo $reportFields['page_metrics_screenshot']['title'];?>">
-                                </div><!-- /.box-body -->
+                                </div>
 							<?php endforeach;?>
-                        </div><!-- /.box -->
+                        </div>
                     </div>
                     <div id="tabs-3">
-
-                        <div class="box box-widget">
                             <div class="col-sm-1 col-centered">
                                 <h3 class="box-title center-block">Backlinks</h3>
                             </div>
@@ -414,7 +413,6 @@ $teamFields = get_fields($team_posts[0]->ID);
 								}
 							} ?>
                             <div class="box-body">
-
 								<?php $icons = array(
 									'0' => 'ion ion-stats-bars',
 									'1' => 'fa fa-shopping-cart',
@@ -424,356 +422,380 @@ $teamFields = get_fields($team_posts[0]->ID);
 								$colors = array(
 									'0' => 'bg-aqua',
 									'1' => 'bg-yellow',
-//                                    '2' => 'bg-red',
-//                                    '3' => 'bg-green',
+                                    '2' => 'bg-red',
+                                    '3' => 'bg-green',
+								);
+								$backlinksIcons = array(
+									'social_bookmarks_backlink'     => 'fa-bookmark-o',
+									'blog_posts_backlink'           => 'fa-rss',
+									'document_sharing_backlink'     => 'fa-file-text-o',
+									'url_directories_backlink'      => 'fa-book',
+									'edu_backlink'                  => 'fa-mortar-board',
+									'image_sharing_backlink'        => 'fa-file-picture-o',
+									'video_sharing_backlink'        => 'fa-file-movie-o',
+									'audio_sharing_backlink'        => 'fa-file-audio-o',
+									'infographics_backlink'         => 'fa-calendar',
+									'website_feedback_backlink'     => 'fa-twitch',
+									'wikis_backlink'                => 'fa-wikipedia-w',
+									'classified_backlink'           => 'fa-bullhorn',
+									'article_submission_backlink'   => 'fa-edit',
+									'local_listings_backlink'       => 'fa-map-marker',
+									'web_20_backlink'               => 'fa-globe',
+									'ifttt_backlink'                => 'fa-spotify',
+									'social_profiles_backlink'      => 'fa-users',
+									'number_of_followers_backlink'  => 'fa-calculator',
+									'blog_comments_backlink'        => 'fa-commenting',
+									'login_details_backlink'        => 'fa-check-square',
 								);
 								?>
+
                                 <div class="row">
                                     <div class="col-sm-8 col-centered">
-
+                                        <?php $count = 0;?>
 										<?php foreach($backlinks as $key => $value): ?>
-											<?php
-											$title = ucwords(str_replace('backlink', '', str_replace('_', ' ', $key)));
-											$key = str_replace('_backlink', '', $key);
-											?>
+										<?php
+
+										$title = ucwords(str_replace('backlink', '', str_replace('_', ' ', $key)));
+										$iconKey = $key;
+										$key = str_replace('_backlink', '', $key);
+										?>
 
 
-                                            <div class="col-md-4">
-                                                <div class="box box-default collapsed-box box-backlink small-box">
-                                                    <div class="box-header with-border">
-                                                        <div class="icon">
-                                                            <i class="fa <?php echo $icons[ rand ( 0, 3 )];?>"></i>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <div class="info-box bg-green box box-default collapsed-box box-backlink">
+
+                                                <div class="box-header with-border">
+
+                                                    <span class="info-box-icon"><i class="fa <?php echo $backlinksIcons[$iconKey ];?>"></i></span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text"><?php echo $title; ?></span>
+                                                        <span class="info-box-number"><?php echo count($value);?></span>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" style="width: 100%"></div>
                                                         </div>
-
-                                                        <p>
-                                                            <span><?php echo $title; ?></span>
-                                                        </p>
-                                                        <p>
-                                                            <span>Backlinks count:<?php echo count($value);?></span>
-                                                        </p>
-
                                                         <div class="box-tools pull-right">
                                                             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
                                                         </div><!-- /.box-tools -->
-                                                    </div><!-- /.box-header -->
-                                                    <div class="box-body">
-                                                        <div>
-                                                            <ul>
-																<?php foreach($value as $v):?>
-																	<?php if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v[$key], $matches, PREG_OFFSET_CAPTURE)):?>
-                                                                        <li><a href="<?php echo $v[$key]; ?>"><?php echo $v[$key]; ?></a></li>
-																	<?php else:?>
-                                                                        <li><?php echo $v[$key]; ?></li>
-																	<?php endif;?>
-																<?php endforeach;?>
-                                                            </ul>
-                                                        </div>
-                                                    </div><!-- /.box-body -->
-                                                </div><!-- /.box -->
-                                            </div><!-- /.col -->
+                                                    </div>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div>
+                                                        <ul>
+															<?php foreach($value as $i => $v):?>
+																<?php if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v[$key], $matches, PREG_OFFSET_CAPTURE)):?>
+                                                                    <li><a href="<?php echo $v[$key]; ?>" target="_blank"><?php echo '<span class="link-number">'.($i+1).'.</span>'.$v[$key]; ?></a></li>
+																<?php else:?>
+                                                                    <li><a href="#"><?php echo '<span class="link-number">'.($i+1).'.</span>'.$v[$key]; ?></a></li>
+																<?php endif;?>
+															<?php endforeach;?>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
 
-										<?php endforeach;?>
-                                    </div>
+
+									<?php $count++; endforeach;?>
                                 </div>
-                            </div><!-- /.box-body -->
-                        </div><!-- /.box -->
-
-                    </div>
-                    <div id="tabs-4">
-                        <div class="box box-widget">
-                            <div class='box-header with-border'>
-                                <div class='user-block'>
-                                    <span class='username'>Backlinks - Tier 2&3</span>
-                                </div><!-- /.user-block -->
-                            </div><!-- /.box-header -->
-
-							<?php
-							$backlinks = array();
-							foreach ($reportFields as $key => $value) {
-								if(strpos($key, '_backlink')){
-									$backlinks[$key] = $value;
-								}
-							} ?>
-                            <div class="box-body">
-                                <div class="box-body table-responsive no-padding">
-                                    <table class="table table-hover">
-                                        <tr>
-                                            <th>Tier2</th>
-                                            <th>Tier3</th>
-                                        </tr>
-										<?php foreach($reportFields['backlinks_-_tier_2_3'] as $tiers): ?>
-                                            <tr>
-                                                <td><?php echo $tiers['tier_2']; ?></td>
-                                                <td><?php echo $tiers['tier_3']; ?></td>
-                                            </tr>
-										<?php endforeach;?>
-                                    </table>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box-body -->
-                        </div><!-- /.box -->
+                        </div>
                     </div>
 
-                    <div id="tabs-5">
-                        <div class="box box-widget">
-                            <div class="col-md-3">
-                                <h3 class="box-title text-center">Startup Preparation</h3>
-								<?php foreach($reportFields['startup_preparation'] as $value): ?>
-                                    <div class="col-md-12">
-                                        <div class="box box-default collapsed-box box-solid">
-                                            <div class="box-header with-border">
-                                                <h3 class="box-title"><?php echo $value['startup_preparation'];?></h3>
-                                                <div class="box-tools pull-right">
-                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                                                </div><!-- /.box-tools -->
-                                            </div><!-- /.box-header -->
-                                            <div class="box-body">
-                                                <p>Doing by:<?php echo $value['doing'];?></p>
-                                                <p>Notes:<?php echo $value['notes'];?></p>
-                                                <p>Status:<?php echo $value['status'];?></p>
-                                            </div><!-- /.box-body -->
-                                        </div><!-- /.box -->
-                                    </div>
-								<?php endforeach;?>
-                            </div>
-                            <div class="col-md-3">
-                                <h3 class="box-title text-center">On PAGE SEO</h3>
-								<?php foreach($reportFields['on_page_seo'] as $value): ?>
-                                    <div class="col-md-12">
-                                        <div class="box box-default collapsed-box box-solid">
-                                            <div class="box-header with-border">
-                                                <h3 class="box-title"><?php echo $value['on_page_seo'];?></h3>
-                                                <div class="box-tools pull-right">
-                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                                                </div><!-- /.box-tools -->
-                                            </div><!-- /.box-header -->
-                                            <div class="box-body">
-                                                <p>Doing by:<?php echo $value['doing'];?></p>
-                                                <p>Notes:<?php echo $value['notes'];?></p>
-                                            </div><!-- /.box-body -->
-                                        </div><!-- /.box -->
-                                    </div>
-								<?php endforeach;?>
-                            </div>
-                            <div class="col-md-3">
-                                <h3 class="box-title text-center">OFF PAGE SEO</h3>
-								<?php foreach($reportFields['off_page_seo'] as $value): ?>
-                                    <div class="col-md-12">
-                                        <div class="box box-default collapsed-box box-solid">
-                                            <div class="box-header with-border">
-                                                <h3 class="box-title"><?php echo $value['off_page_seo'];?></h3>
-                                                <div class="box-tools pull-right">
-                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                                                </div><!-- /.box-tools -->
-                                            </div><!-- /.box-header -->
-                                            <div class="box-body">
-                                                <p>Doing by:<?php echo $value['doing'];?></p>
-                                                <p>Notes:<?php echo $value['amount'];?></p>
-                                            </div><!-- /.box-body -->
-                                        </div><!-- /.box -->
-                                    </div>
-								<?php endforeach;?>
-                            </div>
-                            <div class="col-md-3">
-                                <h3 class="box-title text-center">Local Businesses</h3>
-								<?php foreach($reportFields['local_businesses'] as $value): ?>
-                                    <div class="col-md-12">
-                                        <div class="box box-default collapsed-box box-solid">
-                                            <div class="box-header with-border">
-                                                <h3 class="box-title"><?php echo $value['local_businesses'];?></h3>
-                                                <div class="box-tools pull-right">
-                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                                                </div><!-- /.box-tools -->
-                                            </div><!-- /.box-header -->
-                                            <div class="box-body">
-                                                <p>Doing by:<?php echo $value['doing'];?></p>
-                                                <p>Notes:<?php echo $value['status'];?></p>
-                                                <p>Notes:<?php echo $value['link'];?></p>
-                                                <p>Notes:<?php echo $value['social_media'];?></p>
-                                            </div><!-- /.box-body -->
-                                        </div><!-- /.box -->
-                                    </div>
-								<?php endforeach;?>
-                            </div>
-                            <div class="box-body">
-                                <div class="box-body table-responsive no-padding">
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box-body -->
-                        </div><!-- /.box -->
-                    </div>
                 </div>
-            </div><!-- /.row -->
-        </section><!-- /.content -->
-    </div><!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <strong>© 2017 youngceaser.com.</strong> All rights reserved.
-    </footer>
+                <div id="tabs-4">
+                    <div class="box box-widget">
+                        <div class='box-header with-border'>
+                            <div class='user-block'>
+                                <span class='username'>Backlinks - Tier 2&3</span>
+                            </div><!-- /.user-block -->
+                        </div><!-- /.box-header -->
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Create the tabs -->
-        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-        </ul>
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <!-- Home tab content -->
-            <div class="tab-pane" id="control-sidebar-home-tab">
-                <h3 class="control-sidebar-heading">Recent Activity</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript::;">
-                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-                                <p>Will be 23 on April 24th</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript::;">
-                            <i class="menu-icon fa fa-user bg-yellow"></i>
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
-                                <p>New phone +1(800)555-1234</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript::;">
-                            <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
-                                <p>nora@example.com</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript::;">
-                            <i class="menu-icon fa fa-file-code-o bg-green"></i>
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
-                                <p>Execution time 5 seconds</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul><!-- /.control-sidebar-menu -->
+						<?php
+						$backlinks = array();
+						foreach ($reportFields as $key => $value) {
+							if(strpos($key, '_backlink')){
+								$backlinks[$key] = $value;
+							}
+						} ?>
+                        <div class="box-body">
+                            <div class="box-body table-responsive no-padding">
+                                <table class="table table-hover">
+                                    <tr>
+                                        <th>Tier2</th>
+                                        <th>Tier3</th>
+                                    </tr>
+									<?php foreach($reportFields['backlinks_-_tier_2_3'] as $tiers): ?>
+                                        <tr>
+                                            <td><?php echo $tiers['tier_2']; ?></td>
+                                            <td><?php echo $tiers['tier_3']; ?></td>
+                                        </tr>
+									<?php endforeach;?>
+                                </table>
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
 
-                <h3 class="control-sidebar-heading">Tasks Progress</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript::;">
-                            <h4 class="control-sidebar-subheading">
-                                Custom Template Design
-                                <span class="label label-danger pull-right">70%</span>
-                            </h4>
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript::;">
-                            <h4 class="control-sidebar-subheading">
-                                Update Resume
-                                <span class="label label-success pull-right">95%</span>
-                            </h4>
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript::;">
-                            <h4 class="control-sidebar-subheading">
-                                Laravel Integration
-                                <span class="label label-warning pull-right">50%</span>
-                            </h4>
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript::;">
-                            <h4 class="control-sidebar-subheading">
-                                Back End Framework
-                                <span class="label label-primary pull-right">68%</span>
-                            </h4>
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-                            </div>
-                        </a>
-                    </li>
-                </ul><!-- /.control-sidebar-menu -->
+                <div id="tabs-5">
+                    <div class="box box-widget">
+                        <div class="col-md-3">
+                            <h3 class="box-title text-center">Startup Preparation</h3>
+							<?php foreach($reportFields['startup_preparation'] as $value): ?>
+                                <div class="col-md-12">
+                                    <div class="box box-default collapsed-box box-solid">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title"><?php echo $value['startup_preparation'];?></h3>
+                                            <div class="box-tools pull-right">
+                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                            </div><!-- /.box-tools -->
+                                        </div><!-- /.box-header -->
+                                        <div class="box-body">
+                                            <p>Doing by:<?php echo $value['doing'];?></p>
+                                            <p>Notes:<?php echo $value['notes'];?></p>
+                                            <p>Status:<?php echo $value['status'];?></p>
+                                        </div><!-- /.box-body -->
+                                    </div><!-- /.box -->
+                                </div>
+							<?php endforeach;?>
+                        </div>
+                        <div class="col-md-3">
+                            <h3 class="box-title text-center">On PAGE SEO</h3>
+							<?php foreach($reportFields['on_page_seo'] as $value): ?>
+                                <div class="col-md-12">
+                                    <div class="box box-default collapsed-box box-solid">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title"><?php echo $value['on_page_seo'];?></h3>
+                                            <div class="box-tools pull-right">
+                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                            </div><!-- /.box-tools -->
+                                        </div><!-- /.box-header -->
+                                        <div class="box-body">
+                                            <p>Doing by:<?php echo $value['doing'];?></p>
+                                            <p>Notes:<?php echo $value['notes'];?></p>
+                                        </div><!-- /.box-body -->
+                                    </div><!-- /.box -->
+                                </div>
+							<?php endforeach;?>
+                        </div>
+                        <div class="col-md-3">
+                            <h3 class="box-title text-center">OFF PAGE SEO</h3>
+							<?php foreach($reportFields['off_page_seo'] as $value): ?>
+                                <div class="col-md-12">
+                                    <div class="box box-default collapsed-box box-solid">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title"><?php echo $value['off_page_seo'];?></h3>
+                                            <div class="box-tools pull-right">
+                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                            </div><!-- /.box-tools -->
+                                        </div><!-- /.box-header -->
+                                        <div class="box-body">
+                                            <p>Doing by:<?php echo $value['doing'];?></p>
+                                            <p>Notes:<?php echo $value['amount'];?></p>
+                                        </div><!-- /.box-body -->
+                                    </div><!-- /.box -->
+                                </div>
+							<?php endforeach;?>
+                        </div>
+                        <div class="col-md-3">
+                            <h3 class="box-title text-center">Local Businesses</h3>
+							<?php foreach($reportFields['local_businesses'] as $value): ?>
+                                <div class="col-md-12">
+                                    <div class="box box-default collapsed-box box-solid">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title"><?php echo $value['local_businesses'];?></h3>
+                                            <div class="box-tools pull-right">
+                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                            </div><!-- /.box-tools -->
+                                        </div><!-- /.box-header -->
+                                        <div class="box-body">
+                                            <p>Doing by:<?php echo $value['doing'];?></p>
+                                            <p>Notes:<?php echo $value['status'];?></p>
+                                            <p>Notes:<?php echo $value['link'];?></p>
+                                            <p>Notes:<?php echo $value['social_media'];?></p>
+                                        </div><!-- /.box-body -->
+                                    </div><!-- /.box -->
+                                </div>
+							<?php endforeach;?>
+                        </div>
+                        <div class="box-body">
+                            <div class="box-body table-responsive no-padding">
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
+            </div>
+    </div><!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+<footer class="main-footer">
+    <strong>© 2017 youngceaser.com.</strong> All rights reserved.
+</footer>
 
-            </div><!-- /.tab-pane -->
-            <!-- Stats tab content -->
-            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
-            <!-- Settings tab content -->
-            <div class="tab-pane" id="control-sidebar-settings-tab">
-                <form method="post">
-                    <h3 class="control-sidebar-heading">General Settings</h3>
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Report panel usage
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-                        <p>
-                            Some information about this general settings option
-                        </p>
-                    </div><!-- /.form-group -->
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!-- Home tab content -->
+        <div class="tab-pane" id="control-sidebar-home-tab">
+            <h3 class="control-sidebar-heading">Recent Activity</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript::;">
+                        <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                            <p>Will be 23 on April 24th</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript::;">
+                        <i class="menu-icon fa fa-user bg-yellow"></i>
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                            <p>New phone +1(800)555-1234</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript::;">
+                        <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+                            <p>nora@example.com</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript::;">
+                        <i class="menu-icon fa fa-file-code-o bg-green"></i>
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+                            <p>Execution time 5 seconds</p>
+                        </div>
+                    </a>
+                </li>
+            </ul><!-- /.control-sidebar-menu -->
 
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Allow mail redirect
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-                        <p>
-                            Other sets of options are available
-                        </p>
-                    </div><!-- /.form-group -->
+            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript::;">
+                        <h4 class="control-sidebar-subheading">
+                            Custom Template Design
+                            <span class="label label-danger pull-right">70%</span>
+                        </h4>
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript::;">
+                        <h4 class="control-sidebar-subheading">
+                            Update Resume
+                            <span class="label label-success pull-right">95%</span>
+                        </h4>
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript::;">
+                        <h4 class="control-sidebar-subheading">
+                            Laravel Integration
+                            <span class="label label-warning pull-right">50%</span>
+                        </h4>
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript::;">
+                        <h4 class="control-sidebar-subheading">
+                            Back End Framework
+                            <span class="label label-primary pull-right">68%</span>
+                        </h4>
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                        </div>
+                    </a>
+                </li>
+            </ul><!-- /.control-sidebar-menu -->
 
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Expose author name in posts
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-                        <p>
-                            Allow the user to show his name in blog posts
-                        </p>
-                    </div><!-- /.form-group -->
+        </div><!-- /.tab-pane -->
+        <!-- Stats tab content -->
+        <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
+        <!-- Settings tab content -->
+        <div class="tab-pane" id="control-sidebar-settings-tab">
+            <form method="post">
+                <h3 class="control-sidebar-heading">General Settings</h3>
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Report panel usage
+                        <input type="checkbox" class="pull-right" checked>
+                    </label>
+                    <p>
+                        Some information about this general settings option
+                    </p>
+                </div><!-- /.form-group -->
 
-                    <h3 class="control-sidebar-heading">Chat Settings</h3>
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Allow mail redirect
+                        <input type="checkbox" class="pull-right" checked>
+                    </label>
+                    <p>
+                        Other sets of options are available
+                    </p>
+                </div><!-- /.form-group -->
 
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Show me as online
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-                    </div><!-- /.form-group -->
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Expose author name in posts
+                        <input type="checkbox" class="pull-right" checked>
+                    </label>
+                    <p>
+                        Allow the user to show his name in blog posts
+                    </p>
+                </div><!-- /.form-group -->
 
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Turn off notifications
-                            <input type="checkbox" class="pull-right">
-                        </label>
-                    </div><!-- /.form-group -->
+                <h3 class="control-sidebar-heading">Chat Settings</h3>
 
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Delete chat history
-                            <a href="javascript::;" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-                        </label>
-                    </div><!-- /.form-group -->
-                </form>
-            </div><!-- /.tab-pane -->
-        </div>
-    </aside><!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
-         immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Show me as online
+                        <input type="checkbox" class="pull-right" checked>
+                    </label>
+                </div><!-- /.form-group -->
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Turn off notifications
+                        <input type="checkbox" class="pull-right">
+                    </label>
+                </div><!-- /.form-group -->
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Delete chat history
+                        <a href="javascript::;" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                    </label>
+                </div><!-- /.form-group -->
+            </form>
+        </div><!-- /.tab-pane -->
+    </div>
+</aside><!-- /.control-sidebar -->
+<!-- Add the sidebar's background. This div must be placed
+	 immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
 
 <!-- jQuery 2.1.4 -->
