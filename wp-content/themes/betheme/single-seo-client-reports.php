@@ -123,7 +123,7 @@ $teamFields = get_fields($team_posts[0]->ID);
         </section>
 
 		<?php
-		$cols = "111736266752";
+		$cols = "107443798368";
 		$content = get_moz_api_data($reportFields['mozs_api_access_id'], $reportFields['mozs_api_secret_key'], $reportFields['client_url'], $cols);
 		?>
 
@@ -245,15 +245,16 @@ $teamFields = get_fields($team_posts[0]->ID);
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="box">
-                                    <div class="box-header">
-                                        <h3 class="box-title">Website Status</h3>
+                                    <div class='box-header with-border'>
+                                        <div class='user-block'>
+                                            <span class='username'>Competition Analisys</span>
+                                        </div><!-- /.user-block -->
                                     </div><!-- /.box-header -->
                                     <div class="box-body table-responsive no-padding competitors">
 
 										<?php
 										//Code for rendering Competitors stats
 
-										$cols = "107443798368";
 										$competitorsData = array(
 											'default' => $content
 										);
@@ -264,7 +265,7 @@ $teamFields = get_fields($team_posts[0]->ID);
 
 										//array for replacing MOZ API code to human understandable name
 										$urlMetrics = array (
-											'pda'   => 'Domain Authority',
+											'upa'   => 'Page Authority',
 											'umrp'  => 'Domain MozRank',
 											'utrp'  => 'MozTrust',
 											'fuid'  => 'Links to Subdomain',
@@ -272,53 +273,55 @@ $teamFields = get_fields($team_posts[0]->ID);
 											'ujid'  => 'Total Equity Links',
 											'ped'   => 'External links to root domain',
 											'pib'   => 'Linking C Blocks',
-											'upa'   => 'Page Authority',
 											'fejp'  => 'MozRank: Subdomain, External Equity',
+											'feid'  => 'Subdomain External Links',
 											'ftrp'  => 'MozTrust: Subdomain',
-											'fspsc' => 'Subdomain Spam Score',
-											'feid'  => 'Subdomain External Links'
+//											'fspsc' => 'Subdomain Spam Score',
+											'pda'   => 'Domain Authority',
 										);
 
-
 										//list of needed fields, it is used for removing extra fields that are returned by MOZ API
-										$urlMetricsList = array('pda', 'umrp', 'utrp', 'fuid', 'ueid', 'ujid', 'ped', 'pib', 'upa', 'fejp', 'ftrp', 'fspsc', 'feid');
-
+										$urlMetricsList = array('upa', 'umrp', 'utrp', 'fuid', 'ueid', 'ujid', 'ped', 'pib', 'fejp', 'feid', 'ftrp',
+//                                            'fspsc',
+                                            'pda');
+										$recNew = array();
 										foreach($competitorsData as $key => $row) {
 											foreach($row as $field => $value) {
 												$recNew[$field][] = $value;
 											}
 										}
-
-										echo "<table class=\"table table-hover\">\n
-
-                                        <tr>
-                                                <th>Params\Competitors</th>";
-										foreach($competitorsData as $k => $v){
-											echo "<th><a href=$k target=\"_blank\">$k</a></th>";
-										}
-										echo "</tr>";
-
-										foreach ($recNew as $key => $values) // For every field name (id, name, last_name, gender)
-										{
-											$max = max($values);
-											if(in_array($key, $urlMetricsList)){
-												echo "<tr>\n"; // start the row
-												echo "\t<td>" . $urlMetrics[$key] . "</td>\n" ; // create a table cell with the field name
-												foreach ($values as $cell) // for every sub-array iterate through all values
-												{
-													if($cell == $max){
-														echo "\t<td><p><span class='checked'></span><span class=text-green>" . mb_substr($cell, 0, 5) . "</span></p></td>\n"; // write cells next to each other
-													}
-													else{
-														echo "\t<td><p>" . mb_substr($cell, 0, 5) . "</p></td>\n"; // write cells next to each other
-													}
-												}
-												echo "</tr>\n"; // end row
-											}
-										}
-										echo "</table>";
 										?>
 
+                                        <div class="col-sm-offset-1 col-sm-10">
+                                            <table class="table table-bordered table-hover dataTable">
+                                                <tr>
+                                                    <th class='col-sm-2 left'></th>
+													<?php foreach($competitorsData as $k => $v):?>
+                                                        <th class='col-sm-2'><a href="<?php echo $k;?>" target="_blank"><?php echo $k;?></a></th>
+													<?php endforeach;?>
+                                                </tr>
+
+
+												<?php
+												$properOrderedArray = array_merge(array_flip($urlMetricsList), $recNew);
+
+												foreach ($properOrderedArray as $key => $values):?>
+
+													<?php $max = max($values);
+													      $countValues = count($values);
+													if(in_array($key, $urlMetricsList)):?>
+														<?php if(is_array($values)):?>
+                                                            <tr>
+                                                                <td class='col-sm-2 left'><?php echo $urlMetrics[$key];?></td>
+																<?php foreach ($values as $cell): ?>
+                                                                    <td class='col-sm-2'><p><?php if($cell == $max):?><span class='checked'></span><?php endif;?><span class="<?php if($cell == $max):?>text-green<?php endif;?> <?php if($key == 'upa'):?> bold<?php endif;?>"><?php echo mb_substr($cell, 0, 5); ?></span></p></td>
+																<?php endforeach;?>
+                                                            </tr>
+														<?php endif;?>
+													<?php endif;?>
+												<?php endforeach;?>
+                                            </table>
+                                        </div>
                                     </div><!-- /.box-body -->
                                 </div><!-- /.box -->
                             </div>
@@ -874,7 +877,7 @@ $teamFields = get_fields($team_posts[0]->ID);
 <script>
 
     var CLIENT_ID = '<?php echo $reportFields['google_oauth_20_client_id'];?>';
-//    var CLIENT_ID = '';
+    //    var CLIENT_ID = '';
 
     gapi.analytics.ready(function() {
 
@@ -932,7 +935,7 @@ $teamFields = get_fields($team_posts[0]->ID);
         gapi.analytics.auth.on('success', function(response) {
             $('#embed-api-auth-container').css('display', 'none');
         });
-        
+
 
     });
 </script>

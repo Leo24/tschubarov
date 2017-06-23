@@ -23,13 +23,24 @@
 }
 
 .competitors .checked {
-    display: block;
     width: 16px;
     height: 16px;
     padding: 0 12px;
     background: url('../../../images/icons/check_mark_128x128.png') no-repeat;
     background-size: 16px 16px;
-    float: left;
+}
+
+.table-responsive.competitors th, td{
+    text-align: center;
+}
+
+.table-responsive.competitors th.left, td.left{
+    text-align: left;
+}
+
+.table-responsive.competitors span.bold{
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .col-centered{
