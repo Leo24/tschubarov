@@ -1047,7 +1047,9 @@ $teamFields = get_fields($team_posts[0]->ID);
 </script>
 <script>
     $(document).ready(function () {
-        $('.task-image').imageTooltip();
+        $('.task-image').imageTooltip({
+            imgWidth: 600
+    });
     });
 </script>
 
