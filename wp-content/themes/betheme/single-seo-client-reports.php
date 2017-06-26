@@ -55,7 +55,8 @@ $teamFields = get_fields($team_posts[0]->ID);
     <link rel="stylesheet" href="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/css/client-seo-reports.css">
     <link rel="stylesheet" href="<?php echo get_home_url();?>/wp-content/plugins/contact-form-7/includes/css/styles.css">
-
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri().'/seo-client-reports';?>/plugins/iCheck/all.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -403,58 +404,58 @@ $teamFields = get_fields($team_posts[0]->ID);
                         </div>
                     </div>
                     <div id="tabs-3">
-                            <div class="col-sm-1 col-centered">
-                                <h3 class="box-title center-block">Backlinks</h3>
-                            </div>
+                        <div class="col-sm-1 col-centered">
+                            <h3 class="box-title center-block">Backlinks</h3>
+                        </div>
 
-							<?php
-							$backlinks = array();
-							foreach ($reportFields as $key => $value) {
-								if(strpos($key, '_backlink')){
-									$backlinks[$key] = $value;
-								}
-							} ?>
-                            <div class="box-body">
-								<?php $icons = array(
-									'0' => 'ion ion-stats-bars',
-									'1' => 'fa fa-shopping-cart',
-									'2' => 'ion ion-person-add',
-									'3' => 'ion ion-pie-graph',
-								);
-								$colors = array(
-									'0' => 'bg-aqua',
-									'1' => 'bg-yellow',
-                                    '2' => 'bg-red',
-                                    '3' => 'bg-green',
-								);
-								$backlinksIcons = array(
-									'social_bookmarks_backlink'     => 'fa-bookmark-o',
-									'blog_posts_backlink'           => 'fa-rss',
-									'document_sharing_backlink'     => 'fa-file-text-o',
-									'url_directories_backlink'      => 'fa-book',
-									'edu_backlink'                  => 'fa-mortar-board',
-									'image_sharing_backlink'        => 'fa-file-picture-o',
-									'video_sharing_backlink'        => 'fa-file-movie-o',
-									'audio_sharing_backlink'        => 'fa-file-audio-o',
-									'infographics_backlink'         => 'fa-calendar',
-									'website_feedback_backlink'     => 'fa-twitch',
-									'wikis_backlink'                => 'fa-wikipedia-w',
-									'classified_backlink'           => 'fa-bullhorn',
-									'article_submission_backlink'   => 'fa-edit',
-									'local_listings_backlink'       => 'fa-map-marker',
-									'web_20_backlink'               => 'fa-globe',
-									'ifttt_backlink'                => 'fa-spotify',
-									'social_profiles_backlink'      => 'fa-users',
-									'number_of_followers_backlink'  => 'fa-calculator',
-									'blog_comments_backlink'        => 'fa-commenting',
-									'login_details_backlink'        => 'fa-check-square',
-								);
-								?>
+						<?php
+						$backlinks = array();
+						foreach ($reportFields as $key => $value) {
+							if(strpos($key, '_backlink')){
+								$backlinks[$key] = $value;
+							}
+						} ?>
+                        <div class="box-body">
+							<?php $icons = array(
+								'0' => 'ion ion-stats-bars',
+								'1' => 'fa fa-shopping-cart',
+								'2' => 'ion ion-person-add',
+								'3' => 'ion ion-pie-graph',
+							);
+							$colors = array(
+								'0' => 'bg-aqua',
+								'1' => 'bg-yellow',
+								'2' => 'bg-red',
+								'3' => 'bg-green',
+							);
+							$backlinksIcons = array(
+								'social_bookmarks_backlink'     => 'fa-bookmark-o',
+								'blog_posts_backlink'           => 'fa-rss',
+								'document_sharing_backlink'     => 'fa-file-text-o',
+								'url_directories_backlink'      => 'fa-book',
+								'edu_backlink'                  => 'fa-mortar-board',
+								'image_sharing_backlink'        => 'fa-file-picture-o',
+								'video_sharing_backlink'        => 'fa-file-movie-o',
+								'audio_sharing_backlink'        => 'fa-file-audio-o',
+								'infographics_backlink'         => 'fa-calendar',
+								'website_feedback_backlink'     => 'fa-twitch',
+								'wikis_backlink'                => 'fa-wikipedia-w',
+								'classified_backlink'           => 'fa-bullhorn',
+								'article_submission_backlink'   => 'fa-edit',
+								'local_listings_backlink'       => 'fa-map-marker',
+								'web_20_backlink'               => 'fa-globe',
+								'ifttt_backlink'                => 'fa-spotify',
+								'social_profiles_backlink'      => 'fa-users',
+								'number_of_followers_backlink'  => 'fa-calculator',
+								'blog_comments_backlink'        => 'fa-commenting',
+								'login_details_backlink'        => 'fa-check-square',
+							);
+							?>
 
-                                <div class="row">
-                                    <div class="col-sm-8 col-centered">
-                                        <?php $count = 0;?>
-										<?php foreach($backlinks as $key => $value): ?>
+                            <div class="row">
+                                <div class="col-sm-8 col-centered">
+									<?php $count = 0;?>
+									<?php foreach($backlinks as $key => $value): ?>
 										<?php
 
 										$title = ucwords(str_replace('backlink', '', str_replace('_', ' ', $key)));
@@ -495,187 +496,183 @@ $teamFields = get_fields($team_posts[0]->ID);
                                                 </div>
                                             </div>
                                         </div>
-
-
-
-									<?php $count++; endforeach;?>
+										<?php $count++; endforeach;?>
                                 </div>
+                            </div>
                         </div>
+
                     </div>
-
-                </div>
-                <div id="tabs-4">
-                    <div class="box box-widget">
-                        <div class='box-header with-border'>
-                            <div class='user-block'>
-                                <span class='username'>Backlinks - Tier 2&3</span>
-                            </div><!-- /.user-block -->
-                        </div><!-- /.box-header -->
-
-						<?php
-						$backlinks = array();
-						foreach ($reportFields as $key => $value) {
-							if(strpos($key, '_backlink')){
-								$backlinks[$key] = $value;
-							}
-						} ?>
-                        <div class="box-body">
-                            <div class="box-body table-responsive no-padding">
-                                <table class="table table-hover">
-                                    <tr>
-                                        <th>Tier2</th>
-                                        <th>Tier3</th>
-                                    </tr>
-									<?php foreach($reportFields['backlinks_-_tier_2_3'] as $tiers): ?>
-                                        <tr>
-                                            <td><?php echo $tiers['tier_2']; ?></td>
-                                            <td><?php echo $tiers['tier_3']; ?></td>
-                                        </tr>
-									<?php endforeach;?>
-                                </table>
-                            </div><!-- /.box-body -->
-                        </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                </div>
-
-                <div id="tabs-5">
-                    <div class="box box-widget">
-                        <div class="col-md-3">
-                            <h3 class="box-title text-center">Startup Preparation</h3>
-							<?php foreach($reportFields['startup_preparation'] as $value): ?>
-                                <div class="col-md-12">
-                                    <div class="box box-default collapsed-box box-solid">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title"><?php echo $value['startup_preparation'];?></h3>
-                                            <div class="box-tools pull-right">
-                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                                            </div><!-- /.box-tools -->
-                                        </div><!-- /.box-header -->
-                                        <div class="box-body">
-                                            <p>Doing by:<?php echo $value['doing'];?></p>
-                                            <p>Notes:<?php echo $value['notes'];?></p>
-                                            <p>Status:<?php echo $value['status'];?></p>
-                                        </div><!-- /.box-body -->
-                                    </div><!-- /.box -->
-                                </div>
-							<?php endforeach;?>
-                        </div>
-                        <div class="col-md-3">
-                            <h3 class="box-title text-center">On PAGE SEO</h3>
-							<?php foreach($reportFields['on_page_seo'] as $value): ?>
-                                <div class="col-md-12">
-                                    <div class="box box-default collapsed-box box-solid">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title"><?php echo $value['on_page_seo'];?></h3>
-                                            <div class="box-tools pull-right">
-                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                                            </div><!-- /.box-tools -->
-                                        </div><!-- /.box-header -->
-                                        <div class="box-body">
-                                            <p>Doing by:<?php echo $value['doing'];?></p>
-                                            <p>Notes:<?php echo $value['notes'];?></p>
-                                        </div><!-- /.box-body -->
-                                    </div><!-- /.box -->
-                                </div>
-							<?php endforeach;?>
-                        </div>
-                        <div class="col-md-3">
-                            <h3 class="box-title text-center">OFF PAGE SEO</h3>
-							<?php foreach($reportFields['off_page_seo'] as $value): ?>
-                                <div class="col-md-12">
-                                    <div class="box box-default collapsed-box box-solid">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title"><?php echo $value['off_page_seo'];?></h3>
-                                            <div class="box-tools pull-right">
-                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                                            </div><!-- /.box-tools -->
-                                        </div><!-- /.box-header -->
-                                        <div class="box-body">
-                                            <p>Doing by:<?php echo $value['doing'];?></p>
-                                            <p>Notes:<?php echo $value['amount'];?></p>
-                                        </div><!-- /.box-body -->
-                                    </div><!-- /.box -->
-                                </div>
-							<?php endforeach;?>
-                        </div>
-                        <div class="col-md-3">
-                            <h3 class="box-title text-center">Local Businesses</h3>
-							<?php foreach($reportFields['local_businesses'] as $value): ?>
-                                <div class="col-md-12">
-                                    <div class="box box-default collapsed-box box-solid">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title"><?php echo $value['local_businesses'];?></h3>
-                                            <div class="box-tools pull-right">
-                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                                            </div><!-- /.box-tools -->
-                                        </div><!-- /.box-header -->
-                                        <div class="box-body">
-                                            <p>Doing by:<?php echo $value['doing'];?></p>
-                                            <p>Notes:<?php echo $value['status'];?></p>
-                                            <p>Notes:<?php echo $value['link'];?></p>
-                                            <p>Notes:<?php echo $value['social_media'];?></p>
-                                        </div><!-- /.box-body -->
-                                    </div><!-- /.box -->
-                                </div>
-							<?php endforeach;?>
-                        </div>
-                        <div class="box-body">
-                            <div class="box-body table-responsive no-padding">
-                            </div><!-- /.box-body -->
-                        </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                </div>
-
-                    <div id="tabs-6">
+                    <div id="tabs-4">
+                        <div class="box box-widget">
                             <div class='box-header with-border'>
                                 <div class='user-block'>
-                                    <span class='username'>Website Health Status</span>
+                                    <span class='username'>Backlinks - Tier 2&3</span>
                                 </div><!-- /.user-block -->
                             </div><!-- /.box-header -->
 
+							<?php
+							$backlinks = array();
+							foreach ($reportFields as $key => $value) {
+								if(strpos($key, '_backlink')){
+									$backlinks[$key] = $value;
+								}
+							} ?>
+                            <div class="box-body">
+                                <div class="box-body table-responsive no-padding">
+                                    <table class="table table-hover">
+                                        <tr>
+                                            <th>Tier2</th>
+                                            <th>Tier3</th>
+                                        </tr>
+										<?php foreach($reportFields['backlinks_-_tier_2_3'] as $tiers): ?>
+                                            <tr>
+                                                <td><?php echo $tiers['tier_2']; ?></td>
+                                                <td><?php echo $tiers['tier_3']; ?></td>
+                                            </tr>
+										<?php endforeach;?>
+                                    </table>
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                    </div>
 
+                    <div id="tabs-5" class="tasks">
+                        <div class="box box-widget">
+                            <div class='box-header with-border'>
+                                <div class='user-block'>
+                                    <span class='username'>Check list</span>
+                                </div><!-- /.user-block -->
+                            </div><!-- /.box-header -->
+                            <div class="col-md-3">
+                                <h3 class="box-title text-center">Startup Preparation</h3>
+								<?php foreach($reportFields['startup_preparation'] as $value): ?>
+                                    <div class="col-md-12">
+                                        <div class="box box-default collapsed-box box-solid">
+                                            <div class="box-header with-border task">
+                                                <div class="form-group task-checkbox">
+                                                    <label>
+                                                        <input type="checkbox" class="flat-red" <?php if(!empty($value['readiness_mark'])){echo 'checked';} ?> disabled title="Check task as done">
+                                                    </label>
+                                                </div>
+                                                <h3 class="box-title col-md-8 padding-top-2"><?php echo $value['startup_preparation'];?></h3>
+                                                <div class="box-tools pull-right">
+                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                                </div><!-- /.box-tools -->
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body">
+                                                <p>Doing by:<?php echo $value['doing'];?></p>
+                                                <p>Notes:<?php echo $value['notes'];?></p>
+                                                <p>Status:<?php echo $value['status'];?></p>
+                                                <p>Image: <img class="task-image" src="<?php echo $value['image']['url'];?>" alt="<?php echo $value['image']['title'];?>"></p>
+                                            </div><!-- /.box-body -->
+                                        </div><!-- /.box -->
+                                    </div>
+								<?php endforeach;?>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 class="box-title text-center">On PAGE SEO</h3>
+								<?php foreach($reportFields['on_page_seo'] as $value): ?>
+                                    <div class="col-md-12">
+                                        <div class="box box-default collapsed-box box-solid">
+                                            <div class="box-header with-border task">
+                                                <div class="form-group task-checkbox">
+                                                    <label>
+                                                        <input type="checkbox" class="flat-red" <?php if(!empty($value['readiness_mark'])){echo 'checked';} ?> disabled title="Check task as done">
+                                                    </label>
+                                                </div>
+                                                <h3 class="box-title col-md-8 padding-top-2"><?php echo $value['on_page_seo'];?></h3>
+                                                <div class="box-tools pull-right">
+                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                                </div><!-- /.box-tools -->
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body">
+                                                <p>Doing by:<?php echo $value['doing'];?></p>
+                                                <p>Notes:<?php echo $value['notes'];?></p>
+                                                <p>Image: <img class="task-image" src="<?php echo $value['image']['url'];?>" alt="<?php echo $value['image']['title'];?>"></p>
+                                            </div><!-- /.box-body -->
+                                        </div><!-- /.box -->
+                                    </div>
+								<?php endforeach;?>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 class="box-title text-center">OFF PAGE SEO</h3>
+								<?php foreach($reportFields['off_page_seo'] as $value): ?>
+                                    <div class="col-md-12">
+                                        <div class="box box-default collapsed-box box-solid">
+                                            <div class="box-header with-border task">
+                                                <div class="form-group task-checkbox">
+                                                    <label>
+                                                        <input type="checkbox" class="flat-red" <?php if(!empty($value['readiness_mark'])){echo 'checked';} ?> disabled title="Check task as done">
+                                                    </label>
+                                                </div>
+                                                <h3 class="box-title col-md-8 padding-top-2"><?php echo $value['off_page_seo'];?></h3>
+                                                <div class="box-tools pull-right">
+                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                                </div><!-- /.box-tools -->
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body">
+                                                <p>Doing by:<?php echo $value['doing'];?></p>
+                                                <p>Notes:<?php echo $value['amount'];?></p>
+                                                <p>Image: <img class="task-image" src="<?php echo $value['image']['url'];?>" alt="<?php echo $value['image']['title'];?>"></p>
+                                            </div><!-- /.box-body -->
+                                        </div><!-- /.box -->
+                                    </div>
+								<?php endforeach;?>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 class="box-title text-center">Local Businesses</h3>
+								<?php foreach($reportFields['local_businesses'] as $value): ?>
+                                    <div class="col-md-12">
+                                        <div class="box box-default collapsed-box box-solid">
+                                            <div class="box-header with-border task">
+                                                <div class="form-group task-checkbox">
+                                                    <label>
+                                                        <input type="checkbox" class="flat-red" <?php if(!empty($value['readiness_mark'])){echo 'checked';} ?>  title="Check task as done">
+                                                    </label>
+                                                </div>
+                                                <h3 class="box-title col-md-8 padding-top-2"><?php echo $value['local_businesses'];?></h3>
+                                                <div class="box-tools pull-right">
+                                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                                </div><!-- /.box-tools -->
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body">
+                                                <p>Doing by:<?php echo $value['doing'];?></p>
+                                                <p>Status:<?php echo $value['status'];?></p>
+                                                <p>Link:<?php echo $value['link'];?></p>
+                                                <p>Social Media:<?php echo $value['social_media'];?></p>
+                                                <p>Image: <img class="task-image" src="<?php echo $value['image']['url'];?>" alt="<?php echo $value['image']['title'];?>"></p>
+                                            </div><!-- /.box-body -->
+                                        </div><!-- /.box -->
+                                    </div>
+								<?php endforeach;?>
+                            </div>
+                            <div class="box-body">
+                                <div class="box-body table-responsive no-padding">
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                    </div>
 
+                    <div id="tabs-6">
+                        <div class='box-header with-border'>
+                            <div class='user-block'>
+                                <span class='username'>Website Health Status</span>
+                            </div><!-- /.user-block -->
+                        </div><!-- /.box-header -->
                         <div class="row">
-
-
-
-
-
-
-
-
-
-
-
-<!--                            <div class="col-md-12 reports">-->
-<!--                                <div class="col-md-6 report before">-->
-<!--                                    <object data="--><?php //echo $reportFields['report_before']['url']; ?><!--" type="application/pdf" width="100%" height="100%">-->
-<!--                                        <p>--><?php //echo $reportFields['report_before']['title']; ?><!--<a href="--><?php //echo $reportFields['report_before']['url']; ?><!--">to the PDF!</a></p>-->
-<!--                                    </object>-->
-<!--                                </div>-->
-<!--                                <div class="col-md-6 report after">-->
-<!--                                    <object data="--><?php //echo $reportFields['report_after']['url']; ?><!--" type="application/pdf" width="100%" height="100%">-->
-<!--                                        <p>--><?php //echo $reportFields['report_before']['title']; ?><!--<a href="--><?php //echo $reportFields['report_before']['url']; ?><!--">to the PDF!</a></p>-->
-<!--                                    </object>-->
-<!--                                </div>-->
-<!--                            </div>-->
-
-
-
                             <div class="col-md-12 reports">
-
-                            <div class="col-md-6">
-                                <div class="box box-warning direct-chat direct-chat-warning">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title">Before <?php echo $reportFields['date_before']; ?></h3>
-                                    </div><!-- /.box-header -->
-                                    <div class="report before">
+                                <div class="col-md-6">
+                                    <div class="box box-warning direct-chat direct-chat-warning">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Before <?php echo $reportFields['date_before']; ?></h3>
+                                        </div><!-- /.box-header -->
+                                        <div class="report before">
                                             <object data="<?php echo $reportFields['report_before']['url']; ?>" type="application/pdf" width="100%" height="100%">
                                                 <p><?php echo $reportFields['report_before']['title']; ?><a href="<?php echo $reportFields['report_before']['url']; ?>">to the PDF!</a></p>
                                             </object>
-                                    </div><!-- /.box-body -->
-                                </div><!--/.direct-chat -->
-                            </div><!-- /.col -->
+                                        </div><!-- /.box-body -->
+                                    </div><!--/.direct-chat -->
+                                </div><!-- /.col -->
 
                                 <div class="col-md-6 report after">
                                     <div class="box box-success direct-chat direct-chat-success">
@@ -683,207 +680,196 @@ $teamFields = get_fields($team_posts[0]->ID);
                                             <h3 class="box-title">After <?php echo $reportFields['date_after']; ?></h3>
                                         </div><!-- /.box-header -->
                                         <div class="report after">
-                                                <object data="<?php echo $reportFields['report_after']['url']; ?>" type="application/pdf" width="100%" height="100%">
-                                                    <p><?php echo $reportFields['report_after']['title']; ?><a href="<?php echo $reportFields['report_after']['url']; ?>">to the PDF!</a></p>
-                                                </object>
+                                            <object data="<?php echo $reportFields['report_after']['url']; ?>" type="application/pdf" width="100%" height="100%">
+                                                <p><?php echo $reportFields['report_after']['title']; ?><a href="<?php echo $reportFields['report_after']['url']; ?>">to the PDF!</a></p>
+                                            </object>
                                         </div><!-- /.box-body -->
                                     </div><!--/.direct-chat -->
                                 </div><!-- /.col -->
-
                             </div>
-
-
-
-
-
-
-
-
                         </div>
-
-
-			                <?php
-			                $backlinks = array();
-			                foreach ($reportFields as $key => $value) {
-				                if(strpos($key, '_backlink')){
-					                $backlinks[$key] = $value;
-				                }
-			                } ?>
+						<?php
+						$backlinks = array();
+						foreach ($reportFields as $key => $value) {
+							if(strpos($key, '_backlink')){
+								$backlinks[$key] = $value;
+							}
+						} ?>
 
                     </div>
-            </div>
-    </div><!-- /.row -->
-    </section><!-- /.content -->
-</div><!-- /.content-wrapper -->
-<footer class="main-footer">
-    <strong>© 2017 youngceaser.com.</strong> All rights reserved.
-</footer>
+                </div>
+            </div><!-- /.row -->
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <strong>© 2017 youngceaser.com.</strong> All rights reserved.
+    </footer>
 
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <!-- Home tab content -->
-        <div class="tab-pane" id="control-sidebar-home-tab">
-            <h3 class="control-sidebar-heading">Recent Activity</h3>
-            <ul class="control-sidebar-menu">
-                <li>
-                    <a href="javascript::;">
-                        <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-                        <div class="menu-info">
-                            <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-                            <p>Will be 23 on April 24th</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript::;">
-                        <i class="menu-icon fa fa-user bg-yellow"></i>
-                        <div class="menu-info">
-                            <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
-                            <p>New phone +1(800)555-1234</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript::;">
-                        <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
-                        <div class="menu-info">
-                            <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
-                            <p>nora@example.com</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript::;">
-                        <i class="menu-icon fa fa-file-code-o bg-green"></i>
-                        <div class="menu-info">
-                            <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
-                            <p>Execution time 5 seconds</p>
-                        </div>
-                    </a>
-                </li>
-            </ul><!-- /.control-sidebar-menu -->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+            <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- Home tab content -->
+            <div class="tab-pane" id="control-sidebar-home-tab">
+                <h3 class="control-sidebar-heading">Recent Activity</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript::;">
+                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                                <p>Will be 23 on April 24th</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript::;">
+                            <i class="menu-icon fa fa-user bg-yellow"></i>
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                                <p>New phone +1(800)555-1234</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript::;">
+                            <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+                                <p>nora@example.com</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript::;">
+                            <i class="menu-icon fa fa-file-code-o bg-green"></i>
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+                                <p>Execution time 5 seconds</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul><!-- /.control-sidebar-menu -->
 
-            <h3 class="control-sidebar-heading">Tasks Progress</h3>
-            <ul class="control-sidebar-menu">
-                <li>
-                    <a href="javascript::;">
-                        <h4 class="control-sidebar-subheading">
-                            Custom Template Design
-                            <span class="label label-danger pull-right">70%</span>
-                        </h4>
-                        <div class="progress progress-xxs">
-                            <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript::;">
-                        <h4 class="control-sidebar-subheading">
-                            Update Resume
-                            <span class="label label-success pull-right">95%</span>
-                        </h4>
-                        <div class="progress progress-xxs">
-                            <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript::;">
-                        <h4 class="control-sidebar-subheading">
-                            Laravel Integration
-                            <span class="label label-warning pull-right">50%</span>
-                        </h4>
-                        <div class="progress progress-xxs">
-                            <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript::;">
-                        <h4 class="control-sidebar-subheading">
-                            Back End Framework
-                            <span class="label label-primary pull-right">68%</span>
-                        </h4>
-                        <div class="progress progress-xxs">
-                            <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-                        </div>
-                    </a>
-                </li>
-            </ul><!-- /.control-sidebar-menu -->
+                <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript::;">
+                            <h4 class="control-sidebar-subheading">
+                                Custom Template Design
+                                <span class="label label-danger pull-right">70%</span>
+                            </h4>
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript::;">
+                            <h4 class="control-sidebar-subheading">
+                                Update Resume
+                                <span class="label label-success pull-right">95%</span>
+                            </h4>
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript::;">
+                            <h4 class="control-sidebar-subheading">
+                                Laravel Integration
+                                <span class="label label-warning pull-right">50%</span>
+                            </h4>
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript::;">
+                            <h4 class="control-sidebar-subheading">
+                                Back End Framework
+                                <span class="label label-primary pull-right">68%</span>
+                            </h4>
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul><!-- /.control-sidebar-menu -->
 
-        </div><!-- /.tab-pane -->
-        <!-- Stats tab content -->
-        <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
-        <!-- Settings tab content -->
-        <div class="tab-pane" id="control-sidebar-settings-tab">
-            <form method="post">
-                <h3 class="control-sidebar-heading">General Settings</h3>
-                <div class="form-group">
-                    <label class="control-sidebar-subheading">
-                        Report panel usage
-                        <input type="checkbox" class="pull-right" checked>
-                    </label>
-                    <p>
-                        Some information about this general settings option
-                    </p>
-                </div><!-- /.form-group -->
+            </div><!-- /.tab-pane -->
+            <!-- Stats tab content -->
+            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
+            <!-- Settings tab content -->
+            <div class="tab-pane" id="control-sidebar-settings-tab">
+                <form method="post">
+                    <h3 class="control-sidebar-heading">General Settings</h3>
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Report panel usage
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+                        <p>
+                            Some information about this general settings option
+                        </p>
+                    </div><!-- /.form-group -->
 
-                <div class="form-group">
-                    <label class="control-sidebar-subheading">
-                        Allow mail redirect
-                        <input type="checkbox" class="pull-right" checked>
-                    </label>
-                    <p>
-                        Other sets of options are available
-                    </p>
-                </div><!-- /.form-group -->
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Allow mail redirect
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+                        <p>
+                            Other sets of options are available
+                        </p>
+                    </div><!-- /.form-group -->
 
-                <div class="form-group">
-                    <label class="control-sidebar-subheading">
-                        Expose author name in posts
-                        <input type="checkbox" class="pull-right" checked>
-                    </label>
-                    <p>
-                        Allow the user to show his name in blog posts
-                    </p>
-                </div><!-- /.form-group -->
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Expose author name in posts
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+                        <p>
+                            Allow the user to show his name in blog posts
+                        </p>
+                    </div><!-- /.form-group -->
 
-                <h3 class="control-sidebar-heading">Chat Settings</h3>
+                    <h3 class="control-sidebar-heading">Chat Settings</h3>
 
-                <div class="form-group">
-                    <label class="control-sidebar-subheading">
-                        Show me as online
-                        <input type="checkbox" class="pull-right" checked>
-                    </label>
-                </div><!-- /.form-group -->
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Show me as online
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+                    </div><!-- /.form-group -->
 
-                <div class="form-group">
-                    <label class="control-sidebar-subheading">
-                        Turn off notifications
-                        <input type="checkbox" class="pull-right">
-                    </label>
-                </div><!-- /.form-group -->
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Turn off notifications
+                            <input type="checkbox" class="pull-right">
+                        </label>
+                    </div><!-- /.form-group -->
 
-                <div class="form-group">
-                    <label class="control-sidebar-subheading">
-                        Delete chat history
-                        <a href="javascript::;" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-                    </label>
-                </div><!-- /.form-group -->
-            </form>
-        </div><!-- /.tab-pane -->
-    </div>
-</aside><!-- /.control-sidebar -->
-<!-- Add the sidebar's background. This div must be placed
-	 immediately after the control sidebar -->
-<div class="control-sidebar-bg"></div>
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Delete chat history
+                            <a href="javascript::;" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                        </label>
+                    </div><!-- /.form-group -->
+                </form>
+            </div><!-- /.tab-pane -->
+        </div>
+    </aside><!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+		 immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
 
 <!-- jQuery 2.1.4 -->
@@ -929,6 +915,9 @@ $teamFields = get_fields($team_posts[0]->ID);
 <script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/plugins/knob/jquery.knob.js"></script>
 <!-- ChartJS 1.0.1 -->
 <script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/plugins/chartjs/Chart.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/plugins/iCheck/icheck.js"></script>
+<script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/plugins/jQuery-Plugin-To-Enlarge-Images-On-Mouseover-image-tooltip-js/image-tooltip.js"></script>
 
 <script type='text/javascript' src='<?php echo get_home_url();?>/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.40.0-2013.08.13'></script>
 <script type='text/javascript'>
@@ -1049,6 +1038,20 @@ $teamFields = get_fields($team_posts[0]->ID);
 
     });
 </script>
+
+<script>
+    //    Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+        checkboxClass: 'icheckbox_square-green'
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('.task-image').imageTooltip();
+    });
+</script>
+
+
 
 
 </body>
