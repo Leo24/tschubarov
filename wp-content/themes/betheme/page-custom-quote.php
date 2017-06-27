@@ -23,7 +23,7 @@ get_header();
                 <div class="container">
                     <div class="three-fourth column" style="float:none; margin:0 auto;">
 
-                        <h2><?php echo the_title();?></h2>
+<!--                        <h2>--><?php //echo the_title();?><!--</h2>-->
 
 						<?php echo do_shortcode('[gravityform id=1 title=false description=true ajax=true tabindex=49]');?>
 
