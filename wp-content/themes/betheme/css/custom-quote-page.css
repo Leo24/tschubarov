@@ -1,0 +1,67 @@
+/*
+Styles for gform
+*/
+
+ .contact-form div.gform_heading span.gform_description { font-size:16px; line-height:27px;}
+ .entry-content .contact-page h4 {
+    text-align: center;
+}
+.services.wrapper.contact-page { padding:15px 0; }
+#sub.headline {
+    margin: 0 0 10px;
+    padding: 0 4%;
+}
+ .gform_wrapper .contact-form {font-size:14px}
+ .gform_wrapper .contact-form .top_label .gfield_label { font-weight:600; font-size:14px}
+ .gform_wrapper .contact-form input {font-size:14px;}
+ .gform_wrapper .contact-form .gfield_checkbox li input[type="checkbox"] { margin-top:5px; }
+ .gform_wrapper .contact-form ul.gfield_checkbox li input[type="checkbox"]:checked + label { font-weight:400; }
+ .gform_wrapper .contact-form .gfield_select { font-size:14px; }
+ .gform_wrapper .contact-form .gfield.monthly-budget { margin: 8px 0 10px; }
+ .gform_wrapper .contact-form .gfield.gf_left_half { float: left; }
+ .gform_wrapper .contact-form .gfield.gf_right_half { float: right; }
+
+    /* Gravity Forms Styling
+    ------------------------------------------------------*/
+    .entry-content .gform_wrapper { max-width:100%; margin-top:0;}
+    .entry-content .gform_wrapper .gf_progressbar_wrapper h3.gf_progressbar_title { font-size:20px; text-align:center; }
+    .entry-content .gform_wrapper .ginput_complex label, 
+    .entry-content .gform_wrapper .gfield_time_hour label, 
+    .entry-content .gform_wrapper .gfield_time_minute label, 
+    .entry-content .gform_wrapper .gfield_date_month label, 
+    .entry-content .gform_wrapper .gfield_date_day label, 
+    .entry-content .gform_wrapper .gfield_date_year label, 
+    .entry-content .gform_wrapper .instruction { letter-spacing:0; margin:0 0 4px; }
+    .entry-content .gform_wrapper .ginput_complex .ginput_left { clear:both; }
+    .entry-content .gform_wrapper input[type="text"],
+    .entry-content .gform_wrapper input[type="url"], 
+    .entry-content .gform_wrapper input[type="email"], 
+    .entry-content .gform_wrapper input[type="tel"], 
+    .entry-content .gform_wrapper input[type="number"], 
+    .entry-content .gform_wrapper input[type="password"] { background-color:#EEEEEE; border:2px solid #CACACA; border-radius:3px 3px 3px 3px; color:#333333; font-size:100%; height:auto; padding:5px; }
+    .entry-content .gform_wrapper input[type="text"]:focus,
+    .entry-content .gform_wrapper input[type="url"]:focus, 
+    .entry-content .gform_wrapper input[type="email"]:focus, 
+    .entry-content .gform_wrapper input[type="tel"]:focus, 
+    .entry-content .gform_wrapper input[type="number"]:focus, 
+    .entry-content .gform_wrapper input[type="password"]:focus { background-color:#ffffff; }
+    .entry-content .gform_wrapper textarea { background-color:#EEEEEE; border:2px solid #CACACA; border-radius:3px 3px 3px 3px; color:#333333; font-size:100%; height:auto; padding:5px; }
+    .entry-content .gform_wrapper textarea { resize:vertical; }
+    .entry-content .gform_wrapper textarea:focus { background-color:#ffffff; }
+    .entry-content .button#gform_submit_button_4, .entry-content .button#gform_submit_button_3,
+    .entry-content .button#gform_submit_button_2,
+    .entry-content .button{ float:left; background:none repeat scroll 0 0 #A0CE7C; border-radius:8px 8px 8px 8px; border-width:0; color:#FFFFFF; cursor:pointer; display:block; font-size:1em; line-height:1.5em; margin:4px; overflow:hidden; padding:10px 24px; text-decoration:none; }
+    .entry-content .button#gform_submit_button_4:hover, .entry-content .button#gform_submit_button_3:hover,
+    .entry-content .button#gform_submit_button_2:hover,
+    .entry-content .button.gform_next_button:hover { background-color:#83B35D; }
+    .entry-content .button.gform_previous_button { float:left; background:none repeat scroll 0 0 #ff6063; border-radius:8px 8px 8px 8px; border-width:0; color:#FFFFFF; cursor:pointer; display:block; font-size:1em; line-height:1.5em; margin:4px; overflow:hidden; padding:10px 24px; text-decoration:none; }
+    .entry-content .button.gform_previous_button:hover { background-color:#f33f42; }
+    .entry-content .gform_wrapper .gform_page_footer { overflow:hidden; }
+    .entry-content .gform_wrapper input.datepicker.datepicker_with_icon { vertical-align:top; }
+     .entry-content img.ui-datepicker-trigger { margin:10px; }
+     .entry-content .gform_wrapper .gfield.gsection { margin:20px 0 0; }
+    .gform_page_fields { overflow:hidden; }
+
+    .prom-message{display: block;margin-top: 50px;}
+    .prom-message p{font-size: 15px;}
+
