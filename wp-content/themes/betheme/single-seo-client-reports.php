@@ -24,8 +24,16 @@ $team_posts = get_posts(
 	)
 );
 
+$seo_api_posts = get_posts(
+	array(
+		'posts_per_page' => -1,
+		'post_type' => 'seoapicreadentials',
+	)
+);
+
 $reportFields = get_fields($posts_array[0]->ID);
 $teamFields = get_fields($team_posts[0]->ID);
+$seoApiCreads = get_fields($seo_api_posts[0]->ID);
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +44,6 @@ $teamFields = get_fields($team_posts[0]->ID);
     <title><?php echo $posts_array[0]->post_title;?></title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <meta name="google-signin-client_id" content="289130753296-9j0uivsjiu461460ugm1gitltralntu8.apps.googleusercontent.com">
 
     <link rel="stylesheet" href="<?php echo get_template_directory_uri().'/seo-client-reports';?>/dist/css/jquery-ui.css">
 
@@ -127,7 +134,7 @@ $teamFields = get_fields($team_posts[0]->ID);
 
 		<?php
 		$cols = "107443798368";
-		$content = get_moz_api_data($reportFields['mozs_api_access_id'], $reportFields['mozs_api_secret_key'], $reportFields['client_url'], $cols);
+		$content = get_moz_api_data($seoApiCreads['mozs_api_access_id'], $seoApiCreads['mozs_api_secret_key'], $reportFields['client_url'], $cols);
 		?>
 
         <!-- Main content -->
@@ -263,7 +270,7 @@ $teamFields = get_fields($team_posts[0]->ID);
 											'default' => $content
 										);
 										foreach($reportFields['competitors'] as $metrics){
-											$data = get_moz_api_data($reportFields['mozs_api_access_id'], $reportFields['mozs_api_secret_key'], $metrics['competitor_link'], $cols);
+											$data = get_moz_api_data($seoApiCreads['mozs_api_access_id'], $seoApiCreads['mozs_api_secret_key'], $metrics['competitor_link'], $cols);
 											$competitorsData[$metrics['competitor_link']] = $data;
 										}
 
@@ -975,7 +982,7 @@ $teamFields = get_fields($team_posts[0]->ID);
 
 <script>
 
-    var CLIENT_ID = '<?php echo $reportFields['google_oauth_20_client_id'];?>';
+    var CLIENT_ID = '<?php echo $seoApiCreads['google_oauth_20_client_id'];?>';
     //    var CLIENT_ID = '';
 
     gapi.analytics.ready(function() {
