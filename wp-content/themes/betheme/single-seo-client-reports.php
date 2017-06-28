@@ -24,16 +24,9 @@ $team_posts = get_posts(
 	)
 );
 
-$seo_api_posts = get_posts(
-	array(
-		'posts_per_page' => -1,
-		'post_type' => 'seoapicreadentials',
-	)
-);
-
 $reportFields = get_fields($posts_array[0]->ID);
 $teamFields = get_fields($team_posts[0]->ID);
-$seoApiCreads = get_fields($seo_api_posts[0]->ID);
+$seoApiCreads = getSeoApiCreads();
 ?>
 
 <!DOCTYPE html>
@@ -134,7 +127,7 @@ $seoApiCreads = get_fields($seo_api_posts[0]->ID);
 
 		<?php
 		$cols = "107443798368";
-		$content = get_moz_api_data($seoApiCreads['mozs_api_access_id'], $seoApiCreads['mozs_api_secret_key'], $reportFields['client_url'], $cols);
+		$content = get_moz_api_data($seoApiCreads['mozs_api_access_id'], $seoApiCreads['mozs_api_secret_key'], $reportFields['website_url'], $cols);
 		?>
 
         <!-- Main content -->
