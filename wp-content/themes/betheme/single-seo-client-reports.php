@@ -27,6 +27,12 @@ $team_posts = get_posts(
 $reportFields = get_fields($posts_array[0]->ID);
 $teamFields = get_fields($team_posts[0]->ID);
 $seoApiCreads = getSeoApiCreads();
+
+$pageSpeedDataBeforeData = get_post_meta($posts_array[0]->ID, 'googlePageSpeedDataBefore');
+$pageSpeedDataAfterData = get_post_meta($posts_array[0]->ID, 'googlePageSpeedDataAfter');
+$pageSpeedDataBefore = json_decode($pageSpeedDataBeforeData[0], true);
+$pageSpeedDataAfter = json_decode($pageSpeedDataAfterData[0], true);
+
 ?>
 
 <!DOCTYPE html>
@@ -666,6 +672,23 @@ $seoApiCreads = getSeoApiCreads();
                                         <div class="box-header with-border">
                                             <h3 class="box-title">Before <?php echo $reportFields['date_before']; ?></h3>
                                         </div><!-- /.box-header -->
+
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-6 col-xs-12 center-block">
+                                                <div class="info-box bg-yellow">
+                                                    <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">General Google Page Speed</span>
+                                                        <span class="info-box-number"><?php echo $pageSpeedDataBefore['ruleGroups']['SPEED']['score'];?>%</span>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" style="width: <?php echo $pageSpeedDataBefore['ruleGroups']['SPEED']['score'];?>%"></div>
+                                                        </div>
+                                                        <span class="progress-description"></span>
+                                                    </div><!-- /.info-box-content -->
+                                                </div><!-- /.info-box -->
+                                            </div><!-- /.col -->
+                                        </div><!-- /.row -->
+
                                         <div class="report before">
                                             <object data="<?php echo $reportFields['report_before']['url']; ?>" type="application/pdf" width="100%" height="100%">
                                                 <p><?php echo $reportFields['report_before']['title']; ?><a href="<?php echo $reportFields['report_before']['url']; ?>">to the PDF!</a></p>
@@ -679,6 +702,23 @@ $seoApiCreads = getSeoApiCreads();
                                         <div class="box-header with-border">
                                             <h3 class="box-title">After <?php echo $reportFields['date_after']; ?></h3>
                                         </div><!-- /.box-header -->
+
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-6 col-xs-12">
+                                                <div class="info-box bg-green">
+                                                    <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+                                                    <div class="info-box-content">
+                                                        <span class="info-box-text">General Page Speed</span>
+                                                        <span class="info-box-number"><?php echo $pageSpeedDataAfter['ruleGroups']['SPEED']['score'];?>%</span>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" style="width: <?php echo $pageSpeedDataAfter['ruleGroups']['SPEED']['score'];?>%"></div>
+                                                        </div>
+                                                        <span class="progress-description"></span>
+                                                    </div><!-- /.info-box-content -->
+                                                </div><!-- /.info-box -->
+                                            </div><!-- /.col -->
+                                        </div>
+
                                         <div class="report after">
                                             <object data="<?php echo $reportFields['report_after']['url']; ?>" type="application/pdf" width="100%" height="100%">
                                                 <p><?php echo $reportFields['report_after']['title']; ?><a href="<?php echo $reportFields['report_after']['url']; ?>">to the PDF!</a></p>
@@ -1049,7 +1089,7 @@ $seoApiCreads = getSeoApiCreads();
     $(document).ready(function () {
         $('.task-image').imageTooltip({
             imgWidth: 600
-    });
+        });
     });
 </script>
 

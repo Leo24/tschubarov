@@ -16,6 +16,9 @@ jQuery(function($){
                         $('#update-google-page-speed-action').append('' +
                             '<p class="update-google-page-speed-message">Error while updating, please, check browser console for details.</p>'
                         );
+                        setTimeout(function () {
+                            $('.update-google-page-speed-message').remove();
+                        }, 5000);
                         console.log(data.data);
                     }else {
                         $('#update-google-page-speed-action').append('<p class="update-google-page-speed-message">Google PageSpeed Data Successfully updated!</p>');
