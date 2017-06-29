@@ -661,72 +661,92 @@ $pageSpeedDataAfter = json_decode($pageSpeedDataAfterData[0], true);
 
                     <div id="tabs-6">
                         <div class='box-header with-border'>
-                            <div class='user-block'>
-                                <span class='username'>Website Health Status</span>
-                            </div><!-- /.user-block -->
+                            <h3 class="widget-user-username">Website Health Status</h3>
+                            <h5 class="widget-user-desc">Google PageSpeed Insights</h5>
                         </div><!-- /.box-header -->
                         <div class="row">
-                            <div class="col-md-12 reports">
-                                <div class="col-md-6">
-                                    <div class="box box-warning direct-chat direct-chat-warning">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title">Before <?php echo $reportFields['date_before']; ?></h3>
-                                        </div><!-- /.box-header -->
 
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-6 col-xs-12 center-block">
-                                                <div class="info-box bg-yellow">
-                                                    <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
-                                                    <div class="info-box-content">
-                                                        <span class="info-box-text">General Google Page Speed</span>
-                                                        <span class="info-box-number"><?php echo $pageSpeedDataBefore['ruleGroups']['SPEED']['score'];?>%</span>
-                                                        <div class="progress">
-                                                            <div class="progress-bar" style="width: <?php echo $pageSpeedDataBefore['ruleGroups']['SPEED']['score'];?>%"></div>
-                                                        </div>
-                                                        <span class="progress-description"></span>
-                                                    </div><!-- /.info-box-content -->
-                                                </div><!-- /.info-box -->
-                                            </div><!-- /.col -->
-                                        </div><!-- /.row -->
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Before <?php echo $reportFields['date_before']; ?></h3>
+                            </div><!-- /.box-header -->
+                                <div class="col-md-6 col-sm-6 col-xs-12 ">
+                                    <div class="info-box bg-yellow">
+                                        <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">General Page Speed before optimization</span>
+                                            <span class="info-box-number"><?php echo $pageSpeedDataBefore['ruleGroups']['SPEED']['score'];?>%</span>
+                                            <div class="progress">
+                                                <div class="progress-bar" style="width: <?php echo $pageSpeedDataBefore['ruleGroups']['SPEED']['score'];?>%"></div>
+                                            </div>
+                                            <span class="progress-description"></span>
+                                        </div><!-- /.info-box-content -->
+                                    </div><!-- /.info-box -->
 
-                                        <div class="report before">
-                                            <object data="<?php echo $reportFields['report_before']['url']; ?>" type="application/pdf" width="100%" height="100%">
-                                                <p><?php echo $reportFields['report_before']['title']; ?><a href="<?php echo $reportFields['report_before']['url']; ?>">to the PDF!</a></p>
-                                            </object>
-                                        </div><!-- /.box-body -->
-                                    </div><!--/.direct-chat -->
-                                </div><!-- /.col -->
-
-                                <div class="col-md-6 report after">
-                                    <div class="box box-success direct-chat direct-chat-success">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title">After <?php echo $reportFields['date_after']; ?></h3>
-                                        </div><!-- /.box-header -->
-
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-6 col-xs-12">
-                                                <div class="info-box bg-green">
-                                                    <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
-                                                    <div class="info-box-content">
-                                                        <span class="info-box-text">General Page Speed</span>
-                                                        <span class="info-box-number"><?php echo $pageSpeedDataAfter['ruleGroups']['SPEED']['score'];?>%</span>
-                                                        <div class="progress">
-                                                            <div class="progress-bar" style="width: <?php echo $pageSpeedDataAfter['ruleGroups']['SPEED']['score'];?>%"></div>
-                                                        </div>
-                                                        <span class="progress-description"></span>
-                                                    </div><!-- /.info-box-content -->
-                                                </div><!-- /.info-box -->
-                                            </div><!-- /.col -->
+                                    <div class="box box-widget widget-user-2">
+                                        <h3 class="widget-user-desc">Possible Optimizations</h3>
+                                        <div class="box-footer no-padding">
+                                            <div class="box-footer no-padding">
+                                                <ul class="nav nav-stacked">
+				                                    <?php foreach($pageSpeedDataBefore['formattedResults']['ruleResults'] as $k=> $v):?>
+                                                        <li><a href="#"><?php echo $v['localizedRuleName'];?><span class="pull-right badge <?php if($v['ruleImpact'] > 2){echo 'bg-red';}else{echo 'bg-yellow';} ?>"><?php echo $v['ruleImpact'];?></span></a></li>
+				                                    <?php endforeach;?>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                                        <h3 class="widget-user-desc">Google Page Stats</h3>
+                                        <div class="box-footer no-padding">
+                                            <div class="box-footer no-padding">
+                                                <ul class="nav nav-stacked">
+			                                        <?php foreach($pageSpeedDataBefore['pageStats'] as $k=> $v):?>
+                                                        <li><a href="#"><?php echo $k;?><span class="pull-right badge bg-yellow"><?php echo $v;?></span></a></li>
+			                                        <?php endforeach;?>
+                                                </ul>
+                                            </div>
                                         </div>
 
-                                        <div class="report after">
-                                            <object data="<?php echo $reportFields['report_after']['url']; ?>" type="application/pdf" width="100%" height="100%">
-                                                <p><?php echo $reportFields['report_after']['title']; ?><a href="<?php echo $reportFields['report_after']['url']; ?>">to the PDF!</a></p>
-                                            </object>
-                                        </div><!-- /.box-body -->
-                                    </div><!--/.direct-chat -->
+                                    </div><!-- /.widget-user -->
                                 </div><!-- /.col -->
-                            </div>
+
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                <div class="info-box bg-green">
+                                    <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">General Page Speed after optimization</span>
+                                        <span class="info-box-number"><?php echo $pageSpeedDataAfter['ruleGroups']['SPEED']['score'];?>%</span>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: <?php echo $pageSpeedDataAfter['ruleGroups']['SPEED']['score'];?>%"></div>
+                                        </div>
+                                        <span class="progress-description"></span>
+                                    </div><!-- /.info-box-content -->
+                                </div><!-- /.info-box -->
+                                <div class="box box-widget widget-user-2">
+                                    <h3 class="widget-user-desc">Possible Optimizations</h3>
+                                    <div class="box-footer no-padding">
+                                        <div class="box-footer no-padding">
+                                            <ul class="nav nav-stacked">
+				                                <?php foreach($pageSpeedDataAfter['formattedResults']['ruleResults'] as $k=> $v):?>
+                                                    <li><a href="#"><?php echo $v['localizedRuleName'];?><span class="pull-right badge <?php if($v['ruleImpact'] > 2){echo 'bg-yellow';}else{echo 'bg-green';} ?>"><?php echo $v['ruleImpact'];?></span></a></li>
+				                                <?php endforeach;?>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                                    <h3 class="widget-user-desc">Google Page Stats</h3>
+                                    <div class="box-footer no-padding">
+                                        <div class="box-footer no-padding">
+                                            <ul class="nav nav-stacked">
+					                            <?php foreach($pageSpeedDataAfter['pageStats'] as $k=> $v):?>
+                                                    <li><a href="#"><?php echo $k;?><span class="pull-right badge bg-green"><?php echo $v;?></span></a></li>
+					                            <?php endforeach;?>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div><!-- /.widget-user -->
+                            </div><!-- /.col -->
+
                         </div>
 						<?php
 						$backlinks = array();
