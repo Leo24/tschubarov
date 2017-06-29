@@ -901,7 +901,7 @@ $fields = get_fields();
             </div>
             <div id="<?php echo $value->post_name;?>" style="display:none; max-width: 300px">
 				<?php foreach($gallery['items'] as $k => $item):?>
-                    <img alt="<?php echo $item['title'];?>" src="<?php echo $item['image']['size']['url'];?>"
+                    <img alt="<?php echo $item['title'];?>" src="<?php echo $item['image']['sizes']['50x50'];?>"
                          data-image="<?php echo $item['image']['url'];?>"
                          data-description="<?php echo $item['description'];?>">
 				<?php endforeach;?>
@@ -926,7 +926,7 @@ $fields = get_fields();
             tile_textpanel_always_on:false,
             lightbox_textpanel_enable_title: true,
             lightbox_textpanel_enable_description: true,
-            theme_bullets_margin_top: 10,
+            theme_bullets_margin_top: 10
 
         });
 		<?php endforeach; ?>
