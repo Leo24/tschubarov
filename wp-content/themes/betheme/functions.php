@@ -570,7 +570,7 @@ function custom_update_google_data_button(){
 	if($post->post_type == 'seo-client-reports'){
 		$html  = '<div id="major-publishing-actions" style="overflow:hidden">';
 		$html .= '<div id="update-google-page-speed-action">';
-		$html .= '<input type="button" accesskey="p" tabindex="1" value="Update Google PageSpeed Data" class="button-primary" id="update-google-page-speed-data" name="publish" data-url="'.get_home_url().'/wp-admin/admin-ajax.php" data-post-id="'.$post->ID.'">';
+		$html .= '<input type="button" accesskey="p" tabindex="1" value="Update Google PageSpeed Data" class="button-primary" id="update-google-page-speed-data" name="publish" data-image-url="'.get_home_url().'/wp-content/themes/betheme/images/shop-loader.gif" data-url="'.get_home_url().'/wp-admin/admin-ajax.php" data-post-id="'.$post->ID.'">';
 		$html .= '</div>';
 		$html .= '</div>';
 		echo $html;
