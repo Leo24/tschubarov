@@ -31,10 +31,10 @@ function addSiteToSERanking($websiteUrl){
 	$apiUrl = 'http://online.seranking.com/structure/clientapi/v2.php?method=addSite&token='.$authToken;
 	$curlHandler = curl_init($apiUrl);
 	curl_setopt($curlHandler, CURLOPT_POST, 1);
-	$data = [
+	$data = array(
 		'url' => $websiteUrl,
 		'title' => removehttp($websiteUrl),
-	];
+	);
 	curl_setopt($curlHandler, CURLOPT_POSTFIELDS, http_build_query(array('data' => json_encode($data))));
 	curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, true);
 	$result = curl_exec($curlHandler);
@@ -53,10 +53,10 @@ function addSiteKeywordsToSERanking($siteID, $keywords){
 	$apiUrl = 'http://online.seranking.com/structure/clientapi/v2.php?method=addSiteKeywords&token='.$authToken;
 	$curlHandler = curl_init($apiUrl);
 	curl_setopt($curlHandler, CURLOPT_POST, 1);
-	$data = [
+	$data = array(
 		'siteid' => $siteID,
 		'keywords' => $keywords,
-	];
+	);
 	curl_setopt($curlHandler, CURLOPT_POSTFIELDS, http_build_query(array('data' => json_encode($data))));
 	curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, true);
 	$result = curl_exec($curlHandler);

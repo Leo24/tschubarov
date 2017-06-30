@@ -24,7 +24,7 @@ $team_posts = get_posts(
 	)
 );
 $postID = $posts_array[0]->ID;
-$reportFields = $postID;
+$reportFields = get_fields($postID);
 $teamFields = get_fields($team_posts[0]->ID);
 $seoApiCreads = getSeoApiCreads();
 
@@ -281,8 +281,8 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 											'fuid'  => 'Links to Subdomain',
 											'ueid'  => 'External Equity Links',
 											'ujid'  => 'Total Equity Links',
-											'ped'   => 'External links to root domain',
-											'pib'   => 'Linking C Blocks',
+//											'ped'   => 'External links to root domain',
+//											'pib'   => 'Linking C Blocks',
 											'fejp'  => 'MozRank: Subdomain, External Equity',
 											'feid'  => 'Subdomain External Links',
 											'ftrp'  => 'MozTrust: Subdomain',
@@ -291,7 +291,10 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 										);
 
 										//list of needed fields, it is used for removing extra fields that are returned by MOZ API
-										$urlMetricsList = array('upa', 'umrp', 'utrp', 'fuid', 'ueid', 'ujid', 'ped', 'pib', 'fejp', 'feid', 'ftrp',
+										$urlMetricsList = array('upa', 'umrp', 'utrp', 'fuid', 'ueid', 'ujid',
+//                                            'ped',
+//                                            'pib',
+                                            'fejp', 'feid', 'ftrp',
 //                                            'fspsc',
 											'pda');
 										$recNew = array();
