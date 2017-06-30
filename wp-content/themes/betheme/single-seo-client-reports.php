@@ -23,15 +23,15 @@ $team_posts = get_posts(
 		'post_type' => 'seo-team-members',
 	)
 );
-
-$reportFields = get_fields($posts_array[0]->ID);
+$postID = $posts_array[0]->ID;
+$reportFields = $postID;
 $teamFields = get_fields($team_posts[0]->ID);
 $seoApiCreads = getSeoApiCreads();
 
-$pageSpeedDataBeforeData = get_post_meta($posts_array[0]->ID, 'googlePageSpeedDataBefore');
-$pageSpeedDataAfterData = get_post_meta($posts_array[0]->ID, 'googlePageSpeedDataAfter');
-$pageSpeedDataBefore = json_decode($pageSpeedDataBeforeData[0], true);
-$pageSpeedDataAfter = json_decode($pageSpeedDataAfterData[0], true);
+$pageSpeedDataBeforeMeta = get_post_meta($posts_array[0]->ID, 'googlePageSpeedDataBefore');
+$pageSpeedDataAfterMeta = get_post_meta($posts_array[0]->ID, 'googlePageSpeedDataAfter');
+$pageSpeedDataBefore = json_decode($pageSpeedDataBeforeMeta[0], true);
+$pageSpeedDataAfter = json_decode($pageSpeedDataAfterMeta[0], true);
 $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $reportFields['se_keyword_statistics_start_date'], $reportFields['se_keyword_statistics_end_date']);
 ?>
 
@@ -417,12 +417,9 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                         </div>
 
 						<?php
-						$backlinks = array();
-						foreach ($reportFields as $key => $value) {
-							if(strpos($key, '_backlink')){
-								$backlinks[$key] = $value;
-							}
-						} ?>
+						$backlinks = get_post_meta($postID, 'backlinks');
+						$backlinks = json_decode($backlinks[0], true);
+						?>
                         <div class="box-body">
 							<?php $icons = array(
 								'0' => 'ion ion-stats-bars',
@@ -477,7 +474,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 
                                                 <div class="box-header with-border">
 
-                                                    <span class="info-box-icon"><i class="fa <?php echo $backlinksIcons[$iconKey ];?>"></i></span>
+                                                    <span class="info-box-icon"><i class="fa <?php echo $backlinksIcons[$iconKey];?>"></i></span>
                                                     <div class="info-box-content">
                                                         <span class="info-box-text"><?php echo $title; ?></span>
                                                         <span class="info-box-number"><?php echo count($value);?></span>
@@ -493,10 +490,11 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                                                     <div>
                                                         <ul>
 															<?php foreach($value as $i => $v):?>
-																<?php if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v[$key], $matches, PREG_OFFSET_CAPTURE)):?>
-                                                                    <li><a href="<?php echo $v[$key]; ?>" target="_blank"><?php echo '<span class="link-number">'.($i+1).'.</span>'.$v[$key]; ?></a></li>
+																<?php $v = strip_tags($v);
+                                                                if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v, $matches, PREG_OFFSET_CAPTURE)):?>
+                                                                    <li><a href="<?php echo $v; ?>" target="_blank"><?php echo '<span class="link-number">'.($i+1).'.</span>'.$v; ?></a></li>
 																<?php else:?>
-                                                                    <li><a href="#"><?php echo '<span class="link-number">'.($i+1).'.</span>'.$v[$key]; ?></a></li>
+                                                                    <li><a href="#"><?php echo '<span class="link-number">'.($i+1).'.</span>'.$v; ?></a></li>
 																<?php endif;?>
 															<?php endforeach;?>
                                                         </ul>

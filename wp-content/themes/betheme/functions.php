@@ -494,3 +494,30 @@ function get_moz_api_data($accessID, $secretKey, $objectURL, $cols){
 }
 
 
+function handle_backlinks_on_acf_save_post() {
+
+	$postID = get_the_ID();
+	$backlinks = array();
+	$fields = get_fields($postID);
+	foreach ($fields as $key => $value) {
+		if(strpos($key, '_backlink')){
+			$value = textareaToArray($value);
+			$backlinks[$key] = $value;
+		}
+	}
+
+	$backlinks = json_encode($backlinks);
+
+	if ( ! add_post_meta( $postID, 'backlinks', $backlinks, true ) ) {
+		update_post_meta( $postID, 'backlinks', $backlinks );
+	}
+
+
+	return;
+
+
+}
+
+add_action('acf/save_post', 'handle_backlinks_on_acf_save_post', 20);
+
+
