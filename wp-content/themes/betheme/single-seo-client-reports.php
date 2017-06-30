@@ -32,7 +32,7 @@ $pageSpeedDataBeforeData = get_post_meta($posts_array[0]->ID, 'googlePageSpeedDa
 $pageSpeedDataAfterData = get_post_meta($posts_array[0]->ID, 'googlePageSpeedDataAfter');
 $pageSpeedDataBefore = json_decode($pageSpeedDataBeforeData[0], true);
 $pageSpeedDataAfter = json_decode($pageSpeedDataAfterData[0], true);
-
+$seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $reportFields['se_keyword_statistics_start_date'], $reportFields['se_keyword_statistics_end_date']);
 ?>
 
 <!DOCTYPE html>
@@ -368,45 +368,47 @@ $pageSpeedDataAfter = json_decode($pageSpeedDataAfterData[0], true);
 
                     <div id="tabs-2">
                         <!-- Box Comment -->
-                        <div class="box box-widget">
-                            <div class='box-header with-border'>
-                                <div class='user-block'>
-                                    <span class='username'>Keywords&Rankings</span>
-                                </div><!-- /.user-block -->
+                        <div class="col-sm-8">
 
-                            </div><!-- /.box-header -->
-                            <div class='box-body'>
-                                <img class="img-responsive pad" src="<?php echo $reportFields['top_keywords_the_first_3_months']['url'];?>" alt="<?php echo $reportFields['page_metrics_screenshot']['title'];?>">
-                            </div><!-- /.box-body -->
+                            <div class="box box-widget">
+                                <div class='box-header with-border'>
+                                    <div class='user-block'>
+                                        <span class='username'>Keywords&Rankings</span>
+                                    </div><!-- /.user-block -->
+                                </div><!-- /.box-header -->
 
-                            <div class='box-header with-border'>
-                                <div class='user-block'>
-                                    <span class='username'>Location: <?php echo $reportFields['location'];?></span>
-                                </div><!-- /.user-block -->
-                            </div><!-- /.box-header -->
+                                <div class="box-body table-responsive no-padding competitors">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th class="col-sm-1">#</th>
+                                            <th class="col-sm-2">Keyword name</th>
+                                            <th class="col-sm-2">Date</th>
+                                            <th class="col-sm-1">Price</th>
+                                            <th class="col-sm-1">Change</th>
+                                            <th class="col-sm-4">Position</th>
+                                        </tr>
+                                        <tr>
+                                        <tr>
+											<?php foreach($seRankingKeywordsData[0]['keywords'] as $k => $keyword): ?>
+                                            <td class="col-sm-1"><?php echo $k+1; ?></td>
+                                            <td class="col-sm-2"><?php echo $keyword['keyword_name'];?></td>
+                                            <td class="col-sm-2"><?php echo $keyword['positions'][0]['date'];?></td>
+                                            <td class="col-sm-1"><span class="badge bg-light-blue"><?php echo $keyword['positions'][0]['price'];?></span></td>
+                                            <td class="col-sm-1"><span class="badge bg-green"><?php echo $keyword['positions'][0]['change'];?></span></td>
+                                            <td class="col-sm-4">
+                                                <p><span class="badge bg-yellow"><?php echo $keyword['positions'][0]['pos'];?></span></p>
+                                                <div class="progress progress-xs">
+                                                    <div class="progress-bar progress-bar-yellow" style="width: <?php echo $keyword['positions'][0]['pos'];?>%"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+										<?php endforeach;?>
+                                    </table>
+                                </div><!-- /.box-body -->
 
-                            <div class='box-header with-border'>
-                                <div class='user-block'>
-                                    <span class='username'>Google Rankins</span>
-                                    <span class='description'>Date - <?php echo $reportFields['google_rankings_date'];?></span>
-                                </div><!-- /.user-block -->
-                            </div><!-- /.box-header -->
-                            <div class='box-body'>
-                                <img class="img-responsive pad" src="<?php echo $reportFields['google_rankings']['url'];?>" alt="<?php echo $reportFields['page_metrics_screenshot']['title'];?>">
                             </div>
 
-                            <div class='box-header with-border'>
-                                <div class='user-block'>
-                                    <span class='username'>Google Rankings Position</span>
-                                </div>
-                            </div>
 
-							<?php foreach($reportFields['google_rankings_position'] as $position): ?>
-                                <div class='box-body'>
-                                    <span class='description'>Date: <?php echo $position['date']; ?></span>
-                                    <img class="img-responsive pad" src="<?php echo $position['google_ranking_screenshot']['url'];?>" alt="<?php echo $reportFields['page_metrics_screenshot']['title'];?>">
-                                </div>
-							<?php endforeach;?>
                         </div>
                     </div>
                     <div id="tabs-3">
@@ -669,44 +671,44 @@ $pageSpeedDataAfter = json_decode($pageSpeedDataAfterData[0], true);
                             <div class="box-header with-border">
                                 <h3 class="box-title">Before <?php echo $reportFields['date_before']; ?></h3>
                             </div><!-- /.box-header -->
-                                <div class="col-md-6 col-sm-6 col-xs-12 ">
-                                    <div class="info-box bg-yellow">
-                                        <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">General Page Speed before optimization</span>
-                                            <span class="info-box-number"><?php echo $pageSpeedDataBefore['ruleGroups']['SPEED']['score'];?>%</span>
-                                            <div class="progress">
-                                                <div class="progress-bar" style="width: <?php echo $pageSpeedDataBefore['ruleGroups']['SPEED']['score'];?>%"></div>
-                                            </div>
-                                            <span class="progress-description"></span>
-                                        </div><!-- /.info-box-content -->
-                                    </div><!-- /.info-box -->
-
-                                    <div class="box box-widget widget-user-2">
-                                        <h3 class="widget-user-desc">Possible Optimizations</h3>
-                                        <div class="box-footer no-padding">
-                                            <div class="box-footer no-padding">
-                                                <ul class="nav nav-stacked">
-				                                    <?php foreach($pageSpeedDataBefore['formattedResults']['ruleResults'] as $k=> $v):?>
-                                                        <li><a href="#"><?php echo $v['localizedRuleName'];?><span class="pull-right badge <?php if($v['ruleImpact'] > 2){echo 'bg-red';}else{echo 'bg-yellow';} ?>"><?php echo $v['ruleImpact'];?></span></a></li>
-				                                    <?php endforeach;?>
-                                                </ul>
-                                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 ">
+                                <div class="info-box bg-yellow">
+                                    <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">General Page Speed before optimization</span>
+                                        <span class="info-box-number"><?php echo $pageSpeedDataBefore['ruleGroups']['SPEED']['score'];?>%</span>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: <?php echo $pageSpeedDataBefore['ruleGroups']['SPEED']['score'];?>%"></div>
                                         </div>
-                                        <!-- Add the bg color to the header using any of the bg-* classes -->
-                                        <h3 class="widget-user-desc">Google Page Stats</h3>
-                                        <div class="box-footer no-padding">
-                                            <div class="box-footer no-padding">
-                                                <ul class="nav nav-stacked">
-			                                        <?php foreach($pageSpeedDataBefore['pageStats'] as $k=> $v):?>
-                                                        <li><a href="#"><?php echo $k;?><span class="pull-right badge bg-yellow"><?php echo $v;?></span></a></li>
-			                                        <?php endforeach;?>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        <span class="progress-description"></span>
+                                    </div><!-- /.info-box-content -->
+                                </div><!-- /.info-box -->
 
-                                    </div><!-- /.widget-user -->
-                                </div><!-- /.col -->
+                                <div class="box box-widget widget-user-2">
+                                    <h3 class="widget-user-desc">Possible Optimizations</h3>
+                                    <div class="box-footer no-padding">
+                                        <div class="box-footer no-padding">
+                                            <ul class="nav nav-stacked">
+												<?php foreach($pageSpeedDataBefore['formattedResults']['ruleResults'] as $k=> $v):?>
+                                                    <li><a href="#"><?php echo $v['localizedRuleName'];?><span class="pull-right badge <?php if($v['ruleImpact'] > 2){echo 'bg-red';}else{echo 'bg-yellow';} ?>"><?php echo $v['ruleImpact'];?></span></a></li>
+												<?php endforeach;?>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                                    <h3 class="widget-user-desc">Google Page Stats</h3>
+                                    <div class="box-footer no-padding">
+                                        <div class="box-footer no-padding">
+                                            <ul class="nav nav-stacked">
+												<?php foreach($pageSpeedDataBefore['pageStats'] as $k=> $v):?>
+                                                    <li><a href="#"><?php echo $k;?><span class="pull-right badge bg-yellow"><?php echo $v;?></span></a></li>
+												<?php endforeach;?>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div><!-- /.widget-user -->
+                            </div><!-- /.col -->
 
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
@@ -726,9 +728,9 @@ $pageSpeedDataAfter = json_decode($pageSpeedDataAfterData[0], true);
                                     <div class="box-footer no-padding">
                                         <div class="box-footer no-padding">
                                             <ul class="nav nav-stacked">
-				                                <?php foreach($pageSpeedDataAfter['formattedResults']['ruleResults'] as $k=> $v):?>
+												<?php foreach($pageSpeedDataAfter['formattedResults']['ruleResults'] as $k=> $v):?>
                                                     <li><a href="#"><?php echo $v['localizedRuleName'];?><span class="pull-right badge <?php if($v['ruleImpact'] > 2){echo 'bg-yellow';}else{echo 'bg-green';} ?>"><?php echo $v['ruleImpact'];?></span></a></li>
-				                                <?php endforeach;?>
+												<?php endforeach;?>
                                             </ul>
                                         </div>
                                     </div>
@@ -737,9 +739,9 @@ $pageSpeedDataAfter = json_decode($pageSpeedDataAfterData[0], true);
                                     <div class="box-footer no-padding">
                                         <div class="box-footer no-padding">
                                             <ul class="nav nav-stacked">
-					                            <?php foreach($pageSpeedDataAfter['pageStats'] as $k=> $v):?>
+												<?php foreach($pageSpeedDataAfter['pageStats'] as $k=> $v):?>
                                                     <li><a href="#"><?php echo $k;?><span class="pull-right badge bg-green"><?php echo $v;?></span></a></li>
-					                            <?php endforeach;?>
+												<?php endforeach;?>
                                             </ul>
                                         </div>
                                     </div>
