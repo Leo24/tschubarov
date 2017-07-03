@@ -421,7 +421,7 @@ function wpcf7_create_seo_report() {
 
 	if ($wpcf) {
 		//If you want to skip mailing the data, you can do it...
-		$wpcf->skip_mail = true;
+//		$wpcf->skip_mail = true;
 	}
 
 	return $wpcf;
