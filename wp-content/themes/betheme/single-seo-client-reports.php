@@ -116,7 +116,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                 <li><a href="#tabs-3"><i class="fa fa-pie-chart"></i><span>Backlinks</span></a></li>
                 <li><a href="#tabs-4"><i class="fa fa-share"></i><span>Backlinks - Tier 2&3</span></a></li>
                 <li><a href="#tabs-5"><i class="fa fa-book"></i><span>Tasks</span></a></li>
-                <li><a href="#tabs-6"><i class="fa fa-twitch"></i><span>Website Health Status</span></a></li>
+                <li><a href="#tabs-6"><i class="fa fa-twitch"></i><span>Website Health and Status</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -146,7 +146,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                         <li><a href="#tabs-3">Backlinks</a></li>
                         <li><a href="#tabs-4">Backlinks - Tier 2&3</a></li>
                         <li><a href="#tabs-5">Tasks</a></li>
-                        <li><a href="#tabs-6">Website Health Status</a></li>
+                        <li><a href="#tabs-6">Website Health and Status</a></li>
                     </ul>
 
                     <div id="tabs-1">
@@ -294,7 +294,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 										$urlMetricsList = array('upa', 'umrp', 'utrp', 'fuid', 'ueid', 'ujid',
 //                                            'ped',
 //                                            'pib',
-                                            'fejp', 'feid', 'ftrp',
+											'fejp', 'feid', 'ftrp',
 //                                            'fspsc',
 											'pda');
 										$recNew = array();
@@ -379,38 +379,76 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                                         <span class='username'>Keywords&Rankings</span>
                                     </div><!-- /.user-block -->
                                 </div><!-- /.box-header -->
-
-                                <div class="box-body table-responsive no-padding competitors">
-                                    <table class="table table-bordered">
-                                        <tr>
-                                            <th class="col-sm-1">#</th>
-                                            <th class="col-sm-2">Keyword name</th>
-                                            <th class="col-sm-2">Date</th>
-                                            <th class="col-sm-1">Price</th>
-                                            <th class="col-sm-1">Change</th>
-                                            <th class="col-sm-4">Position</th>
-                                        </tr>
-                                        <tr>
-                                        <tr>
-											<?php foreach($seRankingKeywordsData[0]['keywords'] as $k => $keyword): ?>
-                                            <td class="col-sm-1"><?php echo $k+1; ?></td>
-                                            <td class="col-sm-2"><?php echo $keyword['keyword_name'];?></td>
-                                            <td class="col-sm-2"><?php echo $keyword['positions'][0]['date'];?></td>
-                                            <td class="col-sm-1"><span class="badge bg-light-blue"><?php echo $keyword['positions'][0]['price'];?></span></td>
-                                            <td class="col-sm-1"><span class="badge bg-green"><?php echo $keyword['positions'][0]['change'];?></span></td>
-                                            <td class="col-sm-4">
-                                                <p><span class="badge bg-yellow"><?php echo $keyword['positions'][0]['pos'];?></span></p>
-                                                <div class="progress progress-xs">
-                                                    <div class="progress-bar progress-bar-yellow" style="width: <?php echo $keyword['positions'][0]['pos'];?>%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-										<?php endforeach;?>
-                                    </table>
-                                </div><!-- /.box-body -->
-
                             </div>
 
+                            <div class="box box-widget">
+                                <div class='box-body'>
+                                    <img class="img-responsive pad" src="<?php echo $reportFields['top_keywords_the_first_3_months']['url'];?>" alt="<?php echo $reportFields['page_metrics_screenshot']['title'];?>">
+
+                                    <div class='box-header with-border'>
+                                        <div class='user-block'>
+                                            <span class='username'>Location: <?php echo $reportFields['location'];?></span>
+                                        </div><!-- /.user-block -->
+                                    </div><!-- /.box-header -->
+
+                                    <div class='box-header with-border'>
+                                        <div class='user-block'>
+                                            <span class='username'>Google Rankins</span>
+                                            <span class='description'>Date - <?php echo $reportFields['google_rankings_date'];?></span>
+                                        </div><!-- /.user-block -->
+                                    </div><!-- /.box-header -->
+                                    <div class='box-body'>
+                                        <img class="img-responsive pad" src="<?php echo $reportFields['google_rankings']['url'];?>" alt="<?php echo $reportFields['page_metrics_screenshot']['title'];?>">
+                                    </div>
+
+                                    <div class='box-header with-border'>
+                                        <div class='user-block'>
+                                            <span class='username'>Google Rankings Position</span>
+                                        </div>
+                                    </div>
+
+									<?php foreach($reportFields['google_rankings_position'] as $position): ?>
+                                        <div class='box-body'>
+                                            <span class='description'>Date: <?php echo $position['date']; ?></span>
+                                            <img class="img-responsive pad" src="<?php echo $position['google_ranking_screenshot']['url'];?>" alt="<?php echo $reportFields['page_metrics_screenshot']['title'];?>">
+                                        </div>
+									<?php endforeach;?>
+                                </div><!-- /.box-body -->
+                            </div>
+
+                            <div class="box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">SERankins keywords statistics</h3>
+                            </div>
+                            <div class="box-body table-responsive no-padding competitors">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th class="col-sm-1">#</th>
+                                        <th class="col-sm-2">Keyword name</th>
+                                        <th class="col-sm-2">Date</th>
+                                        <th class="col-sm-1">Price</th>
+                                        <th class="col-sm-1">Change</th>
+                                        <th class="col-sm-4">Position</th>
+                                    </tr>
+                                    <tr>
+                                    <tr>
+				                        <?php foreach($seRankingKeywordsData[0]['keywords'] as $k => $keyword): ?>
+                                        <td class="col-sm-1"><?php echo $k+1; ?></td>
+                                        <td class="col-sm-2"><?php echo $keyword['keyword_name'];?></td>
+                                        <td class="col-sm-2"><?php echo $keyword['positions'][0]['date'];?></td>
+                                        <td class="col-sm-1"><span class="badge bg-light-blue"><?php echo $keyword['positions'][0]['price'];?></span></td>
+                                        <td class="col-sm-1"><span class="badge bg-green"><?php echo $keyword['positions'][0]['change'];?></span></td>
+                                        <td class="col-sm-4">
+                                            <p><span class="badge bg-yellow"><?php echo $keyword['positions'][0]['pos'];?></span></p>
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar progress-bar-yellow" style="width: <?php echo $keyword['positions'][0]['pos'];?>%"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+			                        <?php endforeach;?>
+                                </table>
+                            </div><!-- /.box-body -->
+                            </div>
 
                         </div>
                     </div>
@@ -494,7 +532,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                                                         <ul>
 															<?php foreach($value as $i => $v):?>
 																<?php $v = strip_tags($v);
-                                                                if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v, $matches, PREG_OFFSET_CAPTURE)):?>
+																if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v, $matches, PREG_OFFSET_CAPTURE)):?>
                                                                     <li><a href="<?php echo $v; ?>" target="_blank"><?php echo '<span class="link-number">'.($i+1).'.</span>'.$v; ?></a></li>
 																<?php else:?>
                                                                     <li><a href="#"><?php echo '<span class="link-number">'.($i+1).'.</span>'.$v; ?></a></li>
@@ -663,15 +701,33 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                     </div>
 
                     <div id="tabs-6">
-                        <div class='box-header with-border'>
-                            <h3 class="widget-user-username">Website Health Status</h3>
-                            <h5 class="widget-user-desc">Google PageSpeed Insights</h5>
-                        </div><!-- /.box-header -->
-                        <div class="row">
 
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Before <?php echo $reportFields['date_before']; ?></h3>
-                            </div><!-- /.box-header -->
+                        <div class="row margin-bottom-80">
+                            <div class="col-md-12 reports">
+                                <div class="col-md-6 report before">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Before <?php echo $reportFields['date_before']; ?></h3>
+                                    </div>
+                                    <object data="<?php echo $reportFields['report_before']['url']; ?>" type="application/pdf" width="100%" height="100%">
+                                        <p><?php echo $reportFields['report_before']['title']; ?><a href="<?php echo $reportFields['report_before']['url']; ?>">to the PDF!</a></p>
+                                    </object>
+                                </div>
+                                <div class="col-md-6 report after">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">After <?php echo $reportFields['date_after']; ?></h3>
+                                    </div>
+                                    <object data="<?php echo $reportFields['report_after']['url']; ?>" type="application/pdf" width="100%" height="100%">
+                                        <p><?php echo $reportFields['report_before']['title']; ?><a href="<?php echo $reportFields['report_before']['url']; ?>">to the PDF!</a></p>
+                                    </object>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class='box-header with-border'>
+                                <h3 class="widget-user-username">Website Health and Status</h3>
+                                <h5 class="widget-user-desc">Google PageSpeed Insights</h5>
+                            </div>
                             <div class="col-md-6 col-sm-6 col-xs-12 ">
                                 <div class="info-box bg-yellow">
                                     <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
