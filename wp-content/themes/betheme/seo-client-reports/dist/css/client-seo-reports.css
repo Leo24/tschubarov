@@ -80,9 +80,10 @@
     height: 750px;
 }
 
-.box .box-header.with-border.task{
-    background: #E2E4E6;
-}
+/*.box .box-header.with-border.task{*/
+    /*background: #E2E4E6;*/
+/*}*/
+
 .task-checkbox{
     padding-right: 10px;
     float: left;
@@ -102,4 +103,19 @@
 
 .margin-bottom-80{
     margin-bottom: 80px;
+}
+.trello-board{
+    background-color: #0079BE;
+    padding-top: 30px;
+}
+.trello-board .box{
+    border-top: none;
+    margin-bottom: 6px;
+}
+.trello-board .info-box-text{
+    text-transform: none;
+}
+.trello-board p.box-title{
+    padding-bottom: 15px;
+    font-weight: bold;
 }

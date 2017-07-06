@@ -151,7 +151,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 
                     <div id="tabs-1">
                         <div class="box box-widget">
-                            <div class='box-header with-border'>
+                            <div class='box-header '>
                                 <div class='user-block'>
                                     <span class='username'>Authority and Page Link Metrics</span>
                                 </div><!-- /.user-block -->
@@ -235,7 +235,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                             </div>
                         </div>
                         <div class="box box-widget">
-                            <div class='box-header with-border'>
+                            <div class='box-header '>
                                 <div class='user-block'>
                                     <span class='username'>Visits statistics</span>
                                 </div><!-- /.user-block -->
@@ -255,7 +255,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="box">
-                                    <div class='box-header with-border'>
+                                    <div class='box-header '>
                                         <div class='user-block'>
                                             <span class='username'>Competition Analisys</span>
                                         </div><!-- /.user-block -->
@@ -341,7 +341,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                             <div class="col-md-4">
                                 <!-- USERS LIST -->
                                 <div class="box box-primary">
-                                    <div class="box-header with-border">
+                                    <div class="box-header ">
                                         <h3 class="box-title">Our team</h3>
                                         <div class="box-tools pull-right">
                                             <!--                                                <span class="label label-danger">--><?php //echo count($teamFields['team_member']);?><!-- Team Members</span>-->
@@ -372,81 +372,78 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                     <div id="tabs-2">
                         <!-- Box Comment -->
                         <div class="col-sm-8">
-
-                            <div class="box box-widget">
-                                <div class='box-header with-border'>
-                                    <div class='user-block'>
-                                        <span class='username'>Keywords&Rankings</span>
-                                    </div><!-- /.user-block -->
-                                </div><!-- /.box-header -->
+                            <div class='box-header '>
+                                <h3 class="box-title">Keywords&Rankings</h3>
                             </div>
 
                             <div class="box box-widget">
                                 <div class='box-body'>
                                     <img class="img-responsive pad" src="<?php echo $reportFields['top_keywords_the_first_3_months']['url'];?>" alt="<?php echo $reportFields['page_metrics_screenshot']['title'];?>">
-
-                                    <div class='box-header with-border'>
-                                        <div class='user-block'>
-                                            <span class='username'>Location: <?php echo $reportFields['location'];?></span>
-                                        </div><!-- /.user-block -->
-                                    </div><!-- /.box-header -->
-
-                                    <div class='box-header with-border'>
-                                        <div class='user-block'>
-                                            <span class='username'>Google Rankins</span>
-                                            <span class='description'>Date - <?php echo $reportFields['google_rankings_date'];?></span>
-                                        </div><!-- /.user-block -->
-                                    </div><!-- /.box-header -->
-                                    <div class='box-body'>
-                                        <img class="img-responsive pad" src="<?php echo $reportFields['google_rankings']['url'];?>" alt="<?php echo $reportFields['page_metrics_screenshot']['title'];?>">
-                                    </div>
-
-                                    <div class='box-header with-border'>
-                                        <div class='user-block'>
-                                            <span class='username'>Google Rankings Position</span>
-                                        </div>
-                                    </div>
-
-									<?php foreach($reportFields['google_rankings_position'] as $position): ?>
-                                        <div class='box-body'>
-                                            <span class='description'>Date: <?php echo $position['date']; ?></span>
-                                            <img class="img-responsive pad" src="<?php echo $position['google_ranking_screenshot']['url'];?>" alt="<?php echo $reportFields['page_metrics_screenshot']['title'];?>">
-                                        </div>
-									<?php endforeach;?>
                                 </div><!-- /.box-body -->
                             </div>
 
-                            <div class="box">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">SERankins keywords statistics</h3>
+                            <div class='box-header'>
+                                <h3 class="box-title">Location: <?php echo $reportFields['location'];?></h3>
+                            </div>
+
+                            <div class='box-header '>
+                                <h3 class="box-title">Google Rankins Date - <?php echo $reportFields['google_rankings_date'];?></h3>
+                            </div>
+
+                            <div class="box box-widget">
+                                <div class='box-body'>
+                                    <img class="img-responsive pad" src="<?php echo $reportFields['google_rankings']['url'];?>" alt="<?php echo $reportFields['page_metrics_screenshot']['title'];?>">
                                 </div>
+                            </div>
+
+                            <div class='box-header '>
+                                <h3 class="box-title">Google Rankings Position:</h3>
+                            </div>
+
+							<?php foreach($reportFields['google_rankings_position'] as $position): ?>
+                                <div class="box box-widget">
+                                    <div class='box-body'>
+                                        <span class='description'>Date: <?php echo $position['date']; ?></span>
+                                        <img class="img-responsive pad" src="<?php echo $position['google_ranking_screenshot']['url'];?>" alt="<?php echo $reportFields['page_metrics_screenshot']['title'];?>">
+                                    </div>
+                                </div>
+							<?php endforeach;?>
+
+                            <div class="box-header ">
+                                <h3 class="box-title">SERankins keywords statistics</h3>
+                            </div>
+                            <div class="box">
                                 <div class="box-body table-responsive no-padding competitors">
-                                    <table class="table table-bordered">
-                                        <tr>
-                                            <th class="col-sm-1">#</th>
-                                            <th class="col-sm-2">Keyword name</th>
-                                            <th class="col-sm-2">Date</th>
-                                            <th class="col-sm-1">Price</th>
-                                            <th class="col-sm-1">Change</th>
-                                            <th class="col-sm-4">Position</th>
-                                        </tr>
-                                        <tr>
-                                        <tr>
+									<?php if(is_array($seRankingKeywordsData[0]['keywords']) && !empty($seRankingKeywordsData[0]['keywords'])):?>
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th class="col-sm-1">#</th>
+                                                <th class="col-sm-2">Keyword name</th>
+                                                <th class="col-sm-2">Date</th>
+                                                <th class="col-sm-1">Price</th>
+                                                <th class="col-sm-1">Change</th>
+                                                <th class="col-sm-4">Position</th>
+                                            </tr>
+
 											<?php foreach($seRankingKeywordsData[0]['keywords'] as $k => $keyword): ?>
-                                            <td class="col-sm-1"><?php echo $k+1; ?></td>
-                                            <td class="col-sm-2"><?php echo $keyword['keyword_name'];?></td>
-                                            <td class="col-sm-2"><?php echo $keyword['positions'][0]['date'];?></td>
-                                            <td class="col-sm-1"><span class="badge bg-light-blue"><?php echo $keyword['positions'][0]['price'];?></span></td>
-                                            <td class="col-sm-1"><span class="badge bg-green"><?php echo $keyword['positions'][0]['change'];?></span></td>
-                                            <td class="col-sm-4">
-                                                <p><span class="badge bg-yellow"><?php echo $keyword['positions'][0]['pos'];?></span></p>
-                                                <div class="progress progress-xs">
-                                                    <div class="progress-bar progress-bar-yellow" style="width: <?php echo $keyword['positions'][0]['pos'];?>%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-										<?php endforeach;?>
-                                    </table>
+                                                <tr>
+                                                    <td class="col-sm-1"><?php echo $k+1; ?></td>
+                                                    <td class="col-sm-2"><?php echo $keyword['keyword_name'];?></td>
+                                                    <td class="col-sm-2"><?php echo $keyword['positions'][0]['date'];?></td>
+                                                    <td class="col-sm-1"><span class="badge bg-light-blue"><?php echo $keyword['positions'][0]['price'];?></span></td>
+                                                    <td class="col-sm-1"><span class="badge bg-green"><?php echo $keyword['positions'][0]['change'];?></span></td>
+                                                    <td class="col-sm-4">
+                                                        <p><span class="badge bg-yellow"><?php echo $keyword['positions'][0]['pos'];?></span></p>
+                                                        <div class="progress progress-xs">
+                                                            <div class="progress-bar progress-bar-yellow" style="width: <?php echo $keyword['positions'][0]['pos'];?>%"></div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+											<?php endforeach;?>
+                                        </table>
+									<?php else:?>
+                                        <p>No keywords statistics found, yet.</p>
+									<?php endif;?>
                                 </div><!-- /.box-body -->
                             </div>
 
@@ -501,62 +498,59 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                             <div class="row">
                                 <div class="col-sm-8 col-centered">
 									<?php $count = 0;?>
-									<?php foreach($backlinks as $key => $value): ?>
-										<?php
+									<?php if(is_array($backlinks) && !empty($backlinks)):?>
+										<?php foreach($backlinks as $key => $value): ?>
+											<?php
+											$title = ucwords(str_replace('backlink', '', str_replace('_', ' ', $key)));
+											$iconKey = $key;
+											$key = str_replace('_backlink', '', $key);
+											?>
 
-										$title = ucwords(str_replace('backlink', '', str_replace('_', ' ', $key)));
-										$iconKey = $key;
-										$key = str_replace('_backlink', '', $key);
-										?>
-
-
-                                        <div class="col-md-4 col-sm-6 col-xs-12">
-                                            <div class="info-box bg-green box box-default collapsed-box box-backlink">
-
-                                                <div class="box-header with-border">
-
-                                                    <span class="info-box-icon"><i class="fa <?php echo $backlinksIcons[$iconKey];?>"></i></span>
-                                                    <div class="info-box-content">
-                                                        <span class="info-box-text"><?php echo $title; ?></span>
-                                                        <span class="info-box-number"><?php echo count($value);?></span>
-                                                        <div class="progress">
-                                                            <div class="progress-bar" style="width: 100%"></div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="info-box bg-green box box-default collapsed-box box-backlink">
+                                                    <div class="box-header ">
+                                                        <span class="info-box-icon"><i class="fa <?php echo $backlinksIcons[$iconKey];?>"></i></span>
+                                                        <div class="info-box-content">
+                                                            <span class="info-box-text"><?php echo $title; ?></span>
+                                                            <span class="info-box-number"><?php echo count($value);?></span>
+                                                            <div class="progress">
+                                                                <div class="progress-bar" style="width: 100%"></div>
+                                                            </div>
+                                                            <div class="box-tools pull-right">
+                                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                                            </div><!-- /.box-tools -->
                                                         </div>
-                                                        <div class="box-tools pull-right">
-                                                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                                                        </div><!-- /.box-tools -->
                                                     </div>
-                                                </div>
-                                                <div class="box-body">
-                                                    <div>
-                                                        <ul>
-															<?php foreach($value as $i => $v):?>
-																<?php $v = strip_tags($v);
-																if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v, $matches, PREG_OFFSET_CAPTURE)):?>
-                                                                    <li><a href="<?php echo $v; ?>" target="_blank"><?php echo '<span class="link-number">'.($i+1).'.</span>'.$v; ?></a></li>
-																<?php else:?>
-                                                                    <li><a href="#"><?php echo '<span class="link-number">'.($i+1).'.</span>'.$v; ?></a></li>
-																<?php endif;?>
-															<?php endforeach;?>
-                                                        </ul>
+                                                    <div class="box-body">
+                                                        <div>
+                                                            <ul>
+																<?php foreach($value as $i => $v):?>
+																	<?php $v = strip_tags($v);
+																	if (preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $v, $matches, PREG_OFFSET_CAPTURE)):?>
+                                                                        <li><a href="<?php echo $v; ?>" target="_blank"><?php echo '<span class="link-number">'.($i+1).'.</span>'.$v; ?></a></li>
+																	<?php else:?>
+                                                                        <li><a href="#"><?php echo '<span class="link-number">'.($i+1).'.</span>'.$v; ?></a></li>
+																	<?php endif;?>
+																<?php endforeach;?>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-										<?php $count++; endforeach;?>
+											<?php $count++; endforeach;?>
+									<?php else:?>
+                                            <p class="col-md-3 col-sm-4 col-xs-12 col-centered">No baclinks added, yet.</p>
+									<?php endif;?>
                                 </div>
                             </div>
                         </div>
 
                     </div>
                     <div id="tabs-4">
+                        <div class="box-header">
+                            <h3 class="box-title">Backlinks - Tier 2&3</h3>
+                        </div>
                         <div class="box box-widget">
-                            <div class='box-header with-border'>
-                                <div class='user-block'>
-                                    <span class='username'>Backlinks - Tier 2&3</span>
-                                </div><!-- /.user-block -->
-                            </div><!-- /.box-header -->
-
 							<?php
 							$backlinks = array();
 							foreach ($reportFields as $key => $value) {
@@ -566,173 +560,119 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 							} ?>
                             <div class="box-body">
                                 <div class="box-body table-responsive no-padding">
-                                    <table class="table table-hover">
-                                        <tr>
-                                            <th>Tier2</th>
-                                            <th>Tier3</th>
-                                        </tr>
-										<?php foreach($reportFields['backlinks_-_tier_2_3'] as $tiers): ?>
+									<?php if(is_array($reportFields['backlinks_-_tier_2_3']) && !empty($reportFields['backlinks_-_tier_2_3'])):?>
+                                        <table class="table table-hover">
                                             <tr>
-                                                <td><?php echo $tiers['tier_2']; ?></td>
-                                                <td><?php echo $tiers['tier_3']; ?></td>
+                                                <th>Tier2</th>
+                                                <th>Tier3</th>
                                             </tr>
-										<?php endforeach;?>
-                                    </table>
+											<?php foreach($reportFields['backlinks_-_tier_2_3'] as $tiers): ?>
+                                                <tr>
+                                                    <td><?php echo $tiers['tier_2']; ?></td>
+                                                    <td><?php echo $tiers['tier_3']; ?></td>
+                                                </tr>
+											<?php endforeach;?>
+                                        </table>
+									<?php else:?>
+                                        <p>No backlinks added, yet.</p>
+									<?php endif;?>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box-body -->
                         </div><!-- /.box -->
                     </div>
 
                     <div id="tabs-5" class="tasks">
-                        <div class="box box-widget">
-                            <div class='box-header with-border'>
-                                <div class='user-block'>
-                                    <span class='username'>Check list</span>
-                                </div><!-- /.user-block -->
-                            </div><!-- /.box-header -->
-                            <div class="col-md-3">
-                                <h3 class="box-title text-center">Startup Preparation</h3>
-								<?php if(is_array($reportFields['startup_preparation']) && !empty($reportFields['startup_preparation'])):?>
-									<?php foreach($reportFields['startup_preparation'] as $value): ?>
-                                        <div class="col-md-12">
-                                            <div class="box box-default collapsed-box box-solid">
-                                                <div class="box-header with-border task">
-                                                    <div class="form-group task-checkbox">
-                                                        <label>
-                                                            <input type="checkbox" class="flat-red" <?php if(!empty($value['readiness_mark'])){echo 'checked';} ?> disabled title="Check task as done">
-                                                        </label>
-                                                    </div>
-                                                    <h3 class="box-title col-md-8 padding-top-2"><?php echo $value['startup_preparation'];?></h3>
-                                                    <div class="box-tools pull-right">
-                                                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                                                    </div><!-- /.box-tools -->
-                                                </div><!-- /.box-header -->
-                                                <div class="box-body">
-                                                    <p>Doing by:<?php echo $value['doing'];?></p>
-                                                    <p>Notes:<?php echo $value['notes'];?></p>
-                                                    <p>Status:<?php echo $value['status'];?></p>
-                                                    <p>Image: <img class="task-image" src="<?php echo $value['image']['url'];?>" alt="<?php echo $value['image']['title'];?>"></p>
-                                                </div><!-- /.box-body -->
-                                            </div><!-- /.box -->
-                                        </div>
-									<?php endforeach;?>
-								<?php else:?>
+                        <div class='box-header '>
+                            <h3 class="box-title">Check list</h3>
+                        </div>
+                        <div class="box box-widget trello-board">
+
+							<?php if(is_array($reportFields['startup_preparation']) && !empty($reportFields['startup_preparation'])):?>
+                                <div class="col-md-3">
                                     <div class="col-md-12">
                                         <div class="box box-default collapsed-box box-solid">
-                                            <div class="box-header with-border task">
-                                                <h3 class="box-title col-md-8 padding-top-2">No tasks added to current category yet.</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-								<?php endif;?>
-                            </div>
-                            <div class="col-md-3">
-                                <h3 class="box-title text-center">On PAGE SEO</h3>
-								<?php if(is_array($reportFields['on_page_seo']) && !empty($reportFields['on_page_seo'])):?>
-									<?php foreach($reportFields['on_page_seo'] as $value): ?>
-                                        <div class="col-md-12">
-                                            <div class="box box-default collapsed-box box-solid">
-                                                <div class="box-header with-border task">
-                                                    <div class="form-group task-checkbox">
-                                                        <label>
-                                                            <input type="checkbox" class="flat-red" <?php if(!empty($value['readiness_mark'])){echo 'checked';} ?> disabled title="Check task as done">
-                                                        </label>
-                                                    </div>
-                                                    <h3 class="box-title col-md-8 padding-top-2"><?php echo $value['on_page_seo'];?></h3>
-                                                    <div class="box-tools pull-right">
-                                                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                                                    </div><!-- /.box-tools -->
-                                                </div><!-- /.box-header -->
-                                                <div class="box-body">
-                                                    <p>Doing by:<?php echo $value['doing'];?></p>
-                                                    <p>Notes:<?php echo $value['notes'];?></p>
-                                                    <p>Image: <img class="task-image" src="<?php echo $value['image']['url'];?>" alt="<?php echo $value['image']['title'];?>"></p>
-                                                </div><!-- /.box-body -->
-                                            </div><!-- /.box -->
-                                        </div>
-									<?php endforeach;?>
-								<?php else:?>
+                                            <div class="box-header ">
+                                                <p class="box-title">Startup Preparation</p>
+												<?php foreach($reportFields['startup_preparation'] as $value): ?>
+                                                    <div class="box box-default collapsed-box">
+                                                        <div class="box-header  task">
+                                                            <span class="info-box-text"><?php echo $value['startup_preparation'];?></span>
+                                                        </div><!-- /.box-header -->
+                                                    </div><!-- /.box -->
+												<?php endforeach;?>
+                                            </div><!-- /.box-header -->
+                                        </div><!-- /.box -->
+                                    </div><!-- /.col -->
+                                </div>
+							<?php endif;?>
+
+							<?php if(is_array($reportFields['on_page_seo']) && !empty($reportFields['on_page_seo'])):?>
+                                <div class="col-md-3">
                                     <div class="col-md-12">
                                         <div class="box box-default collapsed-box box-solid">
-                                            <div class="box-header with-border task">
-                                                <h3 class="box-title col-md-8 padding-top-2">No tasks added to current category yet.</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-								<?php endif;?>
-                            </div>
-                            <div class="col-md-3">
-                                <h3 class="box-title text-center">OFF PAGE SEO</h3>
-								<?php if(is_array($reportFields['off_page_seo']) && !empty($reportFields['off_page_seo'])):?>
-									<?php foreach($reportFields['off_page_seo'] as $value): ?>
-                                        <div class="col-md-12">
-                                            <div class="box box-default collapsed-box box-solid">
-                                                <div class="box-header with-border task">
-                                                    <div class="form-group task-checkbox">
-                                                        <label>
-                                                            <input type="checkbox" class="flat-red" <?php if(!empty($value['readiness_mark'])){echo 'checked';} ?> disabled title="Check task as done">
-                                                        </label>
-                                                    </div>
-                                                    <h3 class="box-title col-md-8 padding-top-2"><?php echo $value['off_page_seo'];?></h3>
-                                                    <div class="box-tools pull-right">
-                                                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                                                    </div><!-- /.box-tools -->
-                                                </div><!-- /.box-header -->
-                                                <div class="box-body">
-                                                    <p>Doing by:<?php echo $value['doing'];?></p>
-                                                    <p>Notes:<?php echo $value['amount'];?></p>
-                                                    <p>Image: <img class="task-image" src="<?php echo $value['image']['url'];?>" alt="<?php echo $value['image']['title'];?>"></p>
-                                                </div><!-- /.box-body -->
-                                            </div><!-- /.box -->
-                                        </div>
-									<?php endforeach;?>
-								<?php else:?>
+                                            <div class="box-header ">
+                                                <p class="box-title">On PAGE SEO</p>
+												<?php foreach($reportFields['on_page_seo'] as $value): ?>
+                                                    <div class="box box-default collapsed-box">
+                                                        <div class="box-header  task">
+                                                            <span class="info-box-text"><?php echo $value['on_page_seo'];?></span>
+                                                        </div><!-- /.box-header -->
+                                                    </div><!-- /.box -->
+												<?php endforeach;?>
+                                            </div><!-- /.box-header -->
+                                        </div><!-- /.box -->
+                                    </div><!-- /.col -->
+                                </div>
+							<?php endif;?>
+
+							<?php if(is_array($reportFields['off_page_seo']) && !empty($reportFields['off_page_seo'])):?>
+                                <div class="col-md-3">
                                     <div class="col-md-12">
                                         <div class="box box-default collapsed-box box-solid">
-                                            <div class="box-header with-border task">
-                                                <h3 class="box-title col-md-8 padding-top-2">No tasks added to current category yet.</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-								<?php endif;?>
-                            </div>
-                            <div class="col-md-3">
-                                <h3 class="box-title text-center">Local Businesses</h3>
-								<?php if(is_array($reportFields['local_businesses']) && !empty($reportFields['local_businesses'])):?>
-									<?php foreach($reportFields['local_businesses'] as $value): ?>
-                                        <div class="col-md-12">
-                                            <div class="box box-default collapsed-box box-solid">
-                                                <div class="box-header with-border task">
-                                                    <div class="form-group task-checkbox">
-                                                        <label>
-                                                            <input type="checkbox" class="flat-red" <?php if(!empty($value['readiness_mark'])){echo 'checked';} ?>  title="Check task as done">
-                                                        </label>
-                                                    </div>
-                                                    <h3 class="box-title col-md-8 padding-top-2"><?php echo $value['local_businesses'];?></h3>
-                                                    <div class="box-tools pull-right">
-                                                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                                                    </div><!-- /.box-tools -->
-                                                </div><!-- /.box-header -->
-                                                <div class="box-body">
-                                                    <p>Doing by:<?php echo $value['doing'];?></p>
-                                                    <p>Status:<?php echo $value['status'];?></p>
-                                                    <p>Link:<?php echo $value['link'];?></p>
-                                                    <p>Social Media:<?php echo $value['social_media'];?></p>
-                                                    <p>Image: <img class="task-image" src="<?php echo $value['image']['url'];?>" alt="<?php echo $value['image']['title'];?>"></p>
-                                                </div><!-- /.box-body -->
-                                            </div><!-- /.box -->
-                                        </div>
-									<?php endforeach;?>
-								<?php else:?>
+                                            <div class="box-header ">
+                                                <p class="box-title">OFF PAGE SEO</p>
+												<?php foreach($reportFields['off_page_seo'] as $value): ?>
+                                                    <div class="box box-default collapsed-box">
+                                                        <div class="box-header  task">
+                                                            <span class="info-box-text"><?php echo $value['off_page_seo'];?></span>
+                                                        </div><!-- /.box-header -->
+                                                    </div><!-- /.box -->
+												<?php endforeach;?>
+                                            </div><!-- /.box-header -->
+                                        </div><!-- /.box -->
+                                    </div><!-- /.col -->
+                                </div>
+							<?php endif;?>
+
+							<?php if(is_array($reportFields['local_businesses']) && !empty($reportFields['local_businesses'])):?>
+                                <div class="col-md-3">
                                     <div class="col-md-12">
                                         <div class="box box-default collapsed-box box-solid">
-                                            <div class="box-header with-border task">
-                                                <h3 class="box-title col-md-8 padding-top-2">No tasks added to current category yet.</h3>
-                                            </div>
+                                            <div class="box-header ">
+                                                <p class="box-title">Local Businesses</p>
+												<?php foreach($reportFields['local_businesses'] as $value): ?>
+                                                    <div class="box box-default collapsed-box">
+                                                        <div class="box-header  task">
+                                                            <span class="info-box-text"><?php echo $value['local_businesses'];?></span>
+                                                        </div><!-- /.box-header -->
+                                                    </div><!-- /.box -->
+												<?php endforeach;?>
+                                            </div><!-- /.box-header -->
+                                        </div><!-- /.box -->
+                                    </div><!-- /.col -->
+                                </div>
+							<?php endif;?>
+
+							<?php if(empty($reportFields['startup_preparation']) && empty($reportFields['on_page_seo']) && empty($reportFields['off_page_seo']) && empty($reportFields['local_businesses'])):?>
+                                <div class="col-md-12">
+                                    <div class="box box-default collapsed-box box-solid">
+                                        <div class="box-header  task">
+                                            <h3 class="box-title col-md-8 padding-top-2">No tasks added yet.</h3>
                                         </div>
                                     </div>
-								<?php endif;?>
-                            </div>
+                                </div>
+							<?php endif;?>
+
                             <div class="box-body">
                                 <div class="box-body table-responsive no-padding">
                                 </div><!-- /.box-body -->
@@ -743,12 +683,12 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                     <div id="tabs-6">
 
                         <div class="row margin-bottom-80">
-                            <div class='box-header with-border'>
+                            <div class='box-header'>
                                 <h3 class="box-title">Website Health and Status</h3>
                             </div>
                             <div class="col-md-12 reports">
                                 <div class="col-md-6 report before">
-                                    <div class="box-header with-border">
+                                    <div class="box-header ">
                                         <h3 class="box-title">Before <?php echo $reportFields['date_before']; ?></h3>
                                     </div>
                                     <object data="<?php echo $reportFields['report_before']['url']; ?>" type="application/pdf" width="100%" height="100%">
@@ -756,7 +696,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                                     </object>
                                 </div>
                                 <div class="col-md-6 report after">
-                                    <div class="box-header with-border">
+                                    <div class="box-header ">
                                         <h3 class="box-title">After <?php echo $reportFields['date_after']; ?></h3>
                                     </div>
                                     <object data="<?php echo $reportFields['report_after']['url']; ?>" type="application/pdf" width="100%" height="100%">
@@ -767,7 +707,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                         </div>
 
                         <div class="row">
-                            <div class='box-header with-border'>
+                            <div class='box-header '>
                                 <h3 class="box-title">Google PageSpeed Insights</h3>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12 ">
@@ -837,13 +777,13 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                                     <div class="box-footer no-padding">
                                         <div class="box-footer no-padding">
                                             <ul class="nav nav-stacked">
-	                                            <?php if(is_array($pageSpeedDataAfter['formattedResults']['ruleResults']) && !empty($pageSpeedDataAfter['formattedResults']['ruleResults'])):?>
-												<?php foreach($pageSpeedDataAfter['formattedResults']['ruleResults'] as $k=> $v):?>
-                                                    <li><a href="#"><?php echo $v['localizedRuleName'];?><span class="pull-right badge <?php if($v['ruleImpact'] > 2){echo 'bg-yellow';}else{echo 'bg-green';} ?>"><?php echo $v['ruleImpact'];?></span></a></li>
-												<?php endforeach;?>
-	                                            <?php else:?>
+												<?php if(is_array($pageSpeedDataAfter['formattedResults']['ruleResults']) && !empty($pageSpeedDataAfter['formattedResults']['ruleResults'])):?>
+													<?php foreach($pageSpeedDataAfter['formattedResults']['ruleResults'] as $k=> $v):?>
+                                                        <li><a href="#"><?php echo $v['localizedRuleName'];?><span class="pull-right badge <?php if($v['ruleImpact'] > 2){echo 'bg-yellow';}else{echo 'bg-green';} ?>"><?php echo $v['ruleImpact'];?></span></a></li>
+													<?php endforeach;?>
+												<?php else:?>
                                                     <li><a href="#">No optimized Pagespeed data found yet.</a></li>
-	                                            <?php endif;?>
+												<?php endif;?>
                                             </ul>
                                         </div>
                                     </div>
@@ -851,18 +791,18 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 
                                 <div class="box box-widget widget-user-2">
 
-                                <!-- Add the bg color to the header using any of the bg-* classes -->
+                                    <!-- Add the bg color to the header using any of the bg-* classes -->
                                     <h3 class="widget-user-desc">Google Page Stats</h3>
                                     <div class="box-footer no-padding">
                                         <div class="box-footer no-padding">
                                             <ul class="nav nav-stacked">
-	                                            <?php if(is_array($pageSpeedDataAfter['pageStats']) && !empty($pageSpeedDataAfter['pageStats'])):?>
-												<?php foreach($pageSpeedDataAfter['pageStats'] as $k=> $v):?>
-                                                    <li><a href="#"><?php echo $k;?><span class="pull-right badge bg-green"><?php echo $v;?></span></a></li>
-												<?php endforeach;?>
-	                                            <?php else:?>
+												<?php if(is_array($pageSpeedDataAfter['pageStats']) && !empty($pageSpeedDataAfter['pageStats'])):?>
+													<?php foreach($pageSpeedDataAfter['pageStats'] as $k=> $v):?>
+                                                        <li><a href="#"><?php echo $k;?><span class="pull-right badge bg-green"><?php echo $v;?></span></a></li>
+													<?php endforeach;?>
+												<?php else:?>
                                                     <li><a href="#">No optimized Page Statistics data found yet.</a></li>
-	                                            <?php endif;?>
+												<?php endif;?>
                                             </ul>
                                         </div>
                                     </div>
