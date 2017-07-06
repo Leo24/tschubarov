@@ -329,7 +329,6 @@ function update_extra_profile_fields($user_id) {
 
 add_filter( 'wp_unique_post_slug', 'custom_unique_post_slug', 10, 4 );
 function custom_unique_post_slug( $slug, $post_ID, $post_status, $post_type ) {
-	$post = get_post($post_ID);
 	if ( 'seo-client-reports' == $post_type ) {
 		$post = get_post($post_ID);
 		if ( empty($post->post_name) || $slug != $post->post_name ) {
@@ -340,7 +339,7 @@ function custom_unique_post_slug( $slug, $post_ID, $post_status, $post_type ) {
 }
 
 
-// Show posts of 'post', 'page', 'acme_product' and 'movie' post types on home page
+// Show posts of 'seo-client-reports' post type on home page
 function search_filter( $query ) {
 	if ( !is_admin() && $query->is_main_query() ) {
 		if ( $query->is_search ) {
@@ -511,6 +510,19 @@ function handle_backlinks_on_acf_save_post() {
 	if ( ! add_post_meta( $postID, 'backlinks', $backlinks, true ) ) {
 		update_post_meta( $postID, 'backlinks', $backlinks );
 	}
+
+
+	//Add google pagespeed data on post create
+	$url = get_field('website_url', $postID);
+	$googlePageSpeedData = get_google_pagespeed_data(addhttp($url));
+	$check = json_decode($googlePageSpeedData, true);
+	if(!isset($check['error'])) {
+		if (!add_post_meta( $postID, 'googlePageSpeedDataBefore', $googlePageSpeedData, true)){}
+	}
+	//Add site to SERanking
+	$serankingData = addSiteToSERanking(addhttp($url));
+	update_field('se_rankins_site_id', $serankingData['siteid'], $postID);
+	addSiteKeywordsToSERanking($serankingData['siteid'], textareaToArray($url));
 
 
 	return;
