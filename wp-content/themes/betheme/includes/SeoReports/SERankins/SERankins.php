@@ -111,10 +111,12 @@ function keywordStats($siteID, $dateStart, $dateEnd){
 	curl_close($ch);
 	$stats = json_decode($stats, true);
 	$keywordsNames = serankingKeywordsData($siteID);
-	foreach($stats[0]['keywords'] as $key => &$value){
-		foreach($keywordsNames as $k => $v){
-			if($value['id'] == $v['id']){
-				$value['keyword_name'] = $v['name'];
+	if(is_array($stats[0]['keywords']) && !empty($stats[0]['keywords'])) {
+		foreach ( $stats[0]['keywords'] as $key => &$value ) {
+			foreach ( $keywordsNames as $k => $v ) {
+				if ( $value['id'] == $v['id'] ) {
+					$value['keyword_name'] = $v['name'];
+				}
 			}
 		}
 	}
