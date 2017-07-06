@@ -140,7 +140,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
         <section class="content">
             <div class="row">
                 <div id="tabs">
-                    <ul>
+                    <ul style="display:none;">
                         <li><a href="#tabs-1">Website Status</a></li>
                         <li><a href="#tabs-2">Keywords&Rankings</a></li>
                         <li><a href="#tabs-3">Backlinks</a></li>
@@ -266,7 +266,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 										//Code for rendering Competitors stats
 
 										$competitorsData = array(
-											'default' => $content
+											$reportFields['website_url'] => $content
 										);
 										foreach($reportFields['competitors'] as $metrics){
 											$data = get_moz_api_data($seoApiCreads['mozs_api_access_id'], $seoApiCreads['mozs_api_secret_key'], $metrics['competitor_link'], $cols);

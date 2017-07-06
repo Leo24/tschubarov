@@ -1311,7 +1311,4 @@ a.ui-button:active,
     box-shadow: 0px 0px 5px #666666;
 }
 
-ul[role=tablist]{
-    display:none;
-}
 
