@@ -87,7 +87,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="<?php echo get_template_directory_uri().'/seo-client-reports';?>/index2.html" class="logo">
+        <a href="<?php echo get_home_url().'/'.$wp->request;?>" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>LT</span>
             <!-- logo for regular state and mobile devices -->
@@ -703,6 +703,9 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                     <div id="tabs-6">
 
                         <div class="row margin-bottom-80">
+                            <div class='box-header with-border'>
+                                <h3 class="box-title">Website Health and Status</h3>
+                            </div>
                             <div class="col-md-12 reports">
                                 <div class="col-md-6 report before">
                                     <div class="box-header with-border">
@@ -725,8 +728,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 
                         <div class="row">
                             <div class='box-header with-border'>
-                                <h3 class="widget-user-username">Website Health and Status</h3>
-                                <h5 class="widget-user-desc">Google PageSpeed Insights</h5>
+                                <h3 class="box-title">Google PageSpeed Insights</h3>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12 ">
                                 <div class="info-box bg-yellow">
