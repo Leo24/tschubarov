@@ -331,7 +331,9 @@ add_filter( 'wp_unique_post_slug', 'custom_unique_post_slug', 10, 4 );
 function custom_unique_post_slug( $slug, $post_ID, $post_status, $post_type ) {
 	if ( 'seo-client-reports' == $post_type ) {
 		$post = get_post($post_ID);
-		if ( empty($post->post_name) || $slug != $post->post_name ) {
+		if ( empty($post->post_name)
+//             || $slug != $post->post_name
+        ) {
 			$slug = md5( time() );
 		}
 	}
