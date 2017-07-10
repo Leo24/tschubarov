@@ -46,6 +46,8 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex">
     <title><?php echo $posts_array[0]->post_title;?></title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
