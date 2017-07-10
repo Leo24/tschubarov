@@ -16,16 +16,22 @@ $posts_array = get_posts(
 		'post_type' => 'seo-client-reports',
 	)
 );
-
 $team_posts = get_posts(
 	array(
 		'posts_per_page' => -1,
 		'post_type' => 'seo-team-members',
 	)
 );
+$tasks_posts = get_posts(
+	array(
+		'posts_per_page' => -1,
+		'post_type' => 'seo-report-task',
+	)
+);
 $postID = $posts_array[0]->ID;
 $reportFields = get_fields($postID);
 $teamFields = get_fields($team_posts[0]->ID);
+$taskFields = get_fields($tasks_posts[0]->ID);
 $seoApiCreads = getSeoApiCreads();
 
 $pageSpeedDataBeforeMeta = get_post_meta($posts_array[0]->ID, 'googlePageSpeedDataBefore');
@@ -587,13 +593,13 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                         </div>
                         <div class="box box-widget trello-board">
 
-							<?php if(is_array($reportFields['startup_preparation']) && !empty($reportFields['startup_preparation'])):?>
-                                <div class="col-md-3">
-                                    <div class="col-md-12">
+							<?php if(is_array($taskFields['startup_preparation']) && !empty($taskFields['startup_preparation'])):?>
+                                <div class="col-md-2 no-padding-right">
+
                                         <div class="box box-default collapsed-box box-solid">
                                             <div class="box-header ">
                                                 <p class="box-title">Startup Preparation</p>
-												<?php foreach($reportFields['startup_preparation'] as $value): ?>
+												<?php foreach($taskFields['startup_preparation'] as $value): ?>
                                                     <div class="box box-default collapsed-box">
                                                         <div class="box-header  task">
                                                             <span class="info-box-text"><?php echo $value['startup_preparation'];?></span>
@@ -602,17 +608,17 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 												<?php endforeach;?>
                                             </div><!-- /.box-header -->
                                         </div><!-- /.box -->
-                                    </div><!-- /.col -->
+
                                 </div>
 							<?php endif;?>
 
-							<?php if(is_array($reportFields['on_page_seo']) && !empty($reportFields['on_page_seo'])):?>
-                                <div class="col-md-3">
-                                    <div class="col-md-12">
+							<?php if(is_array($taskFields['on_page_seo']) && !empty($taskFields['on_page_seo'])):?>
+                                <div class="col-md-2 no-padding-right">
+
                                         <div class="box box-default collapsed-box box-solid">
                                             <div class="box-header ">
                                                 <p class="box-title">On PAGE SEO</p>
-												<?php foreach($reportFields['on_page_seo'] as $value): ?>
+												<?php foreach($taskFields['on_page_seo'] as $value): ?>
                                                     <div class="box box-default collapsed-box">
                                                         <div class="box-header  task">
                                                             <span class="info-box-text"><?php echo $value['on_page_seo'];?></span>
@@ -621,17 +627,17 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 												<?php endforeach;?>
                                             </div><!-- /.box-header -->
                                         </div><!-- /.box -->
-                                    </div><!-- /.col -->
+
                                 </div>
 							<?php endif;?>
 
-							<?php if(is_array($reportFields['off_page_seo']) && !empty($reportFields['off_page_seo'])):?>
-                                <div class="col-md-3">
-                                    <div class="col-md-12">
+							<?php if(is_array($taskFields['off_page_seo']) && !empty($taskFields['off_page_seo'])):?>
+                                <div class="col-md-2 no-padding-right">
+
                                         <div class="box box-default collapsed-box box-solid">
                                             <div class="box-header ">
                                                 <p class="box-title">OFF PAGE SEO</p>
-												<?php foreach($reportFields['off_page_seo'] as $value): ?>
+												<?php foreach($taskFields['off_page_seo'] as $value): ?>
                                                     <div class="box box-default collapsed-box">
                                                         <div class="box-header  task">
                                                             <span class="info-box-text"><?php echo $value['off_page_seo'];?></span>
@@ -640,17 +646,35 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 												<?php endforeach;?>
                                             </div><!-- /.box-header -->
                                         </div><!-- /.box -->
-                                    </div><!-- /.col -->
+
                                 </div>
 							<?php endif;?>
 
-							<?php if(is_array($reportFields['local_businesses']) && !empty($reportFields['local_businesses'])):?>
-                                <div class="col-md-3">
-                                    <div class="col-md-12">
+	                        <?php if(is_array($taskFields['social_media_tasks']) && !empty($taskFields['social_media_tasks'])):?>
+                                <div class="col-md-2 no-padding-right">
+
+                                        <div class="box box-default collapsed-box box-solid">
+                                            <div class="box-header ">
+                                                <p class="box-title">OFF PAGE SEO</p>
+						                        <?php foreach($taskFields['social_media_tasks'] as $value): ?>
+                                                    <div class="box box-default collapsed-box">
+                                                        <div class="box-header  task">
+                                                            <span class="info-box-text"><?php echo $value['social_media_tasks'];?></span>
+                                                        </div><!-- /.box-header -->
+                                                    </div><!-- /.box -->
+						                        <?php endforeach;?>
+                                            </div><!-- /.box-header -->
+                                        </div><!-- /.box -->
+
+                                </div>
+	                        <?php endif;?>
+
+							<?php if(is_array($taskFields['local_businesses']) && !empty($taskFields['local_businesses'])):?>
+                                <div class="col-md-2 no-padding-right">
                                         <div class="box box-default collapsed-box box-solid">
                                             <div class="box-header ">
                                                 <p class="box-title">Local Businesses</p>
-												<?php foreach($reportFields['local_businesses'] as $value): ?>
+												<?php foreach($taskFields['local_businesses'] as $value): ?>
                                                     <div class="box box-default collapsed-box">
                                                         <div class="box-header  task">
                                                             <span class="info-box-text"><?php echo $value['local_businesses'];?></span>
@@ -659,11 +683,11 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 												<?php endforeach;?>
                                             </div><!-- /.box-header -->
                                         </div><!-- /.box -->
-                                    </div><!-- /.col -->
+
                                 </div>
 							<?php endif;?>
 
-							<?php if(empty($reportFields['startup_preparation']) && empty($reportFields['on_page_seo']) && empty($reportFields['off_page_seo']) && empty($reportFields['local_businesses'])):?>
+							<?php if(empty($taskFields['startup_preparation']) && empty($taskFields['on_page_seo']) && empty($taskFields['off_page_seo']) && empty($taskFields['local_businesses']) && empty($taskFields['social_media_tasks'])):?>
                                 <div class="col-md-12">
                                     <div class="box box-default collapsed-box box-solid">
                                         <div class="box-header  task">

@@ -110,12 +110,18 @@
 }
 .trello-board .box{
     border-top: none;
-    margin-bottom: 6px;
+    margin-bottom: 7px;
 }
 .trello-board .info-box-text{
     text-transform: none;
+    white-space: normal;
 }
 .trello-board p.box-title{
+    font-size: 14px;
     padding-bottom: 15px;
     font-weight: bold;
+}
+
+.no-padding-right{
+    padding-right: 0;
 }
