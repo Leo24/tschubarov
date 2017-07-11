@@ -9,6 +9,7 @@
 
 require_once( __DIR__ . '/includes/SeoReports/SERankins/SERankins.php' );
 require_once( __DIR__ . '/includes/SeoReports/googleData/pageSpeed.php' );
+require_once( __DIR__ . '/includes/SeoReports/CF7_forms/forms.php' );
 
 define( 'THEME_DIR', get_template_directory() );
 define( 'THEME_URI', get_template_directory_uri() );
@@ -372,60 +373,68 @@ function wpcf7_create_seo_report() {
 	$wpcf = WPCF7_ContactForm::get_current();
 
 	if(isset($_POST) && !empty($_POST)){
+
 		$formData = $_POST;
 		foreach($formData as &$value){
 			$value = validate_input($value);
 		}
 
-		$newPost = array(
-			'ID' => 0,
-			'post_title' => $formData['website_url'],
-			'post_status' => 'publish',
-			'post_type' => 'seo-client-reports',
-		);
+		if(isset($_POST['param']) && !empty($_POST['param']) && ($_POST['param'] == 'update_user_profile_details')){
+			if(isset($_POST['postURL']) && !empty($_POST['postURL'])){
+				$postID = url_to_postid($_POST['postURL']);
+			    update_form_fields($formData, $postID);
+				if ($wpcf) {$wpcf->skip_mail = true;}
+			}
+		}else {
+			$newPost = array(
+				'ID'          => 0,
+				'post_title'  => $formData['website_url'],
+				'post_status' => 'publish',
+				'post_type'   => 'seo-client-reports',
+			);
 
-		$postID = wp_insert_post($newPost);
+			$postID = wp_insert_post( $newPost );
 
-		$googlePageSpeedData = get_google_pagespeed_data(addhttp($formData['website_url']));
+			$googlePageSpeedData = get_google_pagespeed_data( addhttp( $formData['website_url'] ) );
 
-		$check = json_decode($googlePageSpeedData, true);
-		if(!isset($check['error'])) {
-			add_post_meta( $postID, 'googlePageSpeedDataBefore', $googlePageSpeedData, true );
-		}
+			$check = json_decode( $googlePageSpeedData, true );
+			if ( ! isset( $check['error'] ) ) {
+				add_post_meta( $postID, 'googlePageSpeedDataBefore', $googlePageSpeedData, true );
+			}
 
-		$serankingData = addSiteToSERanking(addhttp($formData['website_url']));
-		update_field('se_rankins_site_id', $serankingData['siteid'], $postID);
-		addSiteKeywordsToSERanking($serankingData['siteid'], textareaToArray($formData['keywords_type']));
+			$serankingData = addSiteToSERanking( addhttp( $formData['website_url'] ) );
+			update_field( 'se_rankins_site_id', $serankingData['siteid'], $postID );
+			addSiteKeywordsToSERanking( $serankingData['siteid'], textareaToArray( $formData['keywords_type'] ) );
 
-		$customFieldsList = array(
-			'fiverr_username',
-			'bought_package',
-			'website_url',
-			'keywords_type',
-			'social_logins',
-			'website_admin_logins',
-			'google_pages_access',
-			'client_name',
-			'client_email',
-			'client_address',
-			'client_phone',
-			'client_zip_code',
-			'client_google_analytics',
-			'additional_info',
-		);
+			update_form_fields($formData, $postID);
 
-		foreach($customFieldsList as $value) {
-			update_field($value, $formData[$value], $postID);
 		}
 
 	}
-
-	if ($wpcf) {
-		//If you want to skip mailing the data, you can do it...
-//		$wpcf->skip_mail = true;
-	}
-
 	return $wpcf;
+}
+
+function update_form_fields($formData, $postID){
+	$customFieldsList = array(
+		'fiverr_username',
+		'bought_package',
+		'website_url',
+		'keywords_type',
+		'social_logins',
+		'website_admin_logins',
+		'google_pages_access',
+		'client_name',
+		'client_email',
+		'client_address',
+		'client_phone',
+		'client_zip_code',
+		'client_google_analytics',
+		'additional_info',
+	);
+
+	foreach($customFieldsList as $value) {
+		update_field($value, $formData[$value], $postID);
+	}
 }
 
 
@@ -535,3 +544,36 @@ function handle_backlinks_on_acf_save_post() {
 add_action('acf/save_post', 'handle_backlinks_on_acf_save_post', 20);
 
 
+//Form data for "Profile Details" tab of SEO Clients report.
+add_action( 'wp_ajax_get_user_profile_details', 'get_user_profile_details' );
+add_action( 'wp_ajax_get_user_profile_details', 'get_user_profile_details' );
+function get_user_profile_details() {
+	if(isset($_POST) && !empty($_POST['postID']) ) {
+		$postID = $_POST['postID'];
+		$customFieldsList = array(
+			'fiverr_username',
+			'bought_package',
+			'website_url',
+			'keywords_type',
+			'social_logins',
+			'website_admin_logins',
+			'google_pages_access',
+			'client_name',
+			'client_email',
+			'client_address',
+			'client_phone',
+			'client_zip_code',
+			'client_google_analytics',
+			'additional_info',
+		);
+
+		$fields = get_fields($postID);
+        $formData = array();
+		foreach($fields as $key => $field){
+		    if(in_array($key, $customFieldsList)){
+		        $formData[$key] = $field;
+            }
+        }
+		wp_send_json($formData);
+	}
+}

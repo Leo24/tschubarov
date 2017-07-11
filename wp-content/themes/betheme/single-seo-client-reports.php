@@ -71,6 +71,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
     <link rel="stylesheet" href="<?php echo get_home_url();?>/wp-content/plugins/contact-form-7/includes/css/styles.css">
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="<?php echo get_template_directory_uri().'/seo-client-reports';?>/plugins/iCheck/all.css">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri().'/seo-client-reports';?>/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -125,6 +126,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                 <li><a href="#tabs-4"><i class="fa fa-share"></i><span>Backlinks - Tier 2&3</span></a></li>
                 <li><a href="#tabs-5"><i class="fa fa-book"></i><span>Tasks</span></a></li>
                 <li><a href="#tabs-6"><i class="fa fa-twitch"></i><span>Website Health and Status</span></a></li>
+                <li><a href="#tabs-7"><i class="fa fa-th"></i><span>Client Details</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -155,6 +157,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                         <li><a href="#tabs-4">Backlinks - Tier 2&3</a></li>
                         <li><a href="#tabs-5">Tasks</a></li>
                         <li><a href="#tabs-6">Website Health and Status</a></li>
+                        <li><a href="#tabs-7">Client Details</a></li>
                     </ul>
 
                     <div id="tabs-1">
@@ -547,7 +550,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                                             </div>
 											<?php $count++; endforeach;?>
 									<?php else:?>
-                                            <p class="col-md-3 col-sm-4 col-xs-12 col-centered">No baclinks added, yet.</p>
+                                        <p class="col-md-3 col-sm-4 col-xs-12 col-centered">No baclinks added, yet.</p>
 									<?php endif;?>
                                 </div>
                             </div>
@@ -598,18 +601,18 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 							<?php if(is_array($taskFields['startup_preparation']) && !empty($taskFields['startup_preparation'])):?>
                                 <div class="col-md-2 no-padding-right">
 
-                                        <div class="box box-default collapsed-box box-solid">
-                                            <div class="box-header ">
-                                                <p class="box-title">Startup Preparation</p>
-												<?php foreach($taskFields['startup_preparation'] as $value): ?>
-                                                    <div class="box box-default collapsed-box">
-                                                        <div class="box-header  task">
-                                                            <span class="info-box-text"><?php echo $value['startup_preparation'];?></span>
-                                                        </div><!-- /.box-header -->
-                                                    </div><!-- /.box -->
-												<?php endforeach;?>
-                                            </div><!-- /.box-header -->
-                                        </div><!-- /.box -->
+                                    <div class="box box-default collapsed-box box-solid">
+                                        <div class="box-header ">
+                                            <p class="box-title">Startup Preparation</p>
+											<?php foreach($taskFields['startup_preparation'] as $value): ?>
+                                                <div class="box box-default collapsed-box">
+                                                    <div class="box-header  task">
+                                                        <span class="info-box-text"><?php echo $value['startup_preparation'];?></span>
+                                                    </div><!-- /.box-header -->
+                                                </div><!-- /.box -->
+											<?php endforeach;?>
+                                        </div><!-- /.box-header -->
+                                    </div><!-- /.box -->
 
                                 </div>
 							<?php endif;?>
@@ -617,18 +620,18 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 							<?php if(is_array($taskFields['on_page_seo']) && !empty($taskFields['on_page_seo'])):?>
                                 <div class="col-md-2 no-padding-right">
 
-                                        <div class="box box-default collapsed-box box-solid">
-                                            <div class="box-header ">
-                                                <p class="box-title">On PAGE SEO</p>
-												<?php foreach($taskFields['on_page_seo'] as $value): ?>
-                                                    <div class="box box-default collapsed-box">
-                                                        <div class="box-header  task">
-                                                            <span class="info-box-text"><?php echo $value['on_page_seo'];?></span>
-                                                        </div><!-- /.box-header -->
-                                                    </div><!-- /.box -->
-												<?php endforeach;?>
-                                            </div><!-- /.box-header -->
-                                        </div><!-- /.box -->
+                                    <div class="box box-default collapsed-box box-solid">
+                                        <div class="box-header ">
+                                            <p class="box-title">On PAGE SEO</p>
+											<?php foreach($taskFields['on_page_seo'] as $value): ?>
+                                                <div class="box box-default collapsed-box">
+                                                    <div class="box-header  task">
+                                                        <span class="info-box-text"><?php echo $value['on_page_seo'];?></span>
+                                                    </div><!-- /.box-header -->
+                                                </div><!-- /.box -->
+											<?php endforeach;?>
+                                        </div><!-- /.box-header -->
+                                    </div><!-- /.box -->
 
                                 </div>
 							<?php endif;?>
@@ -636,55 +639,55 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 							<?php if(is_array($taskFields['off_page_seo']) && !empty($taskFields['off_page_seo'])):?>
                                 <div class="col-md-2 no-padding-right">
 
-                                        <div class="box box-default collapsed-box box-solid">
-                                            <div class="box-header ">
-                                                <p class="box-title">OFF PAGE SEO</p>
-												<?php foreach($taskFields['off_page_seo'] as $value): ?>
-                                                    <div class="box box-default collapsed-box">
-                                                        <div class="box-header  task">
-                                                            <span class="info-box-text"><?php echo $value['off_page_seo'];?></span>
-                                                        </div><!-- /.box-header -->
-                                                    </div><!-- /.box -->
-												<?php endforeach;?>
-                                            </div><!-- /.box-header -->
-                                        </div><!-- /.box -->
+                                    <div class="box box-default collapsed-box box-solid">
+                                        <div class="box-header ">
+                                            <p class="box-title">OFF PAGE SEO</p>
+											<?php foreach($taskFields['off_page_seo'] as $value): ?>
+                                                <div class="box box-default collapsed-box">
+                                                    <div class="box-header  task">
+                                                        <span class="info-box-text"><?php echo $value['off_page_seo'];?></span>
+                                                    </div><!-- /.box-header -->
+                                                </div><!-- /.box -->
+											<?php endforeach;?>
+                                        </div><!-- /.box-header -->
+                                    </div><!-- /.box -->
 
                                 </div>
 							<?php endif;?>
 
-	                        <?php if(is_array($taskFields['social_media_tasks']) && !empty($taskFields['social_media_tasks'])):?>
+							<?php if(is_array($taskFields['social_media_tasks']) && !empty($taskFields['social_media_tasks'])):?>
                                 <div class="col-md-2 no-padding-right">
 
-                                        <div class="box box-default collapsed-box box-solid">
-                                            <div class="box-header ">
-                                                <p class="box-title">OFF PAGE SEO</p>
-						                        <?php foreach($taskFields['social_media_tasks'] as $value): ?>
-                                                    <div class="box box-default collapsed-box">
-                                                        <div class="box-header  task">
-                                                            <span class="info-box-text"><?php echo $value['social_media_tasks'];?></span>
-                                                        </div><!-- /.box-header -->
-                                                    </div><!-- /.box -->
-						                        <?php endforeach;?>
-                                            </div><!-- /.box-header -->
-                                        </div><!-- /.box -->
+                                    <div class="box box-default collapsed-box box-solid">
+                                        <div class="box-header ">
+                                            <p class="box-title">OFF PAGE SEO</p>
+											<?php foreach($taskFields['social_media_tasks'] as $value): ?>
+                                                <div class="box box-default collapsed-box">
+                                                    <div class="box-header  task">
+                                                        <span class="info-box-text"><?php echo $value['social_media_tasks'];?></span>
+                                                    </div><!-- /.box-header -->
+                                                </div><!-- /.box -->
+											<?php endforeach;?>
+                                        </div><!-- /.box-header -->
+                                    </div><!-- /.box -->
 
                                 </div>
-	                        <?php endif;?>
+							<?php endif;?>
 
 							<?php if(is_array($taskFields['local_businesses']) && !empty($taskFields['local_businesses'])):?>
                                 <div class="col-md-2 no-padding-right">
-                                        <div class="box box-default collapsed-box box-solid">
-                                            <div class="box-header ">
-                                                <p class="box-title">Local Businesses</p>
-												<?php foreach($taskFields['local_businesses'] as $value): ?>
-                                                    <div class="box box-default collapsed-box">
-                                                        <div class="box-header  task">
-                                                            <span class="info-box-text"><?php echo $value['local_businesses'];?></span>
-                                                        </div><!-- /.box-header -->
-                                                    </div><!-- /.box -->
-												<?php endforeach;?>
-                                            </div><!-- /.box-header -->
-                                        </div><!-- /.box -->
+                                    <div class="box box-default collapsed-box box-solid">
+                                        <div class="box-header ">
+                                            <p class="box-title">Local Businesses</p>
+											<?php foreach($taskFields['local_businesses'] as $value): ?>
+                                                <div class="box box-default collapsed-box">
+                                                    <div class="box-header  task">
+                                                        <span class="info-box-text"><?php echo $value['local_businesses'];?></span>
+                                                    </div><!-- /.box-header -->
+                                                </div><!-- /.box -->
+											<?php endforeach;?>
+                                        </div><!-- /.box-header -->
+                                    </div><!-- /.box -->
 
                                 </div>
 							<?php endif;?>
@@ -844,6 +847,14 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 							}
 						} ?>
 
+                    </div>
+                    <div id="tabs-7">
+                        <div class='box-header'>
+                            <h3 class="box-title">Client Details</h3>
+                        </div>
+<!--                        <div class="box">-->
+							<?php render_profile_details_form();?>
+<!--                        </div>-->
                     </div>
                 </div>
             </div><!-- /.row -->
@@ -1066,6 +1077,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 <!-- iCheck 1.0.1 -->
 <script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/plugins/iCheck/icheck.js"></script>
 <script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/plugins/jQuery-Plugin-To-Enlarge-Images-On-Mouseover-image-tooltip-js/image-tooltip.js"></script>
+<script src="<?php echo get_template_directory_uri().'/seo-client-reports';?>/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 
 <script type='text/javascript' src='<?php echo get_home_url();?>/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.40.0-2013.08.13'></script>
 <script type='text/javascript'>
@@ -1201,7 +1213,53 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
     });
 </script>
 
+<script>
+    jQuery(function($){
+        $( document ).ready(function(){
+            getProfileDetails();
 
+            $(".wpcf7").on('wpcf7:submit', function(event){
+                getProfileDetails();
+
+            });
+
+        });
+    });
+
+    function getProfileDetails(){
+        var url = '<?php echo get_home_url() . '/wp-admin/admin-ajax.php';?>',
+            postID = '<?php echo $postID;?>';
+            
+        jQuery.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                action: 'get_user_profile_details',
+                postID: postID
+            },
+            success: function (data) {
+                $.each(data,  function( key, value ) {
+                    $('.wpcf7 form input[name='+key+']').val(value);
+                });
+                $.each(data,  function( key, value ) {
+                    $('.wpcf7 form textarea[name='+key+']').val(value);
+                });
+
+                var text1 = data['bought_package'];
+                $(".wpcf7 form select option").filter(function() {
+                    return $(this).text() == text1;
+                }).attr('selected', true);
+            }
+        });
+    }
+</script>
+
+<script>
+    $(function () {
+        //bootstrap WYSIHTML5 - text editor
+        $("textarea").wysihtml5();
+    });
+</script>
 
 
 </body>
