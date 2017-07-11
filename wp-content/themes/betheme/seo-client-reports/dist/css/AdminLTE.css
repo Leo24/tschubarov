@@ -2881,6 +2881,7 @@ table.text-center th {
  */
 .users-list > li {
   width: 25%;
+  min-height: 170px;
   float: left;
   padding: 10px;
   text-align: center;

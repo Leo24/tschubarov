@@ -640,7 +640,7 @@
 
 .page_wrap_subscription .tariff_block_pop .pop_cont {
     width: 900px;
-    height: 426px;
+    min-height: 426px;
     padding: 35px 40px 0;
     left: 50%;
     top: 50%;
