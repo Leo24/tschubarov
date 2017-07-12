@@ -303,7 +303,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 
 										//list of needed fields, it is used for removing extra fields that are returned by MOZ API
 										$urlMetricsList = array('upa', 'umrp', 'utrp', 'fuid', 'ueid', 'ujid',
-                                                                'ped', 'pib', 'fejp', 'feid', 'ftrp', 'fspsc', 'pda');
+											'ped', 'pib', 'fejp', 'feid', 'ftrp', 'fspsc', 'pda');
 										$recNew = array();
 										foreach($competitorsData as $key => $row) {
 											foreach($row as $field => $value) {
@@ -331,9 +331,9 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 													$countValues = count($values);
 													if($countValues > 1){
 														$max = max($values);
-                                                    }else{
-													    $max = 1;
-                                                    }
+													}else{
+														$max = 1;
+													}
 
 													if(in_array($key, $urlMetricsList)):?>
 														<?php if(is_array($values)):?>
@@ -364,13 +364,15 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                                     </div><!-- /.box-header -->
                                     <div class="box-body no-padding">
                                         <ul class="users-list clearfix">
-											<?php foreach($teamFields['team_member'] as $value):?>
-                                                <li>
-                                                    <img src="<?php echo $value['picture']['url'];?>" alt="<?php echo $value['picture']['title'];?>">
-                                                    <a class="users-list-name" href="#"><?php echo $value['name'];?></a>
-<!--                                                    <span class="users-list-date">Today</span>-->
-                                                </li>
-											<?php endforeach;?>
+											<?php if(is_array($teamFields['team_member']) && !empty($teamFields['team_member'])):?>
+												<?php foreach($teamFields['team_member'] as $value):?>
+                                                    <li>
+                                                        <img src="<?php echo $value['picture']['url'];?>" alt="<?php echo $value['picture']['title'];?>">
+                                                        <a class="users-list-name" href="#"><?php echo $value['name'];?></a>
+                                                        <!--                                                    <span class="users-list-date">Today</span>-->
+                                                    </li>
+												<?php endforeach;?>
+											<?php endif;?>
                                         </ul><!-- /.users-list -->
                                     </div><!-- /.box-body -->
                                     <div class="box-footer text-center">
@@ -413,14 +415,18 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                                 <h3 class="box-title">Google Rankings Position:</h3>
                             </div>
 
-							<?php foreach($reportFields['google_rankings_position'] as $position): ?>
-                                <div class="box box-widget">
-                                    <div class='box-body'>
-                                        <span class='description'>Date: <?php echo $position['date']; ?></span>
-                                        <img class="img-responsive pad" src="<?php echo $position['google_ranking_screenshot']['url'];?>" alt="<?php echo $reportFields['page_metrics_screenshot']['title'];?>">
+							<?php if(is_array($reportFields['google_rankings_position']) && !empty($reportFields['google_rankings_position'])):?>
+								<?php foreach($reportFields['google_rankings_position'] as $position): ?>
+                                    <div class="box box-widget">
+                                        <div class='box-body'>
+                                            <span class='description'>Date: <?php echo $position['date']; ?></span>
+                                            <img class="img-responsive pad" src="<?php echo $position['google_ranking_screenshot']['url'];?>" alt="<?php echo $reportFields['page_metrics_screenshot']['title'];?>">
+                                        </div>
                                     </div>
-                                </div>
-							<?php endforeach;?>
+								<?php endforeach;?>
+							<?php else:?>
+                                <li><a href="#">No Google Rankins data added yet.</a></li>
+							<?php endif;?>
 
                             <div class="box-header ">
                                 <h3 class="box-title">SERankins keywords statistics</h3>
@@ -854,9 +860,9 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                         <div class='box-header'>
                             <h3 class="box-title">Client Details</h3>
                         </div>
-<!--                        <div class="box">-->
-							<?php render_profile_details_form();?>
-<!--                        </div>-->
+                        <!--                        <div class="box">-->
+						<?php render_profile_details_form();?>
+                        <!--                        </div>-->
                     </div>
                 </div>
             </div><!-- /.row -->
@@ -1231,7 +1237,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
     function getProfileDetails(){
         var url = '<?php echo get_home_url() . '/wp-admin/admin-ajax.php';?>',
             postID = '<?php echo $postID;?>';
-            
+
         jQuery.ajax({
             url: url,
             type: "POST",
