@@ -292,22 +292,18 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 											'fuid'  => 'Links to Subdomain',
 											'ueid'  => 'External Equity Links',
 											'ujid'  => 'Total Equity Links',
-//											'ped'   => 'External links to root domain',
-//											'pib'   => 'Linking C Blocks',
+											'ped'   => 'External links to root domain',
+											'pib'   => 'Linking C Blocks',
 											'fejp'  => 'MozRank: Subdomain, External Equity',
 											'feid'  => 'Subdomain External Links',
 											'ftrp'  => 'MozTrust: Subdomain',
-//											'fspsc' => 'Subdomain Spam Score',
+											'fspsc' => 'Subdomain Spam Score',
 											'pda'   => 'Domain Authority',
 										);
 
 										//list of needed fields, it is used for removing extra fields that are returned by MOZ API
 										$urlMetricsList = array('upa', 'umrp', 'utrp', 'fuid', 'ueid', 'ujid',
-//                                            'ped',
-//                                            'pib',
-											'fejp', 'feid', 'ftrp',
-//                                            'fspsc',
-											'pda');
+                                                                'ped', 'pib', 'fejp', 'feid', 'ftrp', 'fspsc', 'pda');
 										$recNew = array();
 										foreach($competitorsData as $key => $row) {
 											foreach($row as $field => $value) {
@@ -331,8 +327,14 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 
 												foreach ($properOrderedArray as $key => $values):?>
 
-													<?php $max = max($values);
+													<?php
 													$countValues = count($values);
+													if($countValues > 1){
+														$max = max($values);
+                                                    }else{
+													    $max = 1;
+                                                    }
+
 													if(in_array($key, $urlMetricsList)):?>
 														<?php if(is_array($values)):?>
                                                             <tr>
@@ -366,7 +368,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                                                 <li>
                                                     <img src="<?php echo $value['picture']['url'];?>" alt="<?php echo $value['picture']['title'];?>">
                                                     <a class="users-list-name" href="#"><?php echo $value['name'];?></a>
-                                                    <span class="users-list-date">Today</span>
+<!--                                                    <span class="users-list-date">Today</span>-->
                                                 </li>
 											<?php endforeach;?>
                                         </ul><!-- /.users-list -->
