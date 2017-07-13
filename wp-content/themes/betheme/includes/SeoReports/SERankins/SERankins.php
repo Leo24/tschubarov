@@ -77,6 +77,26 @@ function addSiteKeywordsToSERanking($siteID, $keywords){
 	return json_decode($result, true);
 }
 
+function deleteSiteKeywords($siteID){
+	$authToken  = loginToSERanking();
+	$keywords = serankingKeywordsData($siteID);
+	$keywords_ids = array();
+	foreach($keywords as $k => $value){
+		$keywords_ids[] = $value['id'];
+	}
+	$apiUrl = 'http://online.seranking.com/structure/clientapi/v2.php?method=deleteKeywords&token='.$authToken;
+	$curlHandler = curl_init($apiUrl);
+	curl_setopt($curlHandler, CURLOPT_POST, 1);
+	$data = array(
+		'siteid' => $siteID,
+		'keywords_ids' => $keywords_ids,
+	);
+	curl_setopt($curlHandler, CURLOPT_POSTFIELDS, http_build_query(array('data' => json_encode($data))));
+	curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, true);
+	$result = curl_exec($curlHandler);
+	return json_decode($result, true);
+}
+
 /**
  * @param $siteID
  *
@@ -199,7 +219,7 @@ function add_update_serankins_site() {
 	if(isset($_POST) && !empty($_POST['postID'])) {
 		$postID          = $_POST['postID'];
 		$serankinsSiteID = $_POST['serankinsSiteID'];
-		$websiteUrl = get_field('website_url', $postID);
+		$websiteUrl      = get_field('website_url', $postID);
 		if(empty($serankinsSiteID)){
 			if(!empty($websiteUrl)) {
 				//Add site to SERanking
@@ -211,6 +231,29 @@ function add_update_serankins_site() {
 			}
 		}else{
 			wp_send_json('Nothing to update.');
+		}
+	}
+}
+
+
+add_action("wp_ajax_update_seranking_site_keywords", "update_seranking_site_keywords");
+add_action("wp_ajax_nopriv_update_seranking_site_keywords", "update_seranking_site_keywords");
+function update_seranking_site_keywords() {
+
+	if(isset($_POST) && !empty($_POST['postID'])) {
+		$postID   = $_POST['postID'];
+		$keywords = $_POST['keywords'];
+		$siteID   = get_field('se_rankins_site_id', $postID);
+		if(!empty($siteID)) {
+			if ( ! empty( $keywords ) ) {
+				deleteSiteKeywords( $siteID );
+				addSiteKeywordsToSERanking( $siteID, textareaToArray( strip_tags( $keywords ) ) );
+				wp_send_json( 'SeRanking keywords list succsessfully updated.' );
+			} else {
+				wp_send_json( 'Nothing to update.' );
+			}
+		}else{
+			wp_send_json( 'No seranking siteID found.' );
 		}
 	}
 }

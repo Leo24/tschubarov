@@ -30,20 +30,48 @@ jQuery(function($){
 
                     }
                     $('.update-google-page-speed-loader').remove();
-                        $('#add_update_serankins_site').append('' +
-                            '<p class="add-update-serankins-site">'+data+'</p>'
-                        );
                         setTimeout(function () {
                             $('.add-update-serankins-site').remove();
                         }, 5000);
                         console.log(data);
-
                 }
 
             });
         });
 
 
+
+
+
+
+        $('#update_seranking_site_keywords').on('click', function(){
+            var dataSource = $('#update-google-page-speed-data');
+            var url = dataSource.attr('data-url'),
+                postID = dataSource.attr('data-post-id'),
+                imageUrl = dataSource.attr('data-image-url'),
+                keywords = $('#keywords_type .acf-input textarea').val();
+            $(this).append('<img class="update-google-page-speed-loader" src="'+imageUrl+'" alt="loader">');
+            jQuery.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    action          : 'update_seranking_site_keywords',
+                    postID          : postID,
+                    keywords        : keywords
+                },
+                success: function (data) {
+                    $('.update-google-page-speed-loader').remove();
+                    $('#update_seranking_site_keywords').append('' +
+                        '<p class="update_seranking_site_keywords">'+data+'</p>'
+                    );
+                    setTimeout(function () {
+                        $('.update_seranking_site_keywords').remove();
+                    }, 5000);
+                    console.log(data);
+                }
+
+            });
+        });
 
 
 

@@ -140,8 +140,8 @@ class acf_field_button extends acf_field
 
 
 		// register acf scripts
-		wp_register_script( 'acf-input-button', plugin_dir_url() . 'acf-button-field/js/input.js', array('acf-input'), $this->settings['version'] );
-		wp_register_style( 'acf-input-button', plugin_dir_url() . 'acf-button-field/css/input.css', array('acf-input'), $this->settings['version'] );
+		wp_register_script( 'acf-input-button', plugins_url() . '/acf-button-field/js/input.js', array('acf-input'), $this->settings['version'] );
+		wp_register_style( 'acf-input-button', plugins_url() . '/acf-button-field/css/input.css', array('acf-input'), $this->settings['version'] );
 
 
 		// scripts
