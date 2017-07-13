@@ -273,7 +273,9 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                                     </div><!-- /.box-header -->
                                     <div class="box-body table-responsive no-padding competitors">
 
-										<?php
+	                                    <?php if(is_array($reportFields['competitors']) && !empty($reportFields['competitors'])):?>
+
+                                        <?php
 										//Code for rendering Competitors stats
 
 										$competitorsData = array(
@@ -348,6 +350,9 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 												<?php endforeach;?>
                                             </table>
                                         </div>
+                                        <?php else:?>
+                                            <p>No competitors added, yet.</p>
+                                        <?php endif;?>
                                     </div><!-- /.box-body -->
                                 </div><!-- /.box -->
                             </div>
@@ -461,59 +466,8 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
 											<?php endforeach;?>
                                         </table>
 									<?php else:?>
-<!--                                        <p>No keywords statistics found, yet.</p>-->
+                                        <p>No keywords statistics found, yet.</p>
 									<?php endif;?>
-
-                                    <table class="table table-bordered">
-                                        <tr>
-                                            <th class="col-sm-1">#</th>
-                                            <th class="col-sm-2">Keyword name</th>
-                                            <th class="col-sm-2">Date</th>
-                                            <th class="col-sm-1">Price</th>
-                                            <th class="col-sm-1">Change</th>
-                                            <th class="col-sm-4">Position</th>
-                                        </tr>
-
-                                            <tr>
-                                                <td class="col-sm-1">1</td>
-                                                <td class="col-sm-2">keyword 1</td>
-                                                <td class="col-sm-2">22.06.2017</td>
-                                                <td class="col-sm-1"><span class="badge bg-light-blue">85</span></td>
-                                                <td class="col-sm-1"><span class="badge bg-green">30</span></td>
-                                                <td class="col-sm-4">
-                                                    <p><span class="badge bg-yellow">10</span></p>
-                                                    <div class="progress progress-xs">
-                                                        <div class="progress-bar progress-bar-yellow" style="width: 10%"></div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        <tr>
-                                            <td class="col-sm-1">1</td>
-                                            <td class="col-sm-2">keyword 2</td>
-                                            <td class="col-sm-2">22.06.2017</td>
-                                            <td class="col-sm-1"><span class="badge bg-light-blue">75</span></td>
-                                            <td class="col-sm-1"><span class="badge bg-green">50</span></td>
-                                            <td class="col-sm-4">
-                                                <p><span class="badge bg-yellow">60</span></p>
-                                                <div class="progress progress-xs">
-                                                    <div class="progress-bar progress-bar-yellow" style="width: 60%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-sm-1">1</td>
-                                            <td class="col-sm-2">keyword 3</td>
-                                            <td class="col-sm-2">22.06.2017</td>
-                                            <td class="col-sm-1"><span class="badge bg-light-blue">35</span></td>
-                                            <td class="col-sm-1"><span class="badge bg-green">45</span></td>
-                                            <td class="col-sm-4">
-                                                <p><span class="badge bg-yellow">50</span></p>
-                                                <div class="progress progress-xs">
-                                                    <div class="progress-bar progress-bar-yellow" style="width: 50%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
                                 </div><!-- /.box-body -->
                             </div>
 
