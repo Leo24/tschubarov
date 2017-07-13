@@ -41,6 +41,20 @@ function addSiteToSERanking($websiteUrl){
 	return json_decode($result, true);
 }
 
+function deleteSiteFromSERanking($siteID){
+	$authToken  = loginToSERanking();
+	$apiUrl = 'http://online.seranking.com/structure/clientapi/v2.php?method=deleteSite&token='.$authToken;
+	$curlHandler = curl_init($apiUrl);
+	curl_setopt($curlHandler, CURLOPT_POST, 1);
+	$data = array(
+		'siteid' => $siteID,
+	);
+	curl_setopt($curlHandler, CURLOPT_POSTFIELDS, http_build_query(array('data' => json_encode($data))));
+	curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, true);
+	$result = curl_exec($curlHandler);
+	return json_decode($result, true);
+}
+
 /**
  * @param $siteID
  * @param $keywords
@@ -167,3 +181,40 @@ function removehttp($url) {
 	}
 	return $url;
 }
+
+/* Functionality for updating seranking data */
+
+function seranking_script( ) {
+	wp_enqueue_script( 'update_google_pagespeed_data_script', get_template_directory_uri() . '/js/seranking_script.js' );
+}
+add_action('admin_enqueue_scripts', 'seranking_script');
+
+
+
+add_action("wp_ajax_add_update_serankins_site", "add_update_serankins_site");
+add_action("wp_ajax_nopriv_add_update_serankins_site", "add_update_serankins_site");
+
+function add_update_serankins_site() {
+
+	if(isset($_POST) && !empty($_POST['postID'])) {
+		$postID          = $_POST['postID'];
+		$serankinsSiteID = $_POST['serankinsSiteID'];
+		$websiteUrl = get_field('website_url', $postID);
+		if(empty($serankinsSiteID)){
+			if(!empty($websiteUrl)) {
+				//Add site to SERanking
+				$serankingData = addSiteToSERanking( addhttp( $websiteUrl ) );
+				update_field( 'se_rankins_site_id', $serankingData['siteid'], $postID );
+				wp_send_json($serankingData['siteid']);
+			}else{
+				wp_send_json('Check website url it may be empty.');
+			}
+		}else{
+			wp_send_json('Nothing to update.');
+		}
+	}
+}
+
+
+
+/* End of Functionality for updating seranking data */

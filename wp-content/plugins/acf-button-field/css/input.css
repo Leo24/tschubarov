@@ -45,3 +45,7 @@
   text-decoration: none;
   text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
 }
+p.add-update-serankins-site{
+  color: #666;
+  text-shadow: none;
+}

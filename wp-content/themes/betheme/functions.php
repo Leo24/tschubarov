@@ -334,7 +334,7 @@ function custom_unique_post_slug( $slug, $post_ID, $post_status, $post_type ) {
 		$post = get_post($post_ID);
 		if ( empty($post->post_name)
 //             || $slug != $post->post_name
-        ) {
+		) {
 			$slug = md5( time() );
 		}
 	}
@@ -382,7 +382,7 @@ function wpcf7_create_seo_report() {
 		if(isset($_POST['param']) && !empty($_POST['param']) && ($_POST['param'] == 'update_user_profile_details')){
 			if(isset($_POST['postURL']) && !empty($_POST['postURL'])){
 				$postID = url_to_postid($_POST['postURL']);
-			    update_form_fields($formData, $postID);
+				update_form_fields($formData, $postID);
 				if ($wpcf) {$wpcf->skip_mail = true;}
 			}
 		}else {
@@ -530,14 +530,14 @@ function handle_backlinks_on_acf_save_post() {
 	if(!isset($check['error'])) {
 		if (!add_post_meta( $postID, 'googlePageSpeedDataBefore', $googlePageSpeedData, true)){}
 	}
-	//Add site to SERanking
-	$serankingData = addSiteToSERanking(addhttp($url));
-	update_field('se_rankins_site_id', $serankingData['siteid'], $postID);
-	addSiteKeywordsToSERanking($serankingData['siteid'], textareaToArray($url));
-
+//	//Add site to SERanking
+//	if(empty($fields['se_rankins_site_id'])){
+//		$serankingData = addSiteToSERanking(addhttp($url));
+//		update_field('se_rankins_site_id', $serankingData['siteid'], $postID);
+//		addSiteKeywordsToSERanking($serankingData['siteid'], textareaToArray(strip_tags($fields['keywords_type'])));
+//	}
 
 	return;
-
 
 }
 
@@ -568,12 +568,12 @@ function get_user_profile_details() {
 		);
 
 		$fields = get_fields($postID);
-        $formData = array();
+		$formData = array();
 		foreach($fields as $key => $field){
-		    if(in_array($key, $customFieldsList)){
-		        $formData[$key] = $field;
-            }
-        }
+			if(in_array($key, $customFieldsList)){
+				$formData[$key] = $field;
+			}
+		}
 		wp_send_json($formData);
 	}
 }
