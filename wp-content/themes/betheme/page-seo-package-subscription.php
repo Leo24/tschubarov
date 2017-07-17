@@ -22,8 +22,7 @@ get_header();
 
                             <h2><?php echo the_title();?></h2>
 
-	                        <?php echo do_shortcode('[contact-form-7 id="135822" title="Contact form for Seo Reports" html_class="use-floating-validation-tip"]');?>
-
+	                        <?php echo do_shortcode('[contact-form-7 id="138561" title="SEO Package Subscription Form" html_class="use-floating-validation-tip"]');?>
 
                         </div>
 

@@ -411,6 +411,7 @@ function wpcf7_create_seo_report() {
 		}
 
 	}
+	$wpcf->skip_mail = true;
 	return $wpcf;
 }
 
@@ -433,7 +434,8 @@ function update_form_fields($formData, $postID){
 	);
 
 	foreach($customFieldsList as $value) {
-		update_field($value, $formData[$value], $postID);
+		$field_key = acf_get_field_key($value, $postID);
+		update_field($field_key, $formData[$value], $postID);
 	}
 }
 
@@ -567,13 +569,40 @@ function get_user_profile_details() {
 			'additional_info',
 		);
 
-		$fields = get_fields($postID);
 		$formData = array();
-		foreach($fields as $key => $field){
-			if(in_array($key, $customFieldsList)){
-				$formData[$key] = $field;
-			}
-		}
+
+		foreach($customFieldsList as $key => $value){
+			$formData[$value] = strip_tags(get_field($value, $postID));
+        }
+
 		wp_send_json($formData);
 	}
+}
+
+function acf_get_field_key( $field_name, $post_id ) {
+	global $wpdb;
+	$acf_fields = $wpdb->get_results( $wpdb->prepare( "SELECT ID,post_parent,post_name FROM $wpdb->posts WHERE post_excerpt=%s AND post_type=%s" , $field_name , 'acf-field' ) );
+	// get all fields with that name.
+	switch ( count( $acf_fields ) ) {
+		case 0: // no such field
+			return false;
+		case 1: // just one result.
+			return $acf_fields[0]->post_name;
+	}
+	// result is ambiguous
+	// get IDs of all field groups for this post
+	$field_groups_ids = array();
+	$field_groups = acf_get_field_groups( array(
+		'post_id' => $post_id,
+	) );
+	foreach ( $field_groups as $field_group )
+		$field_groups_ids[] = $field_group['ID'];
+
+	// Check if field is part of one of the field groups
+	// Return the first one.
+	foreach ( $acf_fields as $acf_field ) {
+		if ( in_array($acf_field->post_parent,$field_groups_ids) )
+			return $acf_fields[0]->post_name;
+	}
+	return false;
 }

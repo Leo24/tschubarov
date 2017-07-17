@@ -1255,7 +1255,7 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
                     $('.wpcf7 form input[name='+key+']').val(value);
                 });
                 $.each(data,  function( key, value ) {
-                    $('.wpcf7 form textarea[name='+key+']').val(value);
+                    $('.wpcf7 form textarea[name='+key+']').text(value);
                 });
 
                 var text1 = data['bought_package'];
@@ -1266,14 +1266,6 @@ $seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $repo
         });
     }
 </script>
-
-<script>
-    $(function () {
-        //bootstrap WYSIHTML5 - text editor
-        $("textarea").wysihtml5();
-    });
-</script>
-
 
 </body>
 </html>
