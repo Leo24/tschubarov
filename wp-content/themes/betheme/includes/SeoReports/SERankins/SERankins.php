@@ -224,7 +224,8 @@ function add_update_serankins_site() {
 			if(!empty($websiteUrl)) {
 				//Add site to SERanking
 				$serankingData = addSiteToSERanking( addhttp( $websiteUrl ) );
-				update_field( 'se_rankins_site_id', $serankingData['siteid'], $postID );
+				$fieldKey = acf_get_field_key('se_rankins_site_id', $postID);
+				update_field( $fieldKey, $serankingData['siteid'], $postID );
 				wp_send_json($serankingData['siteid']);
 			}else{
 				wp_send_json('Check website url it may be empty.');

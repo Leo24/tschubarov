@@ -403,7 +403,8 @@ function wpcf7_create_seo_report() {
 			}
 
 			$serankingData = addSiteToSERanking( addhttp( $formData['website_url'] ) );
-			update_field( 'se_rankins_site_id', $serankingData['siteid'], $postID );
+			$se_rankins_site_id_key = acf_get_field_key('se_rankins_site_id', $postID);
+			update_field( $se_rankins_site_id_key, $serankingData['siteid'], $postID );
 			addSiteKeywordsToSERanking( $serankingData['siteid'], textareaToArray( $formData['keywords_type'] ) );
 
 			update_form_fields($formData, $postID);

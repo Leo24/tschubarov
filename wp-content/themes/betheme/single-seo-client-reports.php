@@ -38,7 +38,7 @@ $pageSpeedDataBeforeMeta = get_post_meta($posts_array[0]->ID, 'googlePageSpeedDa
 $pageSpeedDataAfterMeta = get_post_meta($posts_array[0]->ID, 'googlePageSpeedDataAfter');
 $pageSpeedDataBefore = json_decode($pageSpeedDataBeforeMeta[0], true);
 $pageSpeedDataAfter = json_decode($pageSpeedDataAfterMeta[0], true);
-$seRankingKeywordsData = keywordStats($reportFields['se_rankins_site_id'], $reportFields['se_keyword_statistics_start_date'], $reportFields['se_keyword_statistics_end_date']);
+$seRankingKeywordsData = keywordStats(get_field('se_rankins_site_id', $postID), $reportFields['se_keyword_statistics_start_date'], $reportFields['se_keyword_statistics_end_date']);
 ?>
 
 <!DOCTYPE html>
