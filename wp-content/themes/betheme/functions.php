@@ -607,3 +607,45 @@ function acf_get_field_key( $field_name, $post_id ) {
 	}
 	return false;
 }
+
+add_filter('manage_seo-client-reports_posts_columns' , 'columns_seo_client_reports');
+
+function columns_seo_client_reports( $columns ) {
+
+	// New columns to add to table
+	$columns['user_name'] = __( 'Username' );
+	return $columns;
+}
+
+// Let WordPress know to use our filter
+
+
+add_action('manage_seo-client-reports_posts_custom_column', 'columns_seo_client_reports_content', 10, 2);
+
+function columns_seo_client_reports_content( $column, $post_id ) {
+
+	switch( $column ) {
+
+		/* If displaying the 'duration' column. */
+		case 'user_name' :
+			$fiverr_username = get_field('fiverr_username', $post_id);
+			echo ''.$fiverr_username.'';
+			break;
+
+		default :
+			break;
+	}
+}
+
+
+
+// Let WordPress know to use our filter
+add_filter( 'manage_seo-client-reports_sortable_columns', 'seo_client_reports_custom_columns_sortable' );
+
+function seo_client_reports_custom_columns_sortable( $columns ) {
+
+	// Add our columns to $columns array
+	$columns['user_name'] = 'Username';
+
+	return $columns;
+}
