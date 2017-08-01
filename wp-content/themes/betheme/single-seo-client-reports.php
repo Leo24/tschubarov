@@ -245,6 +245,25 @@ $seRankingKeywordsData = keywordStats(get_field('se_rankins_site_id', $postID), 
 
                             </div>
                         </div>
+
+                        <?php if(!empty($reportFields['details_client_keywords_and_pages_list'])):?>
+                        <div class="box box-widget">
+                            <div class='box-header '>
+                                <div class='user-block'>
+                                    <span class='username'>Details</span>
+                                </div><!-- /.user-block -->
+                            </div><!-- /.box-header -->
+
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-10 col-xs-6">
+                                        <p><?php echo $reportFields['details_client_keywords_and_pages_list'];?></p>
+                                    </div>
+                                </div><!-- /.row -->
+                            </div>
+                        </div>
+
+                        <?php endif;?>
                         <div class="box box-widget">
                             <div class='box-header '>
                                 <div class='user-block'>
