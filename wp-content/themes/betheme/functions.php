@@ -11,6 +11,7 @@ require_once( __DIR__ . '/includes/SeoReports/SERankins/SERankins.php' );
 require_once( __DIR__ . '/includes/SeoReports/googleData/pageSpeed.php' );
 require_once( __DIR__ . '/includes/SeoReports/CF7_forms/forms.php' );
 require_once( __DIR__ . '/includes/SeoReports/additionalColumns/adminColumns.php' );
+require_once( __DIR__ . '/includes/SeoReports/tasksMeta/tasksMeta.php' );
 
 define( 'THEME_DIR', get_template_directory() );
 define( 'THEME_URI', get_template_directory_uri() );
@@ -575,7 +576,7 @@ function get_user_profile_details() {
 
 		foreach($customFieldsList as $key => $value){
 			$formData[$value] = strip_tags(get_field($value, $postID));
-        }
+		}
 
 		wp_send_json($formData);
 	}
