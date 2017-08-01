@@ -122,6 +122,10 @@
     font-weight: bold;
 }
 
+.trello-board .checked{
+    background-color: #8EEAC0;
+}
+
 .no-padding-right{
     padding-right: 0;
 }

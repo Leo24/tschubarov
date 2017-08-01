@@ -618,8 +618,9 @@ $seRankingKeywordsData = keywordStats(get_field('se_rankins_site_id', $postID), 
                                         <div class="box-header ">
                                             <p class="box-title">Startup Preparation</p>
 											<?php foreach($taskFields['startup_preparation'] as $value): ?>
+                                                <?php $inputName = createInputName($value['startup_preparation']);?>
                                                 <div class="box box-default collapsed-box">
-                                                    <div class="box-header  task">
+                                                    <div class="box-header task <?php echo checkPostMeta($postID, $inputName);?>">
                                                         <span class="info-box-text"><?php echo $value['startup_preparation'];?></span>
                                                     </div><!-- /.box-header -->
                                                 </div><!-- /.box -->
@@ -637,8 +638,9 @@ $seRankingKeywordsData = keywordStats(get_field('se_rankins_site_id', $postID), 
                                         <div class="box-header ">
                                             <p class="box-title">On PAGE SEO</p>
 											<?php foreach($taskFields['on_page_seo'] as $value): ?>
+												<?php $inputName = createInputName($value['on_page_seo']);?>
                                                 <div class="box box-default collapsed-box">
-                                                    <div class="box-header  task">
+                                                    <div class="box-header task <?php echo checkPostMeta($postID, $inputName);?>">
                                                         <span class="info-box-text"><?php echo $value['on_page_seo'];?></span>
                                                     </div><!-- /.box-header -->
                                                 </div><!-- /.box -->
@@ -656,8 +658,9 @@ $seRankingKeywordsData = keywordStats(get_field('se_rankins_site_id', $postID), 
                                         <div class="box-header ">
                                             <p class="box-title">OFF PAGE SEO</p>
 											<?php foreach($taskFields['off_page_seo'] as $value): ?>
+												<?php $inputName = createInputName($value['off_page_seo']);?>
                                                 <div class="box box-default collapsed-box">
-                                                    <div class="box-header  task">
+                                                    <div class="box-header task <?php echo checkPostMeta($postID, $inputName);?>">
                                                         <span class="info-box-text"><?php echo $value['off_page_seo'];?></span>
                                                     </div><!-- /.box-header -->
                                                 </div><!-- /.box -->
@@ -675,8 +678,9 @@ $seRankingKeywordsData = keywordStats(get_field('se_rankins_site_id', $postID), 
                                         <div class="box-header ">
                                             <p class="box-title">OFF PAGE SEO</p>
 											<?php foreach($taskFields['social_media_tasks'] as $value): ?>
+												<?php $inputName = createInputName($value['social_media_tasks']);?>
                                                 <div class="box box-default collapsed-box">
-                                                    <div class="box-header  task">
+                                                    <div class="box-header task <?php echo checkPostMeta($postID, $inputName);?>">
                                                         <span class="info-box-text"><?php echo $value['social_media_tasks'];?></span>
                                                     </div><!-- /.box-header -->
                                                 </div><!-- /.box -->
@@ -693,8 +697,9 @@ $seRankingKeywordsData = keywordStats(get_field('se_rankins_site_id', $postID), 
                                         <div class="box-header ">
                                             <p class="box-title">Local Businesses</p>
 											<?php foreach($taskFields['local_businesses'] as $value): ?>
+												<?php $inputName = createInputName($value['local_businesses']);?>
                                                 <div class="box box-default collapsed-box">
-                                                    <div class="box-header  task">
+                                                    <div class="box-header task <?php echo checkPostMeta($postID, $inputName);?>">
                                                         <span class="info-box-text"><?php echo $value['local_businesses'];?></span>
                                                     </div><!-- /.box-header -->
                                                 </div><!-- /.box -->
